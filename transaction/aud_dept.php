@@ -43,7 +43,7 @@ elseif (isset($_POST['update_dept'])){
     session_start();
 
     try{
-        $result=mysqli_query($conn,"UPDATE department SET dept_name='$dept_name', dept_head_name='$dept_head_name' , dept_area = '$dept_area' , dept_location = '$dept_location' , dept_phone = '$dept_phone' , dept_comment = '$dept_comment' , dept_audit_timestamp = '$dept_audit_timestamp' WHERE dept_id='$dept_id'");
+        $result=mysqli_query($conn, "UPDATE department SET dept_name='$dept_name', dept_head_name='$dept_head_name' , dept_area = '$dept_area' , dept_location = '$dept_location' , dept_phone = '$dept_phone' , dept_comment = '$dept_comment' , dept_audit_timestamp = '$dept_audit_timestamp' WHERE dept_id='$dept_id'");
         if($result >= 1){
             $_SESSION['transaction'] = "S";
         }

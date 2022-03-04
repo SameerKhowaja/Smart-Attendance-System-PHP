@@ -150,7 +150,15 @@
                             <i class="fa fa-bars"></i>
                         </span>
                         <div class="text-box" >
-                            <p class="main-text">Total: 240</p>
+                            <p class="main-text">Total: 
+                                <?php
+                                    $sql = "SELECT * FROM member";
+                                    if ($result=mysqli_query($conn, $sql)) {
+                                        $rowcount=mysqli_num_rows($result);
+                                        echo $rowcount; 
+                                    }
+                                ?>
+                            </p>
                             <p class="text-muted">Members / Khidmaatgar</p>
                         </div>
                     </div>

@@ -116,101 +116,48 @@
                                         <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                             <thead>
                                                 <tr>
-                                                    <th style="text-align:center;">Dept ID</th>
-                                                    <th style="text-align:center;">Name</th>
-                                                    <th style="text-align:center;">Head Name</th>
-                                                    <th style="text-align:center;">Area</th>
+                                                    <th style="text-align:center;">Form ID</th>
+                                                    <th style="text-align:center;">Full Name</th>
+                                                    <th style="text-align:center;">Contact#</th>
+                                                    <th style="text-align:center;">Postion</th>
+                                                    <th style="text-align:center;">Date of Joining</th>
                                                     <th style="text-align:center;">Last Update</th>
                                                     <th style="text-align:center;">Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <?php $user_query=mysqli_query($conn, "SELECT * FROM department")or die(mysqli_error());
+                                                <?php $user_query=mysqli_query($conn, "SELECT * FROM member")or die(mysqli_error());
                                                     while($row=mysqli_fetch_array($user_query)){
-                                                        $id=$row['dept_id'];
+                                                        $id=$row['member_id'];
                                                 ?>
                                                 <tr class="odd gradeX">
-                                                    <td style="text-align:center;"><?php echo $row['dept_id']; ?></td>
-                                                    <td><?php echo $row['dept_name']; ?></td>
-                                                    <td><?php echo $row['dept_head_name']; ?></td>
-                                                    <td><?php echo $row['dept_area']; ?></td>
-                                                    <td style="text-align:center;"><?php echo $row['dept_audit_timestamp']; ?></td>
+                                                    <td style="text-align:center;"><?php echo $row['formid_number']; ?></td>
+                                                    <td><?php echo $row['firstname']." ".$row['lastname']; ?></td>
+                                                    <td><?php echo $row['contact_number']; ?></td>
+                                                    <td><?php echo $row['position']; ?></td>
+                                                    <td style="text-align:center;"><?php echo $row['doj']; ?></td>
+                                                    <td style="text-align:center;"><?php echo $row['member_audit_timestamp']; ?></td>
                                                     <td style="width:220; text-align:center;">
-                                                        <a rel="tooltip" title="Update" id="<?php echo $id; ?>" href="#update_dept<?php echo $id; ?>" data-toggle="modal" class="btn btn-warning btn-sm">View / Update</a>
-                                                        <!-- View/Update Modal -->
-                                                        <div class="modal fade" id="update_dept<?php echo $id; ?>" tabindex="-1" role="dialog" aria-labelledby="update_dept" aria-hidden="true">
-                                                            <div class="modal-dialog" role="document">
-                                                                <div class="modal-content">
-                                                                    <div class="modal-body">
-                                                                        <div class="text-center">
-                                                                            <h4><b>View / Update Department</b></h4>
-                                                                        </div>
-                                                                        <form method="post" action="update_dept.php">
-                                                                            <table>
-                                                                                <tbody style="text-align:left;">
-                                                                                    <tr>
-                                                                                        <td><b>Department ID</b></td>
-                                                                                        <td style="padding-top:5px; padding-left:10px;"><input style="width:350px;" type="text" class="form-control" id="dept_id" name="dept_id" value="<?php echo $row['dept_id']; ?>" readonly></td>
-                                                                                    </tr>
-                                                                                    <tr>
-                                                                                        <td><b>Department Name</b></td>
-                                                                                        <td style="padding-top:5px; padding-left:10px;"><input style="width:350px;" type="text" class="form-control" id="dept_name" name="dept_name" value="<?php echo $row['dept_name']; ?>" required></td>
-                                                                                    </tr>
-                                                                                    <tr>
-                                                                                        <td><b>Department Head Name</b></td>
-                                                                                        <td style="padding-top:5px; padding-left:10px;"><input style="width:350px;" type="text" class="form-control" id="dept_head_name" name="dept_head_name" value="<?php echo $row['dept_name'];?>" required></td>
-                                                                                    </tr>
-                                                                                    <tr>
-                                                                                        <td><b>Department Area Name</b></td>
-                                                                                        <td style="padding-top:5px; padding-left:10px;"><input style="width:350px;" type="text" class="form-control" id="dept_area" name="dept_area" value="<?php echo $row['dept_area']; ?>" required></td>
-                                                                                    </tr>
-                                                                                    <tr>
-                                                                                        <td><b>Location / Address</b></td>
-                                                                                        <td style="padding-top:5px; padding-left:10px;"><input style="width:350px;" type="text" class="form-control" id="dept_location" name="dept_location" value="<?php echo $row['dept_location']; ?>" required></td>
-                                                                                    </tr>
-                                                                                    <tr>
-                                                                                        <td><b>Phone Number</b></td>
-                                                                                        <td style="padding-top:5px; padding-left:10px;"><input style="width:350px;" type="text" class="form-control" id="dept_phone" name="dept_phone" value="<?php echo $row['dept_phone']; ?>"></td>
-                                                                                    </tr>
-                                                                                    <tr>
-                                                                                        <td><b>Any Comments</b></td>
-                                                                                        <td style="padding-top:5px; padding-left:10px;"><input style="width:350px;" type="text" class="form-control" id="dept_comment" name="dept_comment" value="<?php echo $row['dept_comment']; ?>"></td>
-                                                                                    </tr>
-                                                                                    <tr>
-                                                                                        <td>
-                                                                                            <button style="margin-top:10px" class="btn btn-info" data-dismiss="modal" aria-hidden="true"><i class="icon-remove icon-large"></i>&nbsp;Close</button>
-                                                                                        </td>
-                                                                                        <td>
-                                                                                            <button style="margin-top:10px;width:150px;float:right;" name="update_dept" type="submit" class="btn btn-danger"><i class="icon-save icon-large"></i>&nbsp;Update</button>
-                                                                                        </td>
-                                                                                    </tr>
-                                                                                </tbody>
-                                                                            </table>
-                                                                        </form>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <!-- View/Update Modal -->
+                                                        <a id="<?php echo $id; ?>" href="update_member.php?member_id=<?php echo $id; ?>" class="btn btn-warning btn-sm">View / Update</a>
                                                         
-                                                        <a rel="tooltip" title="Delete" id="<?php echo $id; ?>" href="#delete_dept<?php echo $id; ?>" data-toggle="modal" class="btn btn-danger btn-sm">Delete</a>
+                                                        <a rel="tooltip" title="Delete" id="<?php echo $id; ?>" href="#delete_member<?php echo $id; ?>" data-toggle="modal" class="btn btn-danger btn-sm">Delete</a>
                                                         <!-- Delete Modal -->
-                                                        <div class="modal fade" id="delete_dept<?php echo $id; ?>" tabindex="-1" role="dialog" aria-labelledby="delete_dept<?php echo $id; ?>" aria-hidden="true">
+                                                        <div class="modal fade" id="delete_member<?php echo $id; ?>" tabindex="-1" role="dialog" aria-labelledby="delete_dept<?php echo $id; ?>" aria-hidden="true">
                                                             <div class="modal-dialog" role="document">
                                                                 <div class="modal-content">
                                                                     <div class="modal-body">
                                                                         <div class="text-center">
-                                                                            <h4><b>Delete Department "<?php echo $row['dept_name']; ?>"</b></h4>
+                                                                            <h4><b>Delete Member "<?php echo $row['firstname']." ".$row['lastname']; ?>"</b></h4>
                                                                         </div>
-                                                                        <form method="post" action="delete_dept.php">
+                                                                        <form method="post" action="transaction/aud_member.php">
                                                                             <div class="form-group">
-                                                                                <input type="hidden" class="form-control" id="dept_id" name="dept_id" value="<?php echo $row['dept_id']; ?>" readonly>
-                                                                                <h5>Are you sure to DELETE Department Data?</h5>
+                                                                                <input type="hidden" class="form-control" id="member_id" name="member_id" value="<?php echo $row['member_id']; ?>" readonly>
+                                                                                <h5>Are you sure to DELETE Member Data?</h5>
                                                                             </div>
                                                                             <br>
                                                                             <div class="form-group">
                                                                                 <button class="btn btn-info" data-dismiss="modal" aria-hidden="true">&nbsp;No</button>
-                                                                                <button name="delete_dept" type="submit" class="btn btn-danger"><i class="icon-save icon-large" style="width:50px;float:right;"></i>&nbsp;Yes</button>
+                                                                                <button name="delete_member" type="submit" class="btn btn-danger"><i class="icon-save icon-large" style="width:50px;float:right;"></i>&nbsp;Yes</button>
                                                                             </div>
                                                                         </form>
                                                                     </div>
