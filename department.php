@@ -76,7 +76,7 @@
                             <div class="text-center">
                                 <h4><b>Add NEW Department</b></h4>
                             </div>
-                            <form method="post" action="transaction/add_dept.php">
+                            <form method="post" action="transaction/aud_dept.php">
                                 <div class="form-group">
                                     <label for="dept_name">Department Name</label>
                                     <input type="text" class="form-control" id="dept_name" name="dept_name" required>
@@ -189,7 +189,7 @@
                                                                         <div class="text-center">
                                                                             <h4><b>View / Update Department</b></h4>
                                                                         </div>
-                                                                        <form method="post" action="transaction/update_dept.php">
+                                                                        <form method="post" action="transaction/aud_dept.php">
                                                                             <table>
                                                                                 <tbody style="text-align:left;">
                                                                                     <tr>
@@ -246,7 +246,7 @@
                                                                         <div class="text-center">
                                                                             <h4><b>Delete Department "<?php echo $row['dept_name']; ?>"</b></h4>
                                                                         </div>
-                                                                        <form method="post" action="transaction/delete_dept.php">
+                                                                        <form method="post" action="transaction/aud_dept.php">
                                                                             <div class="form-group">
                                                                                 <input type="hidden" class="form-control" id="dept_id" name="dept_id" value="<?php echo $row['dept_id']; ?>" readonly>
                                                                                 <h5>Are you sure to DELETE Department Data?</h5>

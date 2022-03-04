@@ -38,14 +38,21 @@
                     $password = mysqli_real_escape_string($conn, $_POST['password']);
                     $query = "SELECT * FROM admin_user WHERE username='$username' AND password='$password'";
                     
-                    $result = mysqli_query($conn,$query)or die(mysqli_error());
+                    $result = mysqli_query($conn, $query)or die(mysqli_error());
                     $num_row = mysqli_num_rows($result);
-                    $row=mysqli_fetch_array($result);
+                    $row = mysqli_fetch_array($result);
 
                     if( $num_row > 0 ) {
-                        $_SESSION['username']=$row['username'];
+                        $_SESSION['username'] = $row['username'];
                         $_SESSION['fullname'] = $row['fullname'];
+                        $_SESSION['deleteable'] = $row['deleteable'];
                         $_SESSION['transaction'] = "";
+
+                        // update last signin
+                        $username = $row['username'];
+                        $Today = date('y-m-d');
+                        $query2 = "UPDATE admin_user SET last_login_time='$Today' WHERE username='$username'";
+                        mysqli_query($conn, $query2)or die(mysqli_error());
                         header('location: dashboard.php');
                     }
                     else{ 
