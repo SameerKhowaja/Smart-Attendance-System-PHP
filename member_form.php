@@ -95,91 +95,180 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <form method="post" action="transaction/aud_member.php">
-                                                <div class="form-group">
-                                                    <label>Text Input with Placeholder</label>
-                                                    <input class="form-control" placeholder="PLease Enter Keyword" />
-                                                </div>
-                                                <div class="form-group">
-                                                    <label>Just A Label Control</label>
-                                                    <p class="form-control-static">info@yourdomain.com</p>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label>File input</label>
-                                                    <input type="file" />
-                                                </div>
-                                                <div class="form-group">
-                                                    <label>Text area</label>
-                                                    <textarea class="form-control" rows="3"></textarea>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label>Checkboxes</label>
-                                                    <div class="checkbox">
-                                                        <label>
-                                                            <input type="checkbox" value="" />Checkbox Example One
-                                                        </label>
+                                                <div class="col-md-12">
+                                                    <!-- Left Side -->
+                                                    <div class="col-md-4">
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <div class="form-group">
+                                                                    <img class="img-thumbnail" style="width:280px; height:300px;" src="assets/images/success.png" alt="Your Image">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <input id="image" name="image" type="file" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                    <div class="checkbox">
-                                                        <label>
-                                                            <input type="checkbox" value=""/>Checkbox Example Two
-                                                        </label>
+                                                    <!-- Left Side -->
+
+                                                    <!-- Right Side -->
+                                                    <div class="col-md-8">
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <div class="form-group">
+                                                                    <label for="formid_number">Form ID Number</label>
+                                                                    <input id="formid_number" name="formid_number" type="text" class="form-control" placeholder="Your Form ID Number" required/>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div class="form-group">
+                                                                    <label for="dept_id">Department Name</label>
+                                                                    <select id="dept_id" name="dept_id" class="form-control">
+                                                                        <option value="">-- Please Select --</option>
+                                                                        <?php $user_query=mysqli_query($conn, "SELECT * FROM department")or die(mysqli_error());
+                                                                            while($row=mysqli_fetch_array($user_query)){
+                                                                                $id=$row['dept_id'];
+                                                                        ?>
+                                                                        <option value="<?php echo $id ?>"><?php echo $row['dept_name']; ?></option>
+                                                                        <?php } ?>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <div class="form-group">
+                                                                    <label for="firstname">First Name</label>
+                                                                    <input id="firstname" name="firstname" type="text" class="form-control" placeholder="Your First Name" required/>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div class="form-group">
+                                                                    <label for="lastname">Last Name</label>
+                                                                    <input id="lastname" name="lastname" type="text" class="form-control" placeholder="Your Last Name" required/>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <div class="form-group">
+                                                                    <label for="email">Email Address</label>
+                                                                    <input id="email" name="email" type="email" class="form-control" placeholder="Your Email Address"/>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div class="form-group">
+                                                                    <label for="contact_number">Contact Number</label>
+                                                                    <input id="contact_number" name="contact_number" type="text" class="form-control" placeholder="Your Contact Number" required/>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <div class="form-group">
+                                                                    <label for="dob">Date of Birth</label>
+                                                                    <input id="dob" name="dob" type="date" class="form-control" required/>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div class="form-group">
+                                                                    <label for="cnic">CNIC Number</label>
+                                                                    <input id="cnic" name="cnic" type="text" class="form-control" placeholder="Your CNIC Number" required/>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <div class="form-group">
+                                                                    <label for="gender">Gender</label>
+                                                                    <select id="gender" name="gender" class="form-control">
+                                                                        <option value="">-- Please Select --</option>
+                                                                        <option value="Chairman">Male</option>
+                                                                        <option value="Secretary">Female</option>
+                                                                        <option value="Finance">Other</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div class="form-group">
+                                                                    <label for="marital_status">Marital Status</label>
+                                                                    <select id="marital_status" name="marital_status" class="form-control">
+                                                                        <option value="">-- Please Select --</option>
+                                                                        <option value="Single">Single</option>
+                                                                        <option value="Married">Married</option>
+                                                                        <option value="Divorced">Divorced</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        
                                                     </div>
-                                                    <div class="checkbox">
-                                                        <label>
-                                                            <input type="checkbox" value=""/>Checkbox Example Three
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label>Inline Checkboxes Examples</label>
-                                                    <label class="checkbox-inline">
-                                                        <input type="checkbox"/> One
-                                                    </label>
-                                                    <label class="checkbox-inline">
-                                                        <input type="checkbox"/> Two
-                                                    </label>
-                                                    <label class="checkbox-inline">
-                                                        <input type="checkbox"/> Three
-                                                    </label>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label>Radio Button Examples</label>
-                                                    <div class="radio">
-                                                        <label>
-                                                            <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked />Radio Example One
-                                                        </label>
-                                                    </div>
-                                                    <div class="radio">
-                                                        <label>
-                                                            <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"/>Radio Example Two
-                                                        </label>
-                                                    </div>
-                                                    <div class="radio">
-                                                        <label>
-                                                            <input type="radio" name="optionsRadios" id="optionsRadios3" value="option3"/>Radio Example Three
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label>Select Example</label>
-                                                    <select class="form-control">
-                                                        <option>One Vale</option>
-                                                        <option>Two Vale</option>
-                                                        <option>Three Vale</option>
-                                                        <option>Four Vale</option>
-                                                    </select>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label>Multiple Select Example</label>
-                                                    <select multiple class="form-control">
-                                                        <option>One Vale</option>
-                                                        <option>Two Vale</option>
-                                                        <option>Three Vale</option>
-                                                        <option>Four Vale</option>
-                                                    </select>
+                                                    <!-- Right Side -->
                                                 </div>
 
-                                                <button style="float:right;" type="submit" class="btn btn-danger">Submit Form</button>
-                                                <button type="reset" class="btn btn-info">Clear All</button>
+                                                <!-- Center -->
+                                                <div class="col-md-12">
+                                                    <div class="col-md-12">
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <div class="form-group">
+                                                                    <label for="doj">Date of Joining</label>
+                                                                    <input id="doj" name="doj" type="date" class="form-control" required/>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div class="form-group">
+                                                                    <label for="position">Badge / Position</label>
+                                                                    <select id="position" name="position" class="form-control">
+                                                                        <option value="">-- Please Select --</option>
+                                                                        <option value="Chairman">Chairman</option>
+                                                                        <option value="Secretary">Secretary</option>
+                                                                        <option value="Finance">Finance</option>
+                                                                        <option value="Duty Incharge">Duty Incharge</option>
+                                                                        <option value="Member">Member</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-12">
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <div class="form-group">
+                                                                    <label for="city">City</label>
+                                                                    <input id="city" name="city" type="text" class="form-control" placeholder="Your City" required/>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div class="form-group">
+                                                                    <label for="country">Country</label>
+                                                                    <input id="country" name="country" type="text" class="form-control" placeholder="Your Country" required/>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <div class="form-group">
+                                                                    <label for="address">Home Address</label>
+                                                                    <textarea id="address" name="address" class="form-control" rows="2" placeholder="Your Email Address" required></textarea>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-12">
+                                                        <button style="float:right; width:150px;" name="add_member" type="submit" class="btn btn-danger">Submit Form</button>
+                                                        <button style="width:150px;" type="reset" class="btn btn-info">Clear All</button>
+                                                    </div>
+                                                </div>
+                                                <!-- Center -->
                                             </form>                          
                                         </div>
                                     </div>
