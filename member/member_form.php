@@ -58,10 +58,10 @@
                             <a href="../memberByDepartment.php"><i class="fa fa-sitemap fa-2x"></i> Members By Department</a>
                         </li>	
                         <li>
-                            <a href="attendance.php"><i class="fa fa-table fa-2x"></i> Attendance</a>
+                            <a type="button" data-toggle="modal" data-target="#qrCardGenerator"><i class="fa fa-qrcode fa-2x"></i> QR Card Generator</a>
                         </li>
                         <li>
-                            <a href="user-attendance.php"><i class="fa fa-qrcode fa-3x"></i> User Attendance</a>
+                            <a href="attendance.php"><i class="fa fa-table fa-2x"></i> Attendance</a>
                         </li>
                         <li>
                             <a href="report.php"><i class="fa fa-edit fa-2x"></i> Report</a>
@@ -164,7 +164,7 @@
                                                             <div class="col-md-6">
                                                                 <div class="form-group">
                                                                     <label for="contact_number">Contact Number</label>
-                                                                    <input id="contact_number" name="contact_number" type="text" class="form-control" placeholder="Your Contact Number" required/>
+                                                                    <input id="contact_number" name="contact_number" type="text" class="form-control" placeholder="Your Contact Number" onkeyup="if (/\D/g.test(this.value)) this.value = this.value.replace(/\D/g,'')" required/>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -179,7 +179,7 @@
                                                             <div class="col-md-6">
                                                                 <div class="form-group">
                                                                     <label for="cnic">CNIC Number</label>
-                                                                    <input id="cnic" name="cnic" type="text" class="form-control" placeholder="Your CNIC Number" required/>
+                                                                    <input id="cnic" name="cnic" type="text" class="form-control" placeholder="Your CNIC Number" onkeyup="if (/\D/g.test(this.value)) this.value = this.value.replace(/\D/g,'')" required/>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -312,6 +312,11 @@
         <!-- DATA TABLE SCRIPTS -->
         <script src="../assets/js/dataTables/jquery.dataTables.js"></script>
         <script src="../assets/js/dataTables/dataTables.bootstrap.js"></script>
+        <script>
+            $(document).ready(function () {
+                $('.dataTables-memberQRList').dataTable();
+            });
+        </script>
             <!-- CUSTOM SCRIPTS -->
         <script src="../assets/js/custom.js"></script>
     </body>

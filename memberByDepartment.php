@@ -57,12 +57,12 @@
                         </li>
                         <li>
                             <a class="active-menu" href="memberByDepartment.php"><i class="fa fa-sitemap fa-3x"></i> Members By Department</a>
-                        </li>		
+                        </li>	
+                        <li>
+                            <a type="button" data-toggle="modal" data-target="#qrCardGenerator"><i class="fa fa-qrcode fa-2x"></i> QR Card Generator</a>
+                        </li>	
                         <li>
                             <a href="attendance.php"><i class="fa fa-table fa-2x"></i> Attendance</a>
-                        </li>
-                        <li>
-                            <a href="user-attendance.php"><i class="fa fa-qrcode fa-3x"></i> User Attendance</a>
                         </li>
                         <li>
                             <a href="report.php"><i class="fa fa-edit fa-2x"></i> Report</a>
@@ -108,7 +108,7 @@
                                                     <td style="text-align:center;"><?php echo $row['dept_head_name']; ?></td>
                                                     <td style="text-align:center;"><?php echo $member_count ?></td>
                                                     <td style="width:220; text-align:center;">
-                                                        <a rel="tooltip" title="View" id="<?php echo $id; ?>" href="#view_members<?php echo $id; ?>" data-toggle="modal" class="btn btn-danger btn-sm">View Members List</a>
+                                                        <a rel="tooltip" title="View" id="<?php echo $id; ?>" href="#view_members<?php echo $id; ?>" data-toggle="modal" class="btn btn-warning btn-sm">View Members List</a>
                                                         <!-- View Modal -->
                                                         <div class="modal fade" id="view_members<?php echo $id; ?>" tabindex="-1" role="dialog" aria-labelledby="view_members" aria-hidden="true">
                                                             <div class="modal-dialog modal-lg" role="document">
@@ -146,7 +146,7 @@
                                                                                                 <td><?php echo $mem['position']; ?></td>
                                                                                                 <td><?php echo $mem['doj']; ?></td>
                                                                                                 <td><?php echo $mem['gender']; ?></td>
-                                                                                                <td><a id="<?php echo $mem['member_id']; ?>" href="member/update_member.php?member_id=<?php echo $mem['member_id']; ?>" class="btn btn-warning btn-sm">View / Update</a></td>
+                                                                                                <td><a id="<?php echo $mem['member_id']; ?>" href="member/update_member.php?member_id=<?php echo $mem['member_id']; ?>" target="_blank" class="btn btn-warning btn-sm">View / Update</a></td>
                                                                                             </tr>
                                                                                             <?php } ?>
                                                                                         </tbody>
@@ -193,6 +193,9 @@
                 });
                 $(document).ready(function () {
                     $('.dataTables-memberList').dataTable();
+                });
+                $(document).ready(function () {
+                    $('.dataTables-memberQRList').dataTable();
                 });
         </script>
             <!-- CUSTOM SCRIPTS -->

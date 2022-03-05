@@ -10,10 +10,12 @@
     <link href="assets/css/font-awesome.css" rel="stylesheet" />
      <!-- MORRIS CHART STYLES-->
     <link href="assets/js/morris/morris-0.4.3.min.css" rel="stylesheet" />
-        <!-- CUSTOM STYLES-->
+    <!-- CUSTOM STYLES-->
     <link href="assets/css/custom.css" rel="stylesheet" />
-     <!-- GOOGLE FONTS-->
-   <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+    <!-- GOOGLE FONTS-->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+    <!-- TABLE STYLES-->
+    <link href="assets/js/dataTables/dataTables.bootstrap.css" rel="stylesheet" />
 </head>
 <?php include('dbcon.php'); ?>
 <body>
@@ -56,10 +58,10 @@
                         <a href="memberByDepartment.php"><i class="fa fa-sitemap fa-2x"></i> Members By Department</a>
                     </li>
                     <li>
-                        <a href="attendance.php"><i class="fa fa-table fa-2x"></i> Attendance</a>
+                        <a type="button" data-toggle="modal" data-target="#qrCardGenerator"><i class="fa fa-qrcode fa-2x"></i> QR Card Generator</a>
                     </li>
                     <li>
-                        <a href="user-attendance.php"><i class="fa fa-qrcode fa-3x"></i> User Attendance</a>
+                        <a href="attendance.php"><i class="fa fa-table fa-2x"></i> Attendance</a>
                     </li>
                     <li>
                         <a href="report.php"><i class="fa fa-edit fa-2x"></i> Report</a>
@@ -112,7 +114,7 @@
             <div id="page-inner">
                 <div class="row">
                     <div class="col-md-12">
-                     <h2>Admin Dashboard</h2>  
+                     <h2>Dashboard</h2>  
                         <h5>
                             <div class="pull-right">
                                 <i class="icon-calendar icon-large"></i>
@@ -484,6 +486,14 @@
      <!-- MORRIS CHART SCRIPTS -->
      <script src="assets/js/morris/raphael-2.1.0.min.js"></script>
     <script src="assets/js/morris/morris.js"></script>
+    <!-- DATA TABLE SCRIPTS -->
+    <script src="assets/js/dataTables/jquery.dataTables.js"></script>
+    <script src="assets/js/dataTables/dataTables.bootstrap.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.dataTables-memberQRList').dataTable();
+        });
+    </script>
       <!-- CUSTOM SCRIPTS -->
     <script src="assets/js/custom.js"></script>
     

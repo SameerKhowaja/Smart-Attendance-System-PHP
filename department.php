@@ -9,8 +9,7 @@
         <!-- FONTAWESOME STYLES-->
         <link href="assets/css/font-awesome.css" rel="stylesheet" />
         <!-- MORRIS CHART STYLES-->
-    
-            <!-- CUSTOM STYLES-->
+        <!-- CUSTOM STYLES-->
         <link href="assets/css/custom.css" rel="stylesheet" />
         <!-- GOOGLE FONTS-->
         <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
@@ -59,10 +58,10 @@
                             <a href="memberByDepartment.php"><i class="fa fa-sitemap fa-2x"></i> Members By Department</a>
                         </li>	
                         <li>
-                            <a href="attendance.php"><i class="fa fa-table fa-2x"></i> Attendance</a>
+                            <a type="button" data-toggle="modal" data-target="#qrCardGenerator"><i class="fa fa-qrcode fa-2x"></i> QR Card Generator</a>
                         </li>
                         <li>
-                            <a href="user-attendance.php"><i class="fa fa-qrcode fa-3x"></i> User Attendance</a>
+                            <a href="attendance.php"><i class="fa fa-table fa-2x"></i> Attendance</a>
                         </li>
                         <li>
                             <a href="report.php"><i class="fa fa-edit fa-2x"></i> Report</a>
@@ -98,7 +97,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="dept_phone">Phone Number</label>
-                                    <input type="text" class="form-control" id="dept_phone" name="dept_phone">
+                                    <input type="text" class="form-control" id="dept_phone" name="dept_phone" onkeyup="if (/\D/g.test(this.value)) this.value = this.value.replace(/\D/g,'')">
                                 </div>
                                 <div class="form-group">
                                     <label for="dept_comment">Any Comments</label>
@@ -220,7 +219,7 @@
                                                                                     </tr>
                                                                                     <tr>
                                                                                         <td><b>Phone Number</b></td>
-                                                                                        <td style="padding-top:5px; padding-left:10px;"><input style="width:350px;" type="text" class="form-control" id="dept_phone" name="dept_phone" value="<?php echo $row['dept_phone']; ?>"></td>
+                                                                                        <td style="padding-top:5px; padding-left:10px;"><input style="width:350px;" type="text" class="form-control" id="dept_phone" name="dept_phone" value="<?php echo $row['dept_phone']; ?>" onkeyup="if (/\D/g.test(this.value)) this.value = this.value.replace(/\D/g,'')"></td>
                                                                                     </tr>
                                                                                     <tr>
                                                                                         <td><b>Any Comments</b></td>
@@ -307,6 +306,9 @@
             <script>
                 $(document).ready(function () {
                     $('#dataTables-example').dataTable();
+                });
+                $(document).ready(function () {
+                    $('.dataTables-memberQRList').dataTable();
                 });
         </script>
             <!-- CUSTOM SCRIPTS -->
