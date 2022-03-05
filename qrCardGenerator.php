@@ -16,10 +16,13 @@
         <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
         <!-- TABLE STYLES-->
         <link href="assets/js/dataTables/dataTables.bootstrap.css" rel="stylesheet" />
+        <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+        <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
     </head>
     <?php include('dbcon.php'); ?>
     <body>
         <?php include('session.php'); ?>
+        <?php include ('phpqrcode/qrlib.php'); ?>
 
         <div id="wrapper">
             <nav class="navbar navbar-default navbar-cls-top " role="navigation" style="margin-bottom: 0">
@@ -80,11 +83,88 @@
                         </div>
                     </div>
                     <hr />
-                    <div id="myQRCard" class="row">
-                        <div class="col-md-12">
-                            
+                    <?php
+                        $member_id=$_GET['member_id'];
+                        $query1=mysqli_query($conn, "SELECT m.member_id, m.formid_number, m.firstname, m.lastname, d.dept_id, d.dept_name, m.doj, m.position, m.member_qr, m.image_file FROM member m JOIN department d ON m.dept_id = d.dept_id AND m.member_id='$member_id'")or die(mysqli_error());
+                        $rowcount=mysqli_num_rows($query1);
+                        if($rowcount > 0){
+                            while($row=mysqli_fetch_array($query1)){
+                                $member_id=$row['member_id'];
+                    ?>
+
+                    <div id="html-content-holder" style="background-color:#fff;">
+                        <div class="row" style="border:1px dotted black; margin:35px 30px; padding:15px 10px;">
+                            <div class="col-md-12">
+                                <!-- Left Side -->
+                                <div class="col-md-1" style="margin:0px; padding:0px;"></div>
+                                <div class="col-md-5">
+                                    <div class="col-md-12">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <?php
+                                                if($row['image_file'] != NULL){
+                                                    echo '<img id="member_mage" class="img-thumbnail" style="width:300px; height:270px;" alt="Your Image" src="data:image/jpeg;base64,'.base64_encode($row['image_file']).'"/>';
+                                                }
+                                                else{
+                                                    echo '<img id="member_mage" class="img-thumbnail" style="width:300px; height:270px;" src="assets/images/no-image.jpg" alt="Your Image">';
+                                                }   
+                                                ?>
+                                            </div>
+                                            <div class="form-group">
+                                                <h4 style="text-align:center;"><b>Joining Date: </b><?php echo $row['doj']; ?></h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Left Side -->
+                                <!-- Right Side -->
+                                <div class="col-md-5" style="margin:0px; padding:0px;">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="row">
+                                                <h3 style="text-align:center;"><b><?php echo $row['dept_name']; ?></b></h3>
+                                                <h3 style="text-align:center; border:1px solid black; padding:2px; margin:1px;" class="member-fullname"><?php echo $row['firstname']." ".$row['lastname']; ?></h3>
+                                                <h3 style="text-align:center; border:1px solid black; padding:2px; margin:1px;"><?php echo $row['position']; ?></h3>
+                                            </div>
+                                            <?php
+                                                try{
+                                                    $fileLocation="assets/images/qr/".$row['member_id'].".png";
+                                                    if (file_exists($fileLocation)) {
+                                                        unlink($fileLocation);
+                                                    }
+                                                    QRcode::png($row['member_qr'], $fileLocation, 'L', 100, 1);
+                                                
+                                            ?>
+                                                <div class="row" style="text-align:center;margin-top:5px;">
+                                                    <img id="member_mage" class="img-thumbnail" style="width:250px; height:190px; margin:auto;" src="<?php echo $fileLocation; ?>" alt="QR Image Error">
+                                                </div>
+                                            <?php
+                                                }
+                                                catch(Exception $e){
+                                            ?>
+                                                <div class="row" style="text-align:center;margin-top:5px;">
+                                                    <img id="member_mage" class="img-thumbnail" style="width:250px; height:190px; margin:auto;" alt="QR Image Error">
+                                                </div>
+                                            <?php } ?>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-1" style="margin:0px; padding:0px;"></div>
+                                <!-- Right Side -->
+                            </div>
                         </div>
                     </div>
+
+                    <hr />
+                    <div style="margin:20px; text-align:center;">
+                        <input id="btn-Preview-Image" type="button" class="btn btn-info btn-lg" style="width:300px;" value="Preview"/>
+                        <a id="btn-Convert-Html2Image" href="#" class="btn btn-primary btn-lg" style="width:300px;">Download</a>
+                    </div>
+                    <hr>
+
+                    <div id="previewImage"></div>
+
+                    <?php } } else{ echo "<h1 style='text-align:center;'>NO Data Found!</h1>"; } ?>
                     <hr />
                 </div>       
             </div>
@@ -103,12 +183,39 @@
         <!-- DATA TABLE SCRIPTS -->
         <script src="assets/js/dataTables/jquery.dataTables.js"></script>
         <script src="assets/js/dataTables/dataTables.bootstrap.js"></script>
-            <script>
-                $(document).ready(function () {
-                    $('#dataTables-example').dataTable();
-                });
+        <script>
+            $(document).ready(function () {
+                $('#dataTables-example').dataTable();
+            });
         </script>
-            <!-- CUSTOM SCRIPTS -->
+        <!-- CUSTOM SCRIPTS -->
         <script src="assets/js/custom.js"></script>
+        <!-- SAVE DIV AS IMAGE -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script>
+        <script>
+            $(document).ready(function(){
+                var element = $("#html-content-holder"); // global variable
+                var getCanvas; // global variable
+                var imgFileName = $('.member-fullname').text().replace(/\s+/g, '_').toLowerCase();
+            
+                $("#btn-Preview-Image").on('click', function () {
+                    html2canvas(element, {
+                    onrendered: function (canvas) {
+                            $("#previewImage").append(canvas);
+                            getCanvas = canvas;
+                        }
+                    });
+                });
+
+                $("#btn-Convert-Html2Image").on('click', function () {
+                    var imgageData = getCanvas.toDataURL("image/png");
+                    // Now browser starts downloading it instead of just showing it
+                    var newData = imgageData.replace(/^data:image\/png/, "data:application/octet-stream");
+                    $("#btn-Convert-Html2Image").attr("download", imgFileName+".png").attr("href", newData);
+                });
+            });
+        </script>
+
     </body>
 </html>
