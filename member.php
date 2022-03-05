@@ -53,7 +53,10 @@
                             <a href="department.php"><i class="fa fa-desktop fa-2x"></i> Departments</a>
                         </li>
                         <li>
-                            <a class="active-menu" href="member.php"><i class="fa fa-bar-chart-o fa-3x"></i> Members/Khidmaatgar</a>
+                            <a class="active-menu" href="member.php"><i class="fa fa-bar-chart-o fa-3x"></i> Members</a>
+                        </li>
+                        <li>
+                            <a href="memberByDepartment.php"><i class="fa fa-sitemap fa-2x"></i> Members By Department</a>
                         </li>	
                         <li>
                             <a href="attendance.php"><i class="fa fa-table fa-2x"></i> Attendance</a>
@@ -105,7 +108,7 @@
                                 <div class="panel-heading">
                                     Members/Khidmaatgar Data
                                     <div class="pull-right">
-                                        <a href="member_form.php" type="button" class="btn btn-primary btn-xs">
+                                        <a href="member/member_form.php" type="button" class="btn btn-primary btn-xs">
                                             &nbsp;<b>+</b>&nbsp; Add New Member
                                         </a>
                                     </div>
@@ -121,7 +124,8 @@
                                                     <th style="text-align:center;">Contact#</th>
                                                     <th style="text-align:center;">Postion</th>
                                                     <th style="text-align:center;">Date of Joining</th>
-                                                    <th style="text-align:center;">Last Update</th>
+                                                    <th style="text-align:center;">Update On</th>
+                                                    <th style="text-align:center;">Update By</th>
                                                     <th style="text-align:center;">Action</th>
                                                 </tr>
                                             </thead>
@@ -136,9 +140,10 @@
                                                     <td><?php echo $row['contact_number']; ?></td>
                                                     <td><?php echo $row['position']; ?></td>
                                                     <td style="text-align:center;"><?php echo $row['doj']; ?></td>
-                                                    <td style="text-align:center;"><?php echo $row['member_audit_timestamp']; ?></td>
+                                                    <td style="text-align:center;"><?php echo $row['updated_date']; ?></td>
+                                                    <td style="text-align:center;"><?php echo $row['updated_by']; ?></td>
                                                     <td style="width:220; text-align:center;">
-                                                        <a id="<?php echo $id; ?>" href="update_member.php?member_id=<?php echo $id; ?>" class="btn btn-warning btn-sm">View / Update</a>
+                                                        <a id="<?php echo $id; ?>" href="member/update_member.php?member_id=<?php echo $id; ?>" class="btn btn-warning btn-sm">View / Update</a>
                                                         
                                                         <a rel="tooltip" title="Delete" id="<?php echo $id; ?>" href="#delete_member<?php echo $id; ?>" data-toggle="modal" class="btn btn-danger btn-sm">Delete</a>
                                                         <!-- Delete Modal -->

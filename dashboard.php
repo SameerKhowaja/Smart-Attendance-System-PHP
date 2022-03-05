@@ -50,8 +50,11 @@
                         <a href="department.php"><i class="fa fa-desktop fa-2x"></i> Departments</a>
                     </li>
                     <li>
-                        <a href="member.php"><i class="fa fa-bar-chart-o fa-2x"></i> Members/Khidmaatgar</a>
+                        <a href="member.php"><i class="fa fa-bar-chart-o fa-2x"></i> Members</a>
                     </li>	
+                    <li>
+                        <a href="memberByDepartment.php"><i class="fa fa-sitemap fa-2x"></i> Members By Department</a>
+                    </li>
                     <li>
                         <a href="attendance.php"><i class="fa fa-table fa-2x"></i> Attendance</a>
                     </li>
@@ -264,11 +267,11 @@
                                                 <td style="text-align:center;"><?php echo $row['fullname']; ?></td>
                                                 <td style="text-align:center;">
                                                     <?php 
-                                                        if ($row['last_login_time'] == NULL){
+                                                        if ($row['last_login_date'] == NULL){
                                                             echo "<b>NEW</b>";
                                                         }
                                                         else{
-                                                            echo $row['last_login_time']; 
+                                                            echo $row['last_login_date']; 
                                                         }
                                                     ?>
                                                 </td>

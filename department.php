@@ -53,7 +53,10 @@
                             <a class="active-menu" href="department.php"><i class="fa fa-desktop fa-3x"></i> Departments</a>
                         </li>
                         <li>
-                            <a href="member.php"><i class="fa fa-bar-chart-o fa-2x"></i> Members/Khidmaatgar</a>
+                            <a href="member.php"><i class="fa fa-bar-chart-o fa-2x"></i> Members</a>
+                        </li>
+                        <li>
+                            <a href="memberByDepartment.php"><i class="fa fa-sitemap fa-2x"></i> Members By Department</a>
                         </li>	
                         <li>
                             <a href="attendance.php"><i class="fa fa-table fa-2x"></i> Attendance</a>
@@ -164,7 +167,8 @@
                                                     <th style="text-align:center;">Name</th>
                                                     <th style="text-align:center;">Head Name</th>
                                                     <th style="text-align:center;">Area</th>
-                                                    <th style="text-align:center;">Last Update</th>
+                                                    <th style="text-align:center;">Update On</th>
+                                                    <th style="text-align:center;">Update By</th>
                                                     <th style="text-align:center;">Action</th>
                                                 </tr>
                                             </thead>
@@ -179,7 +183,8 @@
                                                     <td><?php echo $row['dept_name']; ?></td>
                                                     <td><?php echo $row['dept_head_name']; ?></td>
                                                     <td><?php echo $row['dept_area']; ?></td>
-                                                    <td style="text-align:center;"><?php echo $row['dept_audit_timestamp']; ?></td>
+                                                    <td style="text-align:center;"><?php echo $row['updated_date']; ?></td>
+                                                    <td style="text-align:center;"><?php echo $row['updated_by']; ?></td>
                                                     <td style="width:220; text-align:center;">
                                                         <a rel="tooltip" title="Update" id="<?php echo $id; ?>" href="#update_dept<?php echo $id; ?>" data-toggle="modal" class="btn btn-warning btn-sm">View / Update</a>
                                                         <!-- View/Update Modal -->
@@ -220,6 +225,14 @@
                                                                                     <tr>
                                                                                         <td><b>Any Comments</b></td>
                                                                                         <td style="padding-top:5px; padding-left:10px;"><input style="width:350px;" type="text" class="form-control" id="dept_comment" name="dept_comment" value="<?php echo $row['dept_comment']; ?>"></td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td><b>Created On & By</b></td>
+                                                                                        <td style="padding-top:5px; padding-left:10px;"><p style="width:350px;" class="form-control"><?php echo $row['created_date']." ( <b>".$row['created_by']."</b> )"; ?></p></td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td><b>Updated On & By</b></td>
+                                                                                        <td style="padding-top:5px; padding-left:10px;"><p style="width:350px;" class="form-control"><?php echo $row['updated_date']." ( <b>".$row['updated_by']."</b> )"; ?></p></td>
                                                                                     </tr>
                                                                                     <tr>
                                                                                         <td>

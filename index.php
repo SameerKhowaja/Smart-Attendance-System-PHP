@@ -51,7 +51,7 @@
                         // update last signin
                         $username = $row['username'];
                         $Today = date('y-m-d');
-                        $query2 = "UPDATE admin_user SET last_login_time='$Today' WHERE username='$username'";
+                        $query2 = "UPDATE admin_user SET last_login_date='$Today' WHERE username='$username'";
                         mysqli_query($conn, $query2)or die(mysqli_error());
                         header('location: dashboard.php');
                     }
