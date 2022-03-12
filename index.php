@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title>Admin Login Form</title>
+        <title>Login</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -28,7 +28,8 @@
                     <input type="password" class="form-control" name="password" placeholder="Password" required="required">
                 </div>
                 <div class="form-group">
-                    <button type="submit" name="commit" class="btn btn-dark btn-block">Log in</button>
+                    <button id="login-btn" type="submit" name="commit" class="btn btn-danger btn-block">Log in</button>
+                    <a id="attendance-btn" href="mark_attendance.php" class="btn btn-primary btn-block">Mark Attendance</a>
                 </div>
 
                 <?php

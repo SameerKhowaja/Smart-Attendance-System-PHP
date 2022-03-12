@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Department</title>
+        <title>Members by Department</title>
         <!-- BOOTSTRAP STYLES-->
         <link href="assets/css/bootstrap.css" rel="stylesheet" />
         <!-- FONTAWESOME STYLES-->
@@ -108,7 +108,7 @@
                                                     <td style="text-align:center;"><?php echo $row['dept_head_name']; ?></td>
                                                     <td style="text-align:center;"><?php echo $member_count ?></td>
                                                     <td style="width:220; text-align:center;">
-                                                        <a rel="tooltip" title="View" id="<?php echo $id; ?>" href="#view_members<?php echo $id; ?>" data-toggle="modal" class="btn btn-warning btn-sm">View Members List</a>
+                                                        <a rel="tooltip" title="View" id="<?php echo $id; ?>" href="#view_members<?php echo $id; ?>" data-toggle="modal" class="btn btn-danger btn-sm">View Members List</a>
                                                         <!-- View Modal -->
                                                         <div class="modal fade" id="view_members<?php echo $id; ?>" tabindex="-1" role="dialog" aria-labelledby="view_members" aria-hidden="true">
                                                             <div class="modal-dialog modal-lg" role="document">
@@ -144,7 +144,16 @@
                                                                                                 <td><?php echo $mem['firstname']." ".$mem['lastname']; ?></td>
                                                                                                 <td><?php echo $mem['contact_number']; ?></td>
                                                                                                 <td><?php echo $mem['position']; ?></td>
-                                                                                                <td><?php echo $mem['doj']; ?></td>
+                                                                                                <td>
+                                                                                                    <?php 
+                                                                                                    if($mem['status'] == 1){
+                                                                                                        echo $mem['doj']; 
+                                                                                                    }
+                                                                                                    else{
+                                                                                                        echo "LEFT";
+                                                                                                    }
+                                                                                                    ?>
+                                                                                                </td>
                                                                                                 <td><?php echo $mem['gender']; ?></td>
                                                                                                 <td><a id="<?php echo $mem['member_id']; ?>" href="member/update_member.php?member_id=<?php echo $mem['member_id']; ?>" target="_blank" class="btn btn-warning btn-sm">View / Update</a></td>
                                                                                             </tr>

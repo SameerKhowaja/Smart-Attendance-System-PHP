@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Department</title>
+        <title>QR Card Generator</title>
         <!-- BOOTSTRAP STYLES-->
         <link href="assets/css/bootstrap.css" rel="stylesheet" />
         <!-- FONTAWESOME STYLES-->
@@ -85,7 +85,7 @@
                     <hr />
                     <?php
                         $member_id=$_GET['member_id'];
-                        $query1=mysqli_query($conn, "SELECT m.member_id, m.formid_number, m.firstname, m.lastname, d.dept_id, d.dept_name, m.doj, m.position, m.member_qr, m.image_file FROM member m JOIN department d ON m.dept_id = d.dept_id AND m.member_id='$member_id'")or die(mysqli_error());
+                        $query1=mysqli_query($conn, "SELECT m.member_id, m.formid_number, m.firstname, m.lastname, d.dept_id, d.dept_name, m.doj, m.position, m.member_qr, m.image_file FROM member m JOIN department d ON m.dept_id = d.dept_id WHERE m.member_id='$member_id' AND m.status='1'")or die(mysqli_error());
                         $rowcount=mysqli_num_rows($query1);
                         if($rowcount > 0){
                             while($row=mysqli_fetch_array($query1)){
@@ -154,7 +154,7 @@
                             </div>
                         </div>
                     </div>
-
+                    <!-- <p><?php // echo $row['member_qr']; ?></p>-->
                     <hr />
                     <div style="margin:20px; text-align:center;">
                         <input id="btn-Preview-Image" type="button" class="btn btn-info btn-lg" style="width:300px;" value="Preview"/>

@@ -60,6 +60,15 @@ elseif (isset($_POST['update_member'])){
     $city=mysqli_real_escape_string($conn, $_POST['city']);
     $country=mysqli_real_escape_string($conn, $_POST['country']);
     $myaddress=mysqli_real_escape_string($conn, $_POST['myaddress']);
+    $leaving_date=mysqli_real_escape_string($conn, $_POST['leaving_date']);
+    $purpose_leaving="";
+    $status=1;  // not left
+    
+    // contain something
+    if($leaving_date != NULL){
+        $status=0;  // left
+        $purpose_leaving=mysqli_real_escape_string($conn, $_POST['purpose_leaving']);
+    }
 
     $timestamp=filemtime(__FILE__);
     $updated_date=date('Y-m-d', $timestamp);
@@ -72,10 +81,10 @@ elseif (isset($_POST['update_member'])){
     try{
         $result=0;
         if($image_file==NULL){
-            $result=mysqli_query($conn,"UPDATE member SET formid_number='$formid_number', dept_id='$dept_id', firstname='$firstname', lastname='$lastname', email='$email', contact_number='$contact_number', dob='$dob', cnic='$cnic', gender='$gender', marital_status='$marital_status', doj='$doj', position='$position', city='$city', country='$country', myaddress='$myaddress', updated_date='$updated_date', updated_by='$updated_by' WHERE member_id='$member_id'");
+            $result=mysqli_query($conn,"UPDATE member SET formid_number='$formid_number', dept_id='$dept_id', firstname='$firstname', lastname='$lastname', email='$email', contact_number='$contact_number', dob='$dob', cnic='$cnic', gender='$gender', marital_status='$marital_status', doj='$doj', position='$position', city='$city', country='$country', myaddress='$myaddress', status='$status', leaving_date='$leaving_date', purpose_leaving='$purpose_leaving', updated_date='$updated_date', updated_by='$updated_by' WHERE member_id='$member_id'");
         }
         else{
-            $result=mysqli_query($conn,"UPDATE member SET formid_number='$formid_number', dept_id='$dept_id', firstname='$firstname', lastname='$lastname', email='$email', contact_number='$contact_number', dob='$dob', cnic='$cnic', gender='$gender', marital_status='$marital_status', doj='$doj', position='$position', city='$city', country='$country', myaddress='$myaddress', image_file='$image_file', updated_date='$updated_date', updated_by='$updated_by' WHERE member_id='$member_id'");
+            $result=mysqli_query($conn,"UPDATE member SET formid_number='$formid_number', dept_id='$dept_id', firstname='$firstname', lastname='$lastname', email='$email', contact_number='$contact_number', dob='$dob', cnic='$cnic', gender='$gender', marital_status='$marital_status', doj='$doj', position='$position', city='$city', country='$country', myaddress='$myaddress', image_file='$image_file', status='$status', leaving_date='$leaving_date', purpose_leaving='$purpose_leaving', updated_date='$updated_date', updated_by='$updated_by' WHERE member_id='$member_id'");
         }
         if($result >= 1){
             $_SESSION['transaction'] = "S";

@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Department</title>
+        <title>View/Update Member</title>
         <!-- BOOTSTRAP STYLES-->
         <link href="../assets/css/bootstrap.css" rel="stylesheet" />
         <!-- FONTAWESOME STYLES-->
@@ -189,7 +189,7 @@
                                                         <div class="row">
                                                             <div class="col-md-6">
                                                                 <div class="form-group">
-                                                                    <label for="email">Email Address</label>
+                                                                    <label for="email">Email Address (optional)</label>
                                                                     <input id="email" name="email" type="email" class="form-control" placeholder="Your Email Address" value="<?php echo $row['email']; ?>" />
                                                                 </div>
                                                             </div>
@@ -250,13 +250,7 @@
                                                 <div class="col-md-12">
                                                     <div class="col-md-12">
                                                         <div class="row">
-                                                            <div class="col-md-6">
-                                                                <div class="form-group">
-                                                                    <label for="doj">Date of Joining</label>
-                                                                    <input id="doj" name="doj" type="date" class="form-control" value="<?php echo $row['doj']; ?>" required/>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-6">
+                                                            <div class="col-md-4">
                                                                 <div class="form-group">
                                                                     <label for="position">Badge / Position</label>
                                                                     <select id="position" name="position" class="form-control">
@@ -267,6 +261,29 @@
                                                                         <option value="Duty Incharge">Duty Incharge</option>
                                                                         <option value="Member">Member</option>
                                                                     </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group">
+                                                                    <label for="doj">Date of Joining</label>
+                                                                    <input id="doj" name="doj" type="date" class="form-control" value="<?php echo $row['doj']; ?>" required/>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group">
+                                                                    <label for="leaving_date">Leaving Date (optional)</label>
+                                                                    <input id="leaving_date" name="leaving_date" type="date" class="form-control" value="<?php echo $row['leaving_date']; ?>"/>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-12">
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <div class="form-group">
+                                                                    <label for="purpose_leaving">Purpose of Leaving (optional)</label>
+                                                                    <input id="purpose_leaving" name="purpose_leaving" type="text" class="form-control" placeholder="Your leaving purpose" value="<?php echo $row['purpose_leaving']; ?>"/>
                                                                 </div>
                                                             </div>
                                                         </div>

@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Department</title>
+        <title>Add Member</title>
         <!-- BOOTSTRAP STYLES-->
         <link href="../assets/css/bootstrap.css" rel="stylesheet" />
         <!-- FONTAWESOME STYLES-->
@@ -157,7 +157,7 @@
                                                         <div class="row">
                                                             <div class="col-md-6">
                                                                 <div class="form-group">
-                                                                    <label for="email">Email Address</label>
+                                                                    <label for="email">Email Address (optional)</label>
                                                                     <input id="email" name="email" type="email" class="form-control" placeholder="Your Email Address"/>
                                                                 </div>
                                                             </div>

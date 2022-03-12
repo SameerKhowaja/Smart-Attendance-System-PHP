@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Department</title>
+        <title>Members</title>
         <!-- BOOTSTRAP STYLES-->
         <link href="assets/css/bootstrap.css" rel="stylesheet" />
         <!-- FONTAWESOME STYLES-->
@@ -139,7 +139,16 @@
                                                     <td><?php echo $row['firstname']." ".$row['lastname']; ?></td>
                                                     <td><?php echo $row['contact_number']; ?></td>
                                                     <td><?php echo $row['position']; ?></td>
-                                                    <td style="text-align:center;"><?php echo $row['doj']; ?></td>
+                                                    <td style="text-align:center;">
+                                                        <?php 
+                                                        if($row['status'] == 1){
+                                                            echo $row['doj']; 
+                                                        }
+                                                        else{
+                                                            echo "LEFT";
+                                                        }
+                                                        ?>
+                                                    </td>
                                                     <td style="text-align:center;"><?php echo $row['updated_date']; ?></td>
                                                     <td style="text-align:center;"><?php echo $row['updated_by']; ?></td>
                                                     <td style="width:220; text-align:center;">

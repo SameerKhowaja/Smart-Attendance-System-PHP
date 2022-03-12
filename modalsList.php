@@ -58,7 +58,7 @@
                             </thead>
                             <tbody>
                                 <?php 
-                                $query_list=mysqli_query($conn, "SELECT m.member_id, m.formid_number, m.firstname, m.lastname, d.dept_id, d.dept_name, m.doj, m.position FROM member m JOIN department d ON m.dept_id = d.dept_id")or die(mysqli_error());
+                                $query_list=mysqli_query($conn, "SELECT m.member_id, m.formid_number, m.firstname, m.lastname, d.dept_id, d.dept_name, m.doj, m.position FROM member m JOIN department d ON m.dept_id = d.dept_id WHERE m.status='1'")or die(mysqli_error());
                                 $rowcount=mysqli_num_rows($query_list);
                                 if($rowcount > 0){
                                     while($row=mysqli_fetch_array($query_list)){

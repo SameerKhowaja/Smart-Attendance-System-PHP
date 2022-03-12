@@ -260,7 +260,8 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <?php $user_query=mysqli_query($conn, "SELECT * FROM admin_user")or die(mysqli_error());
+                                            <?php 
+                                                $user_query=mysqli_query($conn, "SELECT * FROM admin_user")or die(mysqli_error());
                                                 while($row=mysqli_fetch_array($user_query)){
                                                     $id=$row['username'];
                                             ?>
