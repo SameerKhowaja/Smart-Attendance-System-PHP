@@ -44,7 +44,6 @@ if (isset($_POST['add_member'])){
 // Add Member
 elseif (isset($_POST['update_member'])){
     $member_id=mysqli_real_escape_string($conn, $_POST['member_id']);
-    
     $formid_number=mysqli_real_escape_string($conn, $_POST['formid_number']);
     $dept_id=mysqli_real_escape_string($conn, $_POST['dept_id']);
     $firstname=mysqli_real_escape_string($conn, $_POST['firstname']);

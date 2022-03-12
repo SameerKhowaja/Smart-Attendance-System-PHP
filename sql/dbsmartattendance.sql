@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 05, 2022 at 04:44 PM
+-- Generation Time: Mar 12, 2022 at 07:41 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 7.4.27
 
@@ -34,6 +34,24 @@ CREATE TABLE `admin_user` (
   `last_login_date` date DEFAULT NULL,
   `deleteable` tinyint(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `attendance`
+--
+
+CREATE TABLE `attendance` (
+  `id` int(20) NOT NULL,
+  `member_id` int(11) NOT NULL,
+  `pod_ME` varchar(1) NOT NULL,
+  `date` date NOT NULL,
+  `timeIn` time NOT NULL,
+  `timeOut` time DEFAULT NULL,
+  `timeIn_MA` varchar(1) NOT NULL,
+  `timeOut_MA` varchar(1) DEFAULT NULL,
+  `created_date` date NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -80,6 +98,9 @@ CREATE TABLE `member` (
   `myaddress` varchar(100) NOT NULL,
   `member_qr` varchar(80) NOT NULL,
   `image_file` blob DEFAULT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT 1,
+  `leaving_date` date DEFAULT NULL,
+  `purpose_leaving` varchar(100) DEFAULT NULL,
   `created_date` date NOT NULL DEFAULT current_timestamp(),
   `created_by` varchar(20) NOT NULL,
   `updated_date` date NOT NULL DEFAULT current_timestamp(),
@@ -97,6 +118,12 @@ ALTER TABLE `admin_user`
   ADD PRIMARY KEY (`username`);
 
 --
+-- Indexes for table `attendance`
+--
+ALTER TABLE `attendance`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `department`
 --
 ALTER TABLE `department`
@@ -111,6 +138,12 @@ ALTER TABLE `member`
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `attendance`
+--
+ALTER TABLE `attendance`
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `department`
