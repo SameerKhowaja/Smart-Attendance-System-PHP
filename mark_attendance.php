@@ -44,7 +44,7 @@
                                 <h4><b>Mark Attendance Manually</b></h4>
                             </div>
                             <hr>
-                            <form id="fupForm" name="form1" method="post" action="transaction/manual_markAttendance.php">
+                            <form id="fupForm" name="form1" method="post">
                                 <div class="form-group">
                                     <label for="member_id">Member Fullname</label>
                                     <select class="form-control" id="member_id" name="member_id">
@@ -82,7 +82,6 @@
                                 
                                 <div class="form-group">
                                     <input type="button" name="save" class="btn btn-danger" value="Mark Attendance" id="butsave" style="width:150px;float:right;">
-                                    <input type="submit" name="save" class="btn btn-primary" value="Mark Attendance" id="butsave" style="width:150px;float:right;">
                                     <button class="btn btn-info" data-dismiss="modal" aria-hidden="true"><i class="icon-remove icon-large"></i>&nbsp;Close</button>
                                 </div>
                             </form>
