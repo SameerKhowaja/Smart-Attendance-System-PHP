@@ -84,7 +84,7 @@
 
                                 <div class="panel-body">
                                     <div class="table-responsive">
-                                        <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                        <table class="table table-striped table-bordered table-hover table-responsive" id="dataTables-example">
                                             <thead>
                                                 <tr>
                                                     <th style="text-align:center;">Dept ID</th>

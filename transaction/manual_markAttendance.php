@@ -37,7 +37,7 @@ else{
         $msg="Error: Time Out is Greater than Time In !";
     }
     else{
-        $msg="Error: Database Malfunction !";
+        $msg="Error: Something went wrong !";
     }
 }
 

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 12, 2022 at 07:41 PM
+-- Generation Time: Mar 13, 2022 at 01:15 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 7.4.27
 
@@ -44,7 +44,7 @@ CREATE TABLE `admin_user` (
 CREATE TABLE `attendance` (
   `id` int(20) NOT NULL,
   `member_id` int(11) NOT NULL,
-  `pod_ME` varchar(1) NOT NULL,
+  `pod_ME` varchar(3) NOT NULL,
   `date` date NOT NULL,
   `timeIn` time NOT NULL,
   `timeOut` time DEFAULT NULL,

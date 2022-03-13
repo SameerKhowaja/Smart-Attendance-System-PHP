@@ -10,7 +10,7 @@ $msg="";
 $final_query="";
 
 // GET member_id from member_qr
-$query1="SELECT member_id FROM member WHERE member_qr='$member_qr'";
+$query1="SELECT member_id FROM member WHERE member_qr='$member_qr' AND status='1'";
 $sql_query1=mysqli_query($conn, $query1);
 $rowcount1=mysqli_num_rows($sql_query1);
 
@@ -27,8 +27,7 @@ if($rowcount1 > 0){
     $second = date('s');
     $time_inout = $hour . ":" . $minute . ":" . $second;
 
-    $am_pm = date('a');
-    $pod_ME = $am_pm=="am" ? "M" : "E";
+    $pod_ME = date('a');
 
     // Validation 
     // (No twice time in/out on same day, if time in then make it out for that day else make it time in)
@@ -64,7 +63,7 @@ if($rowcount1 > 0){
     }
 }
 else{
-    $msg="Error: No Such QR Code Exists !";
+    $msg="Error: No Such QR Code Exists OR Inactive Member !";
 }
 
 if($final_query!=""){

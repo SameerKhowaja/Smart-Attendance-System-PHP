@@ -106,7 +106,7 @@
                             <!-- Advanced Tables -->
                             <div class="panel panel-default">
                                 <div class="panel-heading">
-                                    Members/Khidmaatgar Data
+                                    Members Data
                                     <div class="pull-right">
                                         <a href="member/member_form.php" type="button" class="btn btn-primary btn-xs">
                                             &nbsp;<b>+</b>&nbsp; Add New Member
@@ -116,7 +116,7 @@
 
                                 <div class="panel-body">
                                     <div class="table-responsive">
-                                        <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                        <table class="table table-striped table-bordered table-hover table-responsive" id="dataTables-example">
                                             <thead>
                                                 <tr>
                                                     <th style="text-align:center;">Form ID</th>
