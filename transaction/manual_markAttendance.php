@@ -2,10 +2,29 @@
 include('../dbcon.php');
 
 $member_id=mysqli_real_escape_string($conn, $_POST['member_id']);
-$pod_ME=mysqli_real_escape_string($conn, $_POST['pod_ME']);
+$pod_ME_tmp=mysqli_real_escape_string($conn, $_POST['pod_ME']);
 $date=mysqli_real_escape_string($conn, $_POST['date']);
 $time_inout=mysqli_real_escape_string($conn, $_POST['time_inout']);
 $msg="";
+
+$pod_ME="";
+if ($pod_ME_tmp == "Morning"){
+    $pod_ME="am";
+}
+elseif($pod_ME_tmp == "Evening"){
+    $pod_ME="pm";
+}
+else{
+    $amORpm = "";
+    $newtimestamp = strtotime($time_inout);
+    $amORpm = date("A", $timestamp);
+    if ($amORpm == "AM"){
+        $pod_ME="am";
+    }
+    else{
+        $pod_ME="pm";
+    }
+}
 
 // Validation 
 // (No twice time in/out on same day, if time in then make it out for that day else make it time in)

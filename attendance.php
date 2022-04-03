@@ -3,13 +3,14 @@
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Mark Attendance</title>
+        <title>Manage Attendance</title>
         <!-- BOOTSTRAP STYLES-->
         <link href="assets/css/bootstrap.css" rel="stylesheet" />
         <!-- FONTAWESOME STYLES-->
         <link href="assets/css/font-awesome.css" rel="stylesheet" />
         <!-- MORRIS CHART STYLES-->
-        <!-- CUSTOM STYLES-->
+    
+            <!-- CUSTOM STYLES-->
         <link href="assets/css/custom.css" rel="stylesheet" />
         <!-- GOOGLE FONTS-->
         <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
@@ -19,21 +20,57 @@
     </head>
     <?php include('dbcon.php'); ?>
     <body>
+        <?php include('session.php'); ?>
+
         <div id="wrapper">
-            <nav class="navbar navbar-default navbar-cls-top" role="navigation" style="margin-bottom: 0">
+            <nav class="navbar navbar-default navbar-cls-top " role="navigation" style="margin-bottom: 0">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="mark_attendance.php"><i class="fa fa-qrcode fa-1x"></i>&nbsp; Attendance</a> 
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="dashboard.php">Administrator</a> 
                 </div>
-                <div style="color:white; padding:15px 50px 5px 50px; float:right; font-size:16px;">
-                    <?php 
-                        $Today = date('y:m:d');
-                        $new = date('l, F d, Y', strtotime($Today));
-                        echo $new;
-                    ?> 
-                    &nbsp;
-                    <a href="index.php" class="btn btn-danger square-btn-adjust">&nbsp;<b><</b>&nbsp; Back</a>
+                <div style="color: white;
+                padding: 15px 50px 5px 50px;
+                float: right;
+                font-size: 16px;"> Welcome: <?php echo $_SESSION['fullname']; ?> &nbsp; <a href="logout.php" class="btn btn-danger square-btn-adjust">Logout</a> 
                 </div>
             </nav>   
+           
+            <!-- /. NAV TOP  -->
+            <nav class="navbar-default navbar-side" role="navigation">
+                <div class="sidebar-collapse">
+                    <ul class="nav" id="main-menu">
+                        <li class="text-center">
+                            <img src="assets/images/logo.png" class="user-image img-responsive"/>
+                        </li>
+                        <li>
+                            <a href="dashboard.php"><i class="fa fa-dashboard fa-2x"></i> Dashboard</a>
+                        </li>
+                        <li>
+                            <a href="department.php"><i class="fa fa-desktop fa-2x"></i> Departments</a>
+                        </li>
+                        <li>
+                            <a href="member.php"><i class="fa fa-bar-chart-o fa-2x"></i> Members</a>
+                        </li>
+                        <li>
+                            <a href="memberByDepartment.php"><i class="fa fa-sitemap fa-2x"></i> Members By Department</a>
+                        </li>	
+                        <li>
+                            <a type="button" data-toggle="modal" data-target="#qrCardGenerator"><i class="fa fa-qrcode fa-2x"></i> QR Card Generator</a>
+                        </li>
+                        <li>
+                            <a class="active-menu" href="attendance.php"><i class="fa fa-table fa-3x"></i> Manage Attendance</a>
+                        </li>
+                        <li>
+                            <a href="report.php"><i class="fa fa-edit fa-2x"></i> Report</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav> 
 
             <!-- Modal mark manual attendance -->
             <div class="modal fade" id="manual_attendance" tabindex="-1" role="dialog" aria-labelledby="manual_attendance" aria-hidden="true">
@@ -127,142 +164,88 @@
             </div>
             <!-- Modal mark manual attendance -->
 
-            <div class="body-wrap" style="background:white;">
-                <div class="row">
-                    <!-- Left Side -->
-                    <div class="col-md-5">
-                        <div class="row">
-                            <div class="text-center">
-                                <h2 style="margin-bottom:10px;"><b><u>Show QR to Mark Attendance</u></b></h2>
-                                <video id="preview" style="width:90%; height:90%; border:2px solid black;"></video>
-                                <div style="margin:auto; width:90%;">
-                                    <div class="alert alert-success alert-dismissible" id="success" style="display:none;">
-                                        <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+            <!-- /. NAV SIDE  -->
+            <div id="page-wrapper" >
+                <div id="page-inner">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <!-- Advanced Tables -->
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    Manage Attendance
+                                    <div class="pull-right">
+                                        <a type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#manual_attendance">
+                                            &nbsp;<b>+</b>&nbsp; Mark Attendance Manually
+                                        </a>
                                     </div>
                                 </div>
-                                <div style="margin:auto; width:90%;">
-                                    <div class="alert alert-danger alert-dismissible" id="failed" style="display:none;">
-                                        <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
-                                    </div>
-                                </div>
-                                <button type="button" class="btn btn-danger btn-lg" data-toggle="modal" data-target="#manual_attendance"> Mark Attendance Manually</button>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Left Side -->
 
-                    <!-- Right Side -->
-                    <div class="col-md-6">
-                        <div class="row">
-                            <div class="text-center">
-                                <h2 style="margin-bottom:10px;"><b><u>Attendance History</u></b></h2>
-                            </div>
-                            <div class="table-responsive" id="attendanceTable">
-                                <table class="table table-striped table-bordered table-hover table-responsive" id="dataTables-example">
-                                    <thead>
-                                        <tr>
-                                            <th style="text-align:center;">Full Name</th>
-                                            <th style="text-align:center;">Designation</th>
-                                            <th style="text-align:center;">AM/PM</th>
-                                            <th style="text-align:center;">Time In</th>
-                                            <th style="text-align:center;">Time Out</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php
-                                        $query="SELECT m.firstname, m.lastname, m.position, d.dept_name, a.pod_ME, a.timeIn, a.timeOut FROM `attendance` a JOIN `member` m JOIN `department` d ON m.member_id=a.member_id AND m.dept_id=d.dept_id WHERE a.date=(SELECT MAX(aa.date) FROM `attendance` aa)";
-                                        $user_query=mysqli_query($conn, $query)or die(mysqli_error());
-                                        while($row=mysqli_fetch_array($user_query)){
-                                        ?>
-                                        <tr>
-                                            <td style="text-align:center;"><?php echo $row['firstname']." ".$row['lastname']; ?></td>
-                                            <td style="text-align:center;"><?php echo $row['position']; ?></td>
-                                            <td style="text-align:center;"><?php echo $row['pod_ME']=="am" ? "Morning" : "Evening"; ?></td>
-                                            <td style="text-align:center;"><?php echo $row['timeIn']; ?></td>
-                                            <td style="text-align:center;"><?php echo $row['timeOut']; ?></td>
-                                        </tr>
-                                        <?php } ?>
-                                    </tbody>
-                                </table>
-                            </div>
+                                <div class="panel-body">
+                                    <div class="table-responsive" id="attendanceTable">
+                                        <table class="table table-striped table-bordered table-hover table-responsive" id="dataTables-example">
+                                            <thead>
+                                                <tr>
+                                                    <th style="text-align:center;">Full Name</th>
+                                                    <th style="text-align:center;">Department</th>
+                                                    <th style="text-align:center;">Designation</th>
+                                                    <th style="text-align:center;">Year</th>
+                                                    <th style="text-align:center;">Month</th>
+                                                    <th style="text-align:center;">Presents (AM/PM)</th>
+                                                    <th style="text-align:center;">Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            <?php
+                                            $query="SELECT m.member_id, m.firstname, m.lastname, m.position, d.dept_name, year(a.date) year, month(a.date) month, COUNT(a.timeIn) total_presents FROM `attendance` a JOIN `member` m JOIN `department` d ON m.member_id=a.member_id AND m.dept_id=d.dept_id GROUP BY m.member_id, year, month";
+                                            $user_query=mysqli_query($conn, $query)or die(mysqli_error());
+                                            while($row=mysqli_fetch_array($user_query)){
+                                                $id=$row['member_id'];
+                                                $yr=$row['year'];
+                                                $mt=$row['month'];
+                                            ?>
+                                            <tr>
+                                                <td style="text-align:center;"><?php echo $row['firstname']." ".$row['lastname']; ?></td>
+                                                <td style="text-align:center;"><?php echo $row['dept_name']; ?></td>
+                                                <td style="text-align:center;"><?php echo $row['position']; ?></td>
+                                                <td style="text-align:center;"><?php echo $row['year']; ?></td>
+                                                <td style="text-align:center;">
+                                                    <?php 
+                                                        $monthNum  = $row['month'];
+                                                        $dateObj   = DateTime::createFromFormat('!m', $monthNum);
+                                                        $monthName = $dateObj->format('F');
+                                                        echo $monthName;
+                                                    ?>
+                                                </td>
+                                                <td style="text-align:center;"><?php echo $row['total_presents']; ?></td>
+                                                <td style="width:220; text-align:center;">
+                                                    <a id="<?php echo $id; ?>" href="attendance/view_attendance.php?member_id=<?php echo $id; ?>&year=<?php echo $yr; ?>&month=<?php echo $mt; ?>" class="btn btn-warning btn-sm">View Details</a>
+                                                </td>
+                                            </tr>
+                                            <?php } ?>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+							</div>
+                            <!--End Advanced Tables -->
                         </div>
                     </div>
-                    <!-- Right Side -->
-                </div>      
+                </div>       
             </div>
+            <!-- /. PAGE INNER  -->
         </div>
+        <!-- /. PAGE WRAPPER  -->
+        <!-- /. WRAPPER  -->
 
-        <!-- Camera -->
+        <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+        <!-- Add Attendance Manually using Ajax Jquery -->
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-        <script src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js" rel="nofollow"></script>
         <script type="text/javascript">
             function delay(time) {
                 return new Promise(resolve => setTimeout(resolve, time));
             }
-
-            var scanner = new Instascan.Scanner({ video: document.getElementById('preview'), scanPeriod: 5, mirror: false });
-            scanner.addListener('scan',function(content){
-                var member_qr = content;
-                if(member_qr!=""){
-                    $.ajax({
-                        url: "transaction/qr_markAttendance.php",
-                        type: "POST",
-                        data: {
-                            member_qr: member_qr				
-                        },
-                        cache: false,
-                        success: function(dataResult){
-                            var dataResult = JSON.parse(dataResult);
-                            if(dataResult.statusCode==1){
-                                $("#failed").hide();
-                                $("#success").show();
-				                $('#success').html(dataResult.statusMsg);
-
-                                const audio = new Audio("assets/sound/timeInOut_sound.mp3");
-                                audio.play();
-
-                                $('#dataTables-example').DataTable().destroy();
-                                $("#attendanceTable").load("mark_attendance.php #dataTables-example");
-                                delay(500).then(() => $('#dataTables-example').DataTable().draw());
-                            }
-                            else{
-                                $("#success").hide();
-                                $("#failed").show();
-				                $('#failed').html(dataResult.statusMsg);
-                            }
-                        }
-                    });
-                }
-            });
-            Instascan.Camera.getCameras().then(function (cameras){
-                if(cameras.length>0){
-                    scanner.start(cameras[0]);
-                    $('[name="options"]').on('change',function(){
-                        if($(this).val()==1){
-                            if(cameras[0]!=""){
-                                scanner.start(cameras[0]);
-                            }else{
-                                alert('No Front camera found!');
-                            }
-                        }else if($(this).val()==2){
-                            if(cameras[1]!=""){
-                                scanner.start(cameras[1]);
-                            }else{
-                                alert('No Back camera found!');
-                            }
-                        }
-                    });
-                }else{
-                    console.error('No cameras found.');
-                    alert('No cameras found.');
-                }
-            }).catch(function(e){
-                console.error(e);
-                alert(e);
-            });
         </script>
-        
-        <!-- Add Attendance Manually using Ajax Jquery -->
+
         <script>
             $(document).ready(function() {
                 $('#butsave').on('click', function() {
@@ -290,7 +273,7 @@
                                     $('#modal-success').html(dataResult.statusMsg);
 
                                     $('#dataTables-example').DataTable().destroy();
-                                    $("#attendanceTable").load("mark_attendance.php #dataTables-example");
+                                    $("#attendanceTable").load("attendance.php #dataTables-example");
                                     delay(500).then(() => $('#dataTables-example').DataTable().draw());
                                 }
                                 else{
@@ -355,6 +338,7 @@
             });
         </script>
 
+
         <!-- JQUERY SCRIPTS -->
         <script src="assets/js/jquery-1.10.2.js"></script>
         <!-- BOOTSTRAP SCRIPTS -->
@@ -367,6 +351,9 @@
         <script>
             $(document).ready(function () {
                 $('#dataTables-example').dataTable();
+            });
+            $(document).ready(function () {
+                $('.dataTables-memberQRList').dataTable();
             });
         </script>
         <!-- CUSTOM SCRIPTS -->

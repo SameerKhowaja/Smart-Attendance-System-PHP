@@ -65,7 +65,7 @@
                             <a class="active-menu" type="button" data-toggle="modal" data-target="#qrCardGenerator"><i class="fa fa-qrcode fa-3x"></i> QR Card Generator</a>
                         </li>
                         <li>
-                            <a href="attendance.php"><i class="fa fa-table fa-2x"></i> Attendance</a>
+                            <a href="attendance.php"><i class="fa fa-table fa-2x"></i> Manage Attendance</a>
                         </li>
                         <li>
                             <a href="report.php"><i class="fa fa-edit fa-2x"></i> Report</a>

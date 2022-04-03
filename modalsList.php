@@ -73,7 +73,7 @@
                                     <td style="text-align:center;">
                                         <?php 
                                             $urlStr=$_SERVER['PHP_SELF'];
-                                            if(strpos($urlStr, "member_form") !== false || strpos($urlStr, "update_member") !== false){
+                                            if(strpos($urlStr, "member_form") !== false || strpos($urlStr, "update_member") !== false || strpos($urlStr, "view_attendance") !== false){
                                         ?>
                                             <a id="<?php echo $member_id; ?>" href="../qrCardGenerator.php?member_id=<?php echo $member_id; ?>" target="_blank" class="btn btn-danger btn-sm">Generate QR</a>
                                         <?php } else{ ?>
@@ -91,4 +91,5 @@
     </div>
 </div>
 <!-- Modal qrCardGenerator -->
+
 
