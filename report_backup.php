@@ -71,6 +71,113 @@
                 </div>
             </nav> 
 
+            <!-- Members By Department Modal -->
+            <div class="modal fade" id="memberByDepartment" tabindex="-1" role="dialog" aria-labelledby="memberByDepartment" aria-hidden="true">
+                <div class="modal-dialog modal-sm" role="document">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <div class="text-center">
+                                <h4><b>Member By Department</b></h4>
+                            </div>
+                            <form method="post" action="reports/memberByDepartment_data_to_excel.php">
+                                <table>
+                                    <tbody style="text-align:left;">
+                                        <tr>
+                                            <td><b>Department</b></td>
+                                            <td style="padding-top:5px; padding-left:10px;">
+                                                <select id="dept_id" name="dept_id" class="form-control">
+                                                    <option value="">-- Please Select --</option>
+                                                    <?php $user_query=mysqli_query($conn, "SELECT * FROM department")or die(mysqli_error());
+                                                        while($row=mysqli_fetch_array($user_query)){
+                                                            $id=$row['dept_id'];
+                                                    ?>
+                                                    <option value="<?php echo $id ?>"><?php echo $row['dept_name']; ?></option>
+                                                    <?php } ?>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <button style="margin-top:10px" class="btn btn-info" data-dismiss="modal" aria-hidden="true"><i class="icon-remove icon-large"></i>&nbsp;Close</button>
+                                            </td>
+                                            <td>
+                                                <button style="margin-top:10px;width:150px;float:right;" name="memberByDepartment" type="submit" class="btn btn-success"><i class="icon-save icon-large"></i>&nbsp;Download</button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Members By Department Modal -->
+
+            <!-- Attendance Modal -->
+            <div class="modal fade" id="attendance" tabindex="-1" role="dialog" aria-labelledby="attendance" aria-hidden="true">
+                <div class="modal-dialog modal-sm" role="document">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <div class="text-center">
+                                <h4><b>Attendance</b></h4>
+                            </div>
+                            <form method="post" action="reports/attendance_data_to_excel.php">
+                                <table>
+                                    <tbody style="text-align:left;">
+                                        <tr>
+                                            <td><b>Year</b></td>
+                                            <td style="padding-top:5px; padding-left:10px;">
+                                                <input class="form-control" id="year" name="year" style="width:190px;" type="number" min="2000" max="2099" step="1" value="<?php echo date("Y"); ?>" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><b>Month</b></td>
+                                            <td style="padding-top:5px; padding-left:10px;">
+                                                <input class="form-control" id="month" name="month" style="width:190px;" type="number" min="1" max="12" step="1" value="<?php echo date("m"); ?>" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><b>Member</b></td>
+                                            <td style="padding-top:5px; padding-left:10px;">
+                                                <select id="member_id" name="member_id" class="form-control">
+                                                    <option value="all">-- All Members --</option>
+                                                    <?php $user_query=mysqli_query($conn, "SELECT * FROM member")or die(mysqli_error());
+                                                        while($row=mysqli_fetch_array($user_query)){
+                                                            $id=$row['member_id'];
+                                                    ?>
+                                                    <option value="<?php echo $id ?>"><?php echo $row['firstname']." ".$row['lastname']; ?></option>
+                                                    <?php } ?>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>--------------</td>
+                                            <td>-----------------------------------------</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding-top:5px; padding-left:10px;">
+                                                <input type="hidden" name="complete_check" value="0" />
+                                                <input type="checkbox" name="complete_check" value="1">
+                                            </td>
+                                            <td><b>Check to Download YTD Attendance Data</b></td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <button style="margin-top:10px" class="btn btn-info" data-dismiss="modal" aria-hidden="true"><i class="icon-remove icon-large"></i>&nbsp;Close</button>
+                                            </td>
+                                            <td>
+                                                <button style="margin-top:10px;width:150px;float:right;" name="attendance" type="submit" class="btn btn-success"><i class="icon-save icon-large"></i>&nbsp;Download</button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Attendance Modal -->
+
             <!-- /. NAV SIDE  -->
             <div id="page-wrapper" >
                 <div id="page-inner">
@@ -114,22 +221,22 @@
                                                 <tr>
                                                     <td><b>2. </b></td>
                                                     <td><b>Departments</b></td>
-                                                    <td><a href="reports/departments_data_to_excel.php" class="btn btn-success btn-sm">Download in Excel</a></td>
+                                                    <td><a href="reports/department_data_to_excel.php" class="btn btn-success btn-sm">Download in Excel</a></td>
                                                 </tr>
                                                 <tr>
                                                     <td><b>3. </b></td>
                                                     <td><b>Members</b></td>
-                                                    <td>Download in Excel</td>
+                                                    <td><a href="reports/member_data_to_excel.php" class="btn btn-success btn-sm">Download in Excel</a></td>
                                                 </tr>
                                                 <tr>
                                                     <td><b>4. </b></td>
                                                     <td><b>Members By Department</b></td>
-                                                    <td>Download in Excel</td>
+                                                    <td><a id="memberByDepartment" href="#memberByDepartment" data-toggle="modal" class="btn btn-success btn-sm">Download in Excel</a></td>
                                                 </tr>
                                                 <tr>
                                                     <td><b>5. </b></td>
                                                     <td><b>Attendance</b></td>
-                                                    <td>Download in Excel</td>
+                                                    <td><a id="attendance" href="#attendance" data-toggle="modal" class="btn btn-success btn-sm">Download in Excel</a></td>
                                                 </tr>
                                             </tbody>
                                         </table>
