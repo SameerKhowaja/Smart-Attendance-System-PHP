@@ -66,7 +66,7 @@
                             <a class="active-menu" href="../attendance.php"><i class="fa fa-table fa-3x"></i> Manage Attendance</a>
                         </li>
                         <li>
-                            <a href="../report.php"><i class="fa fa-edit fa-2x"></i> Report</a>
+                            <a href="../report_backup.php"><i class="fa fa-edit fa-2x"></i> Report/Backup</a>
                         </li>
                     </ul>
                 </div>
