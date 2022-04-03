@@ -172,7 +172,7 @@
                 <!-- /. ROW  -->
                 <div class="row" >
                     <div class="col-md-3 col-sm-12 col-xs-12">                       
-						<div class="panel panel-primary text-center no-boder bg-color-red">
+						<div class="panel panel-primary text-center no-boder bg-color-white">
                             <div class="panel-body">
                                 <i class="fa fa-bar-chart-o fa-4x"></i>
                                 <h5>
@@ -224,7 +224,7 @@
                                     </b>
                                 </h5>
                             </div>
-                            <div class="panel-footer back-footer-red"></div>
+                            <div class="panel-footer back-footer-white"></div>
                         </div>                       
                     </div>
                     

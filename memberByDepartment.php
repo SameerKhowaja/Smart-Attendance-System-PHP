@@ -108,7 +108,7 @@
                                                     <td style="text-align:center;"><?php echo $row['dept_head_name']; ?></td>
                                                     <td style="text-align:center;"><?php echo $member_count ?></td>
                                                     <td style="width:220; text-align:center;">
-                                                        <a rel="tooltip" title="View" id="<?php echo $id; ?>" href="#view_members<?php echo $id; ?>" data-toggle="modal" class="btn btn-danger btn-sm">View Members List</a>
+                                                        <a rel="tooltip" title="View" id="<?php echo $id; ?>" href="#view_members<?php echo $id; ?>" data-toggle="modal" class="btn btn-warning btn-sm">View Members List</a>
                                                         <!-- View Modal -->
                                                         <div class="modal fade" id="view_members<?php echo $id; ?>" tabindex="-1" role="dialog" aria-labelledby="view_members" aria-hidden="true">
                                                             <div class="modal-dialog modal-lg" role="document">

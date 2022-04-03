@@ -75,34 +75,7 @@
             <div id="page-wrapper" >
                 <div id="page-inner">
                     <div class="row">
-                        <div class="col-md-12">
-                            <?php
-                            if(isset($_SESSION['transaction']) && !empty($_SESSION['transaction'])){
-                                if($_SESSION['transaction'] == "S"){    //success
-                                    ?>
-                                    <div class="alert alert-success alert-dismissible show" style="font-size:16px;">
-                                        Transaction Completed Successfully...!
-                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <?php
-                                }
-                                elseif($_SESSION['transaction'] == "E"){    //error
-                                    ?>
-                                    <div class="alert alert-danger alert-dismissible show" style="font-size:16px;">
-                                        Transaction Failed Due To Some Reason...!
-                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <?php
-                                }
-                                //reset session variable
-                                unset($_SESSION['transaction']);
-                            }
-                            ?>
-                            
+                        <div class="col-md-12">                            
                             <!-- Backup -->
                             <div class="panel panel-default">
                                 <div class="panel-heading">
@@ -119,11 +92,48 @@
                             <!-- Backup -->
                             <div class="panel panel-default">
                                 <div class="panel-heading">
-                                    Excel Report Generation
+                                    Excel Report Download
                                 </div>
 
                                 <div class="panel-body">
-
+                                <div class="table-responsive">
+                                        <table class="table table-responsive">
+                                            <thead>
+                                                <tr>
+                                                    <th style="text-align:center;">S.No</th>
+                                                    <th style="text-align:center;">Data to Download</th>
+                                                    <th style="text-align:center;">Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody style="text-align:center;">
+                                                <tr>
+                                                    <td><b>1. </b></td>
+                                                    <td><b>Administrators</b></td>
+                                                    <td><a href="reports/admin_data_to_excel.php" class="btn btn-success btn-sm">Download in Excel</a></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><b>2. </b></td>
+                                                    <td><b>Departments</b></td>
+                                                    <td><a href="reports/departments_data_to_excel.php" class="btn btn-success btn-sm">Download in Excel</a></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><b>3. </b></td>
+                                                    <td><b>Members</b></td>
+                                                    <td>Download in Excel</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><b>4. </b></td>
+                                                    <td><b>Members By Department</b></td>
+                                                    <td>Download in Excel</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><b>5. </b></td>
+                                                    <td><b>Attendance</b></td>
+                                                    <td>Download in Excel</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
 							</div>
                             <!--End Backup -->
