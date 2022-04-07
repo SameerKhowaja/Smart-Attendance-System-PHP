@@ -177,16 +177,16 @@
                 </div>
             </div>
             <!-- Attendance Modal -->
-
+            
             <!-- /. NAV SIDE  -->
             <div id="page-wrapper" >
                 <div id="page-inner">
                     <div class="row">
-                        <div class="col-md-12">                            
+                        <div class="col-md-12"> 
                             <!-- Backup -->
                             <div class="panel panel-default">
                                 <div class="panel-heading">
-                                    <b>Complete Database Backup</b>
+                                    <b>Complete Database Backup & Save .SQL File</b>
                                     <div class="pull-right">
                                         <a href="transaction/backup_database.php" type="button" class="btn btn-primary btn-xs">
                                             &nbsp;<b>></b>&nbsp; Download Backup
@@ -199,7 +199,7 @@
                             <!-- Backup -->
                             <div class="panel panel-default">
                                 <div class="panel-heading">
-                                    Excel Report Download
+                                    <b>Excel Report Download</b>
                                 </div>
 
                                 <div class="panel-body">

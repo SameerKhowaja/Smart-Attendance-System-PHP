@@ -31,7 +31,7 @@
                         echo $new;
                     ?> 
                     &nbsp;
-                    <a href="index.php" class="btn btn-danger square-btn-adjust">&nbsp;<b><</b>&nbsp; Back</a>
+                    <a href="index.php" class="btn btn-danger square-btn-adjust">&nbsp;<b><</b>&nbsp; Back/Logout</a>
                 </div>
             </nav>   
 

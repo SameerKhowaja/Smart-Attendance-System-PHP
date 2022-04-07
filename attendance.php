@@ -164,15 +164,151 @@
             </div>
             <!-- Modal mark manual attendance -->
 
+            <!-- Timeout Modal -->
+            <div class="modal fade" id="timeout" tabindex="-1" role="dialog" aria-labelledby="timeout" aria-hidden="true">
+                <div class="modal-dialog modal-sm" role="document">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <div class="text-center">
+                                <h4><b>Timeout</b></h4>
+                            </div>
+                            <form method="post" action="transaction/missed_timeout.php">
+                                <table>
+                                    <tbody style="text-align:left;">
+                                        <tr>
+                                            <td><b>Date</b></td>
+                                            <td style="padding-top:5px; padding-left:10px;">
+                                                <input class="form-control" id="date" name="date" style="width:190px;" type="date" value="<?php echo date('Y-m-d'); ?>" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td style="padding-top:5px; padding-left:10px;"><b>OR</b></td>
+                                        </tr>
+                                        <tr>
+                                            <td><b>Year</b></td>
+                                            <td style="padding-top:5px; padding-left:10px;">
+                                                <input class="form-control" id="year" name="year" style="width:190px;" type="number" min="2000" max="2099" step="1" value="<?php echo date("Y"); ?>" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><b>Month</b></td>
+                                            <td style="padding-top:5px; padding-left:10px;">
+                                                <input class="form-control" id="month" name="month" style="width:190px;" type="number" min="1" max="12" step="1" value="<?php echo date("m"); ?>" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>--------------</td>
+                                            <td>-----------------------------------------</td>
+                                        </tr>
+                                        <tr>
+                                            <td><b>Member</b></td>
+                                            <td style="padding-top:5px; padding-left:10px;">
+                                                <select id="member_id" name="member_id" class="form-control">
+                                                    <option value="all">-- All Members --</option>
+                                                    <?php $user_query=mysqli_query($conn, "SELECT * FROM member")or die(mysqli_error());
+                                                        while($row=mysqli_fetch_array($user_query)){
+                                                            $id=$row['member_id'];
+                                                    ?>
+                                                    <option value="<?php echo $id ?>"><?php echo $row['firstname']." ".$row['lastname']; ?></option>
+                                                    <?php } ?>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><b>Hours</b></td>
+                                            <td style="padding-top:5px; padding-left:10px;">
+                                                <input class="form-control" id="addHours" name="addHours" style="width:190px;" type="number" min="0" max="10" step="1" value="1"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><b>Minutes</b></td>
+                                            <td style="padding-top:5px; padding-left:10px;">
+                                                <input class="form-control" id="addMinutes" name="addMinutes" style="width:190px;" type="number" min="0" max="60" step="5" value="30"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>--------------</td>
+                                            <td>-----------------------------------------</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding-left:10px;">
+                                                <input type="radio" id="query_check" name="query_check" value="date" checked>
+                                            </td>
+                                            <td><b><label for="html">Select Date Only</label></b></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding-left:10px;">
+                                                <input type="radio" id="query_check" name="query_check" value="year_month">
+                                            </td>
+                                            <td><b><label for="html">Select Year & Month</label></b></td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <button style="margin-top:10px" class="btn btn-info" data-dismiss="modal" aria-hidden="true"><i class="icon-remove icon-large"></i>&nbsp;Close</button>
+                                            </td>
+                                            <td>
+                                                <button style="margin-top:10px;width:150px;float:right;" name="timeout" type="submit" class="btn btn-danger"><i class="icon-save icon-large"></i>&nbsp;Timeout</button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Timeout Modal -->
+
             <!-- /. NAV SIDE  -->
             <div id="page-wrapper" >
                 <div id="page-inner">
                     <div class="row">
                         <div class="col-md-12">
+                            <?php
+                                if(isset($_SESSION['transaction']) && !empty($_SESSION['transaction'])){
+                                    if($_SESSION['transaction'] == "S"){    //success
+                                        ?>
+                                        <div class="alert alert-success alert-dismissible show" style="font-size:16px;">
+                                            Transaction Completed Successfully...!
+                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <?php
+                                    }
+                                    elseif($_SESSION['transaction'] == "E"){    //error
+                                        ?>
+                                        <div class="alert alert-danger alert-dismissible show" style="font-size:16px;">
+                                            Transaction Failed Due To Some Reason...!
+                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <?php
+                                    }
+                                    //reset session variable
+                                    unset($_SESSION['transaction']);
+                                }
+                            ?>
+
+                            <!-- Timeout -->
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <b>Mark Missed Timeout in Bulk</b>
+                                    <div class="pull-right">
+                                        <a id="timeout" href="#timeout" data-toggle="modal" class="btn btn-primary btn-xs">
+                                            &nbsp;<b>></b>&nbsp; Timeout User
+                                        </a>
+                                    </div>
+                                </div>
+							</div>
+                            <!--End Timeout -->
+
                             <!-- Advanced Tables -->
                             <div class="panel panel-default">
                                 <div class="panel-heading">
-                                    Manage Attendance
+                                    <b>Manage Attendance</b>
                                     <div class="pull-right">
                                         <a type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#manual_attendance">
                                             &nbsp;<b>+</b>&nbsp; Mark Attendance Manually

@@ -172,7 +172,7 @@
                             <!-- Advanced Tables -->
                             <div class="panel panel-default">
                                 <div class="panel-heading">
-                                    Attendance History
+                                    <b>Attendance History</b>
                                     <div class="pull-right">
                                         <a href="../attendance.php" type="button" class="btn btn-primary btn-xs">
                                             &nbsp;<b><</b>&nbsp; Back
@@ -207,7 +207,19 @@
                                                 <td style="text-align:center;"><?php echo $row['timeIn']; ?></td>
                                                 <td style="text-align:center;"><?php echo $row['timeIn_MA']=="A" ? "QR" : "Manual"; ?></td>
                                                 <td style="text-align:center;"><?php echo $row['timeOut']; ?></td>
-                                                <td style="text-align:center;"><?php echo $row['timeOut_MA']=="A" ? "QR" : "Manual"; ?></td>
+                                                <td style="text-align:center;">
+                                                    <?php 
+                                                    if ($row['timeOut_MA']=="A"){
+                                                        echo "QR";
+                                                    } 
+                                                    elseif($row['timeOut_MA']=="M"){
+                                                        echo "Manual";
+                                                    }
+                                                    else{
+                                                        echo "";
+                                                    }
+                                                    ?>
+                                                </td>
                                                 <td style="width:220; text-align:center;">
                                                     <a rel="tooltip" title="Update" id="<?php echo $id; ?>" href="#update_attendance<?php echo $id; ?>" data-toggle="modal" class="btn btn-warning btn-sm">Update</a>
                                                     <!-- Update Modal -->

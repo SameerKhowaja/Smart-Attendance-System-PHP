@@ -106,7 +106,7 @@
                             <!-- Advanced Tables -->
                             <div class="panel panel-default">
                                 <div class="panel-heading">
-                                    Members Data
+                                    <b>Members Data</b>
                                     <div class="pull-right">
                                         <a href="member/member_form.php" type="button" class="btn btn-primary btn-xs">
                                             &nbsp;<b>+</b>&nbsp; Add New Member
@@ -136,9 +136,9 @@
                                                 ?>
                                                 <tr class="odd gradeX">
                                                     <td style="text-align:center;"><?php echo $row['formid_number']; ?></td>
-                                                    <td><?php echo $row['firstname']." ".$row['lastname']; ?></td>
-                                                    <td><?php echo $row['contact_number']; ?></td>
-                                                    <td><?php echo $row['position']; ?></td>
+                                                    <td style="text-align:center;"><?php echo $row['firstname']." ".$row['lastname']; ?></td>
+                                                    <td style="text-align:center;"><?php echo $row['contact_number']; ?></td>
+                                                    <td style="text-align:center;"><?php echo $row['position']; ?></td>
                                                     <td style="text-align:center;">
                                                         <?php 
                                                         if($row['status'] == 1){

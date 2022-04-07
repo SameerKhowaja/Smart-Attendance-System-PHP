@@ -34,7 +34,9 @@
             <div style="color: white;
             padding: 15px 50px 5px 50px;
             float: right;
-            font-size: 16px;"> Welcome: <?php echo $_SESSION['fullname']; ?> &nbsp; <a href="logout.php" class="btn btn-danger square-btn-adjust">Logout</a> 
+            font-size: 16px;"> Welcome: <?php echo $_SESSION['fullname']; ?> &nbsp;  
+                <a href="mark_attendance.php" target="_blank" class="btn btn-primary square-btn-adjust">Mark Attendance</a> 
+                <a href="logout.php" class="btn btn-danger square-btn-adjust">Logout</a>
             </div>
         </nav>   
            
@@ -114,7 +116,7 @@
             <div id="page-inner">
                 <div class="row">
                     <div class="col-md-12">
-                     <h2>Dashboard</h2>  
+                        <h2>Dashboard</h2>  
                         <h5>
                             <div class="pull-right">
                                 <i class="icon-calendar icon-large"></i>
@@ -231,7 +233,7 @@
                     <div class="col-md-9 col-sm-12 col-xs-12">
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                Administrator Data
+                                <b>Administrator Data</b>
                                 <?php if($_SESSION['deleteable'] == 0){ ?>
                                 <div class="pull-right">
                                     <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#add_admin">

@@ -149,7 +149,7 @@
                             <!-- Advanced Tables -->
                             <div class="panel panel-default">
                                 <div class="panel-heading">
-                                    Departments Data
+                                    <b>Departments Data</b>
                                     <div class="pull-right">
                                         <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#add_dept">
                                             &nbsp;<b>+</b>&nbsp; Add New Department
@@ -179,9 +179,9 @@
                                                 ?>
                                                 <tr class="odd gradeX">
                                                     <td style="text-align:center;"><?php echo $row['dept_id']; ?></td>
-                                                    <td><?php echo $row['dept_name']; ?></td>
-                                                    <td><?php echo $row['dept_head_name']; ?></td>
-                                                    <td><?php echo $row['dept_area']; ?></td>
+                                                    <td style="text-align:center;"><?php echo $row['dept_name']; ?></td>
+                                                    <td style="text-align:center;"><?php echo $row['dept_head_name']; ?></td>
+                                                    <td style="text-align:center;"><?php echo $row['dept_area']; ?></td>
                                                     <td style="text-align:center;"><?php echo $row['updated_date']; ?></td>
                                                     <td style="text-align:center;"><?php echo $row['updated_by']; ?></td>
                                                     <td style="width:220; text-align:center;">

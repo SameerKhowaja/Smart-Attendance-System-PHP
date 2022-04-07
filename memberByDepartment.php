@@ -79,7 +79,7 @@
                             <!-- Advanced Tables -->
                             <div class="panel panel-default">
                                 <div class="panel-heading">
-                                    Members Inrolled in Department
+                                    <b>Members Inrolled in Department</b>
                                 </div>
 
                                 <div class="panel-body">
