@@ -233,15 +233,15 @@
                                         </tr>
                                         <tr>
                                             <td style="padding-left:10px;">
-                                                <input type="radio" id="query_check" name="query_check" value="date" checked>
+                                                <input type="radio" id="query_check01" name="query_check" value="date" checked>
                                             </td>
-                                            <td><b><label for="html">Select Date Only</label></b></td>
+                                            <td><b><label for="query_check01">Select Date Only</label></b></td>
                                         </tr>
                                         <tr>
                                             <td style="padding-left:10px;">
-                                                <input type="radio" id="query_check" name="query_check" value="year_month">
+                                                <input type="radio" id="query_check02" name="query_check" value="year_month">
                                             </td>
-                                            <td><b><label for="html">Select Year & Month</label></b></td>
+                                            <td><b><label for="query_check02">Select Year & Month</label></b></td>
                                         </tr>
                                         <tr>
                                             <td>
@@ -259,6 +259,96 @@
                 </div>
             </div>
             <!-- Timeout Modal -->
+
+            <!-- Attendance Filter Modal -->
+            <div class="modal fade" id="attendance_filter" tabindex="-1" role="dialog" aria-labelledby="attendance_filter" aria-hidden="true">
+                <div class="modal-dialog modal-sm" role="document">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <div class="text-center">
+                                <h4><b>Filter Attendance</b></h4>
+                            </div>
+                            <form method="post" action="attendance/filter_attendance.php">
+                                <table>
+                                    <tbody style="text-align:left;">
+                                        <tr>
+                                            <td><b>Date</b></td>
+                                            <td style="padding-top:5px; padding-left:10px;">
+                                                <input class="form-control" id="date" name="date" style="width:190px;" type="date" value="<?php echo date('Y-m-d'); ?>" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td style="padding-top:5px; padding-left:10px;"><b>OR</b></td>
+                                        </tr>
+                                        <tr>
+                                            <td><b>Year</b></td>
+                                            <td style="padding-top:5px; padding-left:10px;">
+                                                <input class="form-control" id="year" name="year" style="width:190px;" type="number" min="2000" max="2099" step="1" value="<?php echo date("Y"); ?>" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><b>Month</b></td>
+                                            <td style="padding-top:5px; padding-left:10px;">
+                                                <input class="form-control" id="month" name="month" style="width:190px;" type="number" min="1" max="12" step="1" value="<?php echo date("m"); ?>" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>--------------</td>
+                                            <td>-----------------------------------------</td>
+                                        </tr>
+                                        <tr>
+                                            <td><b>Member</b></td>
+                                            <td style="padding-top:5px; padding-left:10px;">
+                                                <select id="member_id" name="member_id" class="form-control">
+                                                    <option value="all">-- All Members --</option>
+                                                    <?php $user_query=mysqli_query($conn, "SELECT * FROM member")or die(mysqli_error());
+                                                        while($row=mysqli_fetch_array($user_query)){
+                                                            $id=$row['member_id'];
+                                                    ?>
+                                                    <option value="<?php echo $id ?>"><?php echo $row['firstname']." ".$row['lastname']; ?></option>
+                                                    <?php } ?>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>--------------</td>
+                                            <td>-----------------------------------------</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding-left:10px;">
+                                                <input type="radio" id="query_check1" name="query_check" value="date" checked>
+                                            </td>
+                                            <td><b><label for="query_check1">Select Date Only</label></b></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding-left:10px;">
+                                                <input type="radio" id="query_check2" name="query_check" value="year">
+                                            </td>
+                                            <td><b><label for="query_check2">Select Year Only</label></b></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding-left:10px;">
+                                                <input type="radio" id="query_check3" name="query_check" value="year_month">
+                                            </td>
+                                            <td><b><label for="query_check3">Select Year & Month</label></b></td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <button style="margin-top:10px" class="btn btn-info" data-dismiss="modal" aria-hidden="true"><i class="icon-remove icon-large"></i>&nbsp;Close</button>
+                                            </td>
+                                            <td>
+                                                <button style="margin-top:10px;width:150px;float:right;" name="filter_attendance" type="submit" class="btn btn-warning"><i class="icon-save icon-large"></i>&nbsp;View Details</button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Attendance Filter Modal -->
 
             <!-- /. NAV SIDE  -->
             <div id="page-wrapper" >
@@ -310,6 +400,9 @@
                                 <div class="panel-heading">
                                     <b>Manage Attendance</b>
                                     <div class="pull-right">
+                                        <a type="button" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#attendance_filter">
+                                            &nbsp;<b>#</b>&nbsp; More Filter
+                                        </a>
                                         <a type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#manual_attendance">
                                             &nbsp;<b>+</b>&nbsp; Mark Attendance Manually
                                         </a>

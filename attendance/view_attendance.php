@@ -76,9 +76,15 @@
             <div id="page-wrapper" >
                 <div id="page-inner">
                     <?php 
-                        $member_id = $_GET['member_id']; 
-                        $year = $_GET['year'];
-                        $month = $_GET['month'];                     
+                    $member_id = ""; 
+                    $year = ""; 
+                    $month = "";    
+                    
+                    if (isset($_GET['member_id']) && isset($_GET['year']) && isset($_GET['month'])){
+                        $member_id = mysqli_real_escape_string($conn, $_GET['member_id']); 
+                        $year = mysqli_real_escape_string($conn, $_GET['year']);
+                        $month = mysqli_real_escape_string($conn, $_GET['month']); 
+                    }
                     ?>
 
                     <!-- /. ROW  -->
@@ -102,15 +108,16 @@
                                             </thead>
                                             <tbody>
                                             <?php
-                                            $query="SELECT m.member_id, m.firstname, m.lastname, m.position, d.dept_name, year(a.date) year, month(a.date) month, COUNT(a.timeIn) total_presents FROM `attendance` a JOIN `member` m JOIN `department` d ON m.member_id=a.member_id AND m.dept_id=d.dept_id WHERE m.member_id='$member_id' AND year(a.date)='$year' AND month(a.date)='$month' GROUP BY m.member_id, year, month";
-                                            $user_query=mysqli_query($conn, $query)or die(mysqli_error());
-                                            $rowcount=mysqli_num_rows($user_query);
-                                            if($rowcount < 1){
-                                                echo "<h3 style='text-align:center;'>NO Data Found!</h3>";
-                                            }
-                                            else{
-                                                while($row=mysqli_fetch_array($user_query)){
-                                                    $id=$row['member_id'];
+                                            if (isset($member_id) && isset($year) && isset($month)){
+                                                $query="SELECT m.member_id, m.firstname, m.lastname, m.position, d.dept_name, year(a.date) year, month(a.date) month, COUNT(a.timeIn) total_presents FROM `attendance` a JOIN `member` m JOIN `department` d ON m.member_id=a.member_id AND m.dept_id=d.dept_id WHERE m.member_id='$member_id' AND year(a.date)='$year' AND month(a.date)='$month' GROUP BY m.member_id, year, month";
+                                                $user_query=mysqli_query($conn, $query)or die(mysqli_error());
+                                                $rowcount=mysqli_num_rows($user_query);
+                                                if($rowcount < 1){
+                                                    echo "<h3 style='text-align:center;'>NO Data Found!</h3>";
+                                                }
+                                                else{
+                                                    while($row=mysqli_fetch_array($user_query)){
+                                                        $id=$row['member_id'];
                                             ?>
                                             <tr>
                                                 <td style="text-align:center;"><?php echo $row['member_id']; ?></td>
@@ -128,7 +135,7 @@
                                                 </td>
                                                 <td style="text-align:center;"><?php echo $row['total_presents']; ?></td>
                                             </tr>
-                                            <?php } } ?>
+                                            <?php } } }?>
                                             </tbody>
                                         </table>
                                     </div>

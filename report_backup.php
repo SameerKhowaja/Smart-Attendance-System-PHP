@@ -157,9 +157,9 @@
                                         <tr>
                                             <td style="padding-top:5px; padding-left:10px;">
                                                 <input type="hidden" name="complete_check" value="0" />
-                                                <input type="checkbox" name="complete_check" value="1">
+                                                <input type="checkbox" id="query_check1" name="complete_check" value="1">
                                             </td>
-                                            <td><b>Check to Download YTD Attendance Data</b></td>
+                                            <td><b><label for="query_check1">Check to Download YTD Attendance Data</label></b></td>
                                         </tr>
                                         <tr>
                                             <td>
