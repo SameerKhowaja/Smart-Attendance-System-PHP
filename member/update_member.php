@@ -320,6 +320,17 @@
 
                                                         <div class="col-md-12">
                                                             <div class="row">
+                                                                <div class="col-md-12">
+                                                                    <div class="form-group">
+                                                                        <label for="member_qr">Member QR Code Identification</label>
+                                                                        <input id="member_qr" name="member_qr" type="text" class="form-control" placeholder="Your QR Code Text" value="<?php echo $row['member_qr']; ?>" required/>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-12">
+                                                            <div class="row">
                                                                 <div class="col-md-6">
                                                                     <div class="form-group">
                                                                         <label>Created On & By</label>

@@ -60,6 +60,7 @@ elseif (isset($_POST['update_member'])){
     $country=mysqli_real_escape_string($conn, $_POST['country']);
     $myaddress=mysqli_real_escape_string($conn, $_POST['myaddress']);
     $leaving_date=mysqli_real_escape_string($conn, $_POST['leaving_date']);
+    $member_qr=mysqli_real_escape_string($conn, $_POST['member_qr']);
     $purpose_leaving="";
     $status=1;  // not left
     
@@ -77,26 +78,41 @@ elseif (isset($_POST['update_member'])){
     session_start();
     $updated_by=$_SESSION['username'];
 
-    try{
-        $result=0;
-        if($image_file==NULL){
-            $result=mysqli_query($conn,"UPDATE member SET formid_number='$formid_number', dept_id='$dept_id', firstname='$firstname', lastname='$lastname', email='$email', contact_number='$contact_number', dob='$dob', cnic='$cnic', gender='$gender', marital_status='$marital_status', doj='$doj', position='$position', city='$city', country='$country', myaddress='$myaddress', status='$status', leaving_date='$leaving_date', purpose_leaving='$purpose_leaving', updated_date='$updated_date', updated_by='$updated_by' WHERE member_id='$member_id'");
-        }
-        else{
-            $result=mysqli_query($conn,"UPDATE member SET formid_number='$formid_number', dept_id='$dept_id', firstname='$firstname', lastname='$lastname', email='$email', contact_number='$contact_number', dob='$dob', cnic='$cnic', gender='$gender', marital_status='$marital_status', doj='$doj', position='$position', city='$city', country='$country', myaddress='$myaddress', image_file='$image_file', status='$status', leaving_date='$leaving_date', purpose_leaving='$purpose_leaving', updated_date='$updated_date', updated_by='$updated_by' WHERE member_id='$member_id'");
-        }
-        if($result >= 1){
-            $_SESSION['transaction'] = "S";
+    if(isset($member_qr) && $member_qr!=''){
+        $qr_result=mysqli_query($conn,"SELECT member_qr FROM member WHERE member_qr='$member_qr' AND member_id<>'$member_id'");
+        $rowcount=mysqli_num_rows($qr_result);
+        if($rowcount < 1){
+            try{
+                $result=0;
+                if($image_file==NULL){
+                    $result=mysqli_query($conn,"UPDATE member SET formid_number='$formid_number', dept_id='$dept_id', firstname='$firstname', lastname='$lastname', email='$email', contact_number='$contact_number', dob='$dob', cnic='$cnic', gender='$gender', marital_status='$marital_status', doj='$doj', position='$position', city='$city', country='$country', myaddress='$myaddress', member_qr='$member_qr', status='$status', leaving_date='$leaving_date', purpose_leaving='$purpose_leaving', updated_date='$updated_date', updated_by='$updated_by' WHERE member_id='$member_id'");
+                }
+                else{
+                    $result=mysqli_query($conn,"UPDATE member SET formid_number='$formid_number', dept_id='$dept_id', firstname='$firstname', lastname='$lastname', email='$email', contact_number='$contact_number', dob='$dob', cnic='$cnic', gender='$gender', marital_status='$marital_status', doj='$doj', position='$position', city='$city', country='$country', myaddress='$myaddress', member_qr='$member_qr', image_file='$image_file', status='$status', leaving_date='$leaving_date', purpose_leaving='$purpose_leaving', updated_date='$updated_date', updated_by='$updated_by' WHERE member_id='$member_id'");
+                }
+                if($result >= 1){
+                    $_SESSION['transaction'] = "S";
+                }
+                else{
+                    $_SESSION['transaction'] = "E";
+                }
+                header("Location: ../member.php");
+            }
+            catch(Exception $e) {
+                $_SESSION['transaction'] = "E";
+                header("Location: ../member.php");
+            }
         }
         else{
             $_SESSION['transaction'] = "E";
-        }
-        header("Location: ../member.php");
+            header("Location: ../member.php");
+        }        
     }
-    catch(Exception $e) {
+    else{
         $_SESSION['transaction'] = "E";
         header("Location: ../member.php");
     }
+    
 }
 // Delete Department
 elseif (isset($_POST['delete_member'])){
