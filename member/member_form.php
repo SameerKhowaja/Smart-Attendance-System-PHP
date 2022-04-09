@@ -1,3 +1,4 @@
+<?php /* Created By Sameer Khowaja */ ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
@@ -113,7 +114,7 @@
                                                         </div>
                                                     </div>
                                                     <!-- Left Side -->
-
+                                                    <?php /* Created By Sameer Khowaja */ ?>
                                                     <!-- Right Side -->
                                                     <div class="col-md-8">
                                                         <div class="row">
@@ -213,7 +214,7 @@
                                                     </div>
                                                     <!-- Right Side -->
                                                 </div>
-
+                                                <?php /* Created By Sameer Khowaja */ ?>
                                                 <!-- Center -->
                                                 <div class="col-md-12">
                                                     <div class="col-md-12">
@@ -321,3 +322,4 @@
         <script src="../assets/js/custom.js"></script>
     </body>
 </html>
+<?php /* Created By Sameer Khowaja */ ?>

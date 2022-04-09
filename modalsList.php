@@ -1,3 +1,4 @@
+<?php /* Created By Sameer Khowaja */ ?>
 <?php include('dbcon.php'); ?>
 
 <!-- Modal Error -->
@@ -56,6 +57,7 @@
                                 <th style="text-align:center;">Joining Date</th>
                                 <th style="text-align:center;">Action</th>
                             </thead>
+                            <?php /* Created By Sameer Khowaja */ ?>
                             <tbody>
                                 <?php 
                                 $query_list=mysqli_query($conn, "SELECT m.member_id, m.formid_number, m.firstname, m.lastname, d.dept_id, d.dept_name, m.doj, m.position FROM member m JOIN department d ON m.dept_id = d.dept_id WHERE m.status='1'")or die(mysqli_error());
@@ -92,4 +94,4 @@
 </div>
 <!-- Modal qrCardGenerator -->
 
-
+<?php /* Created By Sameer Khowaja */ ?>

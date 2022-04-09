@@ -1,3 +1,4 @@
+<?php /* Created By Sameer Khowaja */ ?>
 <?php
 include('../dbcon.php');
 
@@ -75,3 +76,4 @@ else {
 
 mysqli_close($conn);
 ?>
+<?php /* Created By Sameer Khowaja */ ?>

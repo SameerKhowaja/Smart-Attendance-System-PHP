@@ -1,3 +1,4 @@
+<?php /* Created By Sameer Khowaja */ ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
@@ -78,7 +79,7 @@
                             <h2>Member ID : <?php if(isset($_GET['member_id'])){ echo $_GET['member_id']; } else { echo "-"; } ?></h2>
                         </div>
                     </div>
-                    
+                    <?php /* Created By Sameer Khowaja */ ?>
                     <!-- /. ROW  -->
                     <hr />
                     <div class="row">
@@ -246,7 +247,7 @@
                                                         </div>
                                                         <!-- Right Side -->
                                                     </div>
-
+                                                    <?php /* Created By Sameer Khowaja */ ?>
                                                     <!-- Center -->
                                                     <div class="col-md-12">
                                                         <div class="col-md-12">
@@ -400,3 +401,4 @@
         <script src="../assets/js/custom.js"></script>
     </body>
 </html>
+<?php /* Created By Sameer Khowaja */ ?>

@@ -1,3 +1,4 @@
+<?php /* Created By Sameer Khowaja */ ?>
 <?php
 include('../dbcon.php');
 
@@ -56,3 +57,4 @@ if(isset($_POST['timeout'])){
 }
 
 ?>
+<?php /* Created By Sameer Khowaja */ ?>

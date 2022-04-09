@@ -1,3 +1,4 @@
+<?php /* Created By Sameer Khowaja */ ?>
 <?php
 include('../dbcon.php');
 
@@ -78,3 +79,4 @@ if (isset($_POST['attendance'])){
 }
 
 ?>
+<?php /* Created By Sameer Khowaja */ ?>

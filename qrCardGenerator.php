@@ -1,3 +1,4 @@
+<?php /* Created By Sameer Khowaja */ ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
@@ -117,6 +118,7 @@
                                     </div>
                                 </div>
                                 <!-- Left Side -->
+                                <?php /* Created By Sameer Khowaja */ ?>
                                 <!-- Right Side -->
                                 <div class="col-md-5" style="margin:0px; padding:0px;">
                                     <div class="row">
@@ -219,3 +221,4 @@
 
     </body>
 </html>
+<?php /* Created By Sameer Khowaja */ ?>

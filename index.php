@@ -1,3 +1,4 @@
+<?php /* Created By Sameer Khowaja */ ?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -31,7 +32,7 @@
                     <button id="login-btn" type="submit" name="commit" class="btn btn-danger btn-block">Log in</button>
                     <a id="attendance-btn" href="mark_attendance.php" class="btn btn-primary btn-block">Mark Attendance</a>
                 </div>
-
+                <?php /* Created By Sameer Khowaja */ ?>
                 <?php
                 if (isset($_POST['commit'])){
                     session_start();
@@ -66,5 +67,8 @@
 
             </form>
         </div>
+
+        <div style="position:fixed; bottom:0; right:0; font-size:12px;">Created By Sameer Khowaja</div>
     </body>
 </html>
+<?php /* Created By Sameer Khowaja */ ?>

@@ -1,3 +1,4 @@
+<?php /* Created By Sameer Khowaja */ ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
@@ -70,7 +71,7 @@
                     </ul>
                 </div>
             </nav> 
-
+            <?php /* Created By Sameer Khowaja */ ?>
             <!-- Members By Department Modal -->
             <div class="modal fade" id="memberByDepartment" tabindex="-1" role="dialog" aria-labelledby="memberByDepartment" aria-hidden="true">
                 <div class="modal-dialog modal-sm" role="document">
@@ -276,3 +277,4 @@
         <script src="assets/js/custom.js"></script>
     </body>
 </html>
+<?php /* Created By Sameer Khowaja */ ?>

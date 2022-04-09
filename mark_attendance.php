@@ -1,3 +1,4 @@
+<?php /* Created By Sameer Khowaja */ ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
@@ -44,6 +45,7 @@
                                 <h4><b>Mark Attendance Manually</b></h4>
                             </div>
                             <hr>
+                            <?php /* Created By Sameer Khowaja */ ?>
                             <form id="fupForm" name="form1" method="post">
                                 <div class="row">
                                     <div class="col-md-8">
@@ -157,6 +159,7 @@
                             <div class="text-center">
                                 <h2 style="margin-bottom:10px;"><b><u>Attendance History</u></b></h2>
                             </div>
+                            <?php /* Created By Sameer Khowaja */ ?>
                             <div class="table-responsive" id="attendanceTable">
                                 <table class="table table-striped table-bordered table-hover table-responsive" id="dataTables-example">
                                     <thead>
@@ -191,6 +194,7 @@
                 </div>      
             </div>
         </div>
+        <div style="position:fixed; bottom:0; right:0; font-size:12px;">Created By Sameer Khowaja</div>
 
         <!-- Camera -->
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
@@ -373,3 +377,4 @@
         <script src="assets/js/custom.js"></script>
     </body>
 </html>
+<?php /* Created By Sameer Khowaja */ ?>

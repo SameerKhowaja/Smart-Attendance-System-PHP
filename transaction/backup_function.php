@@ -1,3 +1,4 @@
+<?php /* Created By Sameer Khowaja */ ?>
 <?php
     error_reporting(0);
 	function backDb($host, $user, $pass, $dbname, $tables = '*'){
@@ -80,3 +81,4 @@
 	}
 
 ?>
+<?php /* Created By Sameer Khowaja */ ?>

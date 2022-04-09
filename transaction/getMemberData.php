@@ -1,3 +1,4 @@
+<?php /* Created By Sameer Khowaja */ ?>
 <?php
 include('../dbcon.php');
 
@@ -17,3 +18,4 @@ if($rowcount > 0){
 
 echo json_encode(array("position"=>$position, "dept_name"=>$dept_name));
 ?>
+<?php /* Created By Sameer Khowaja */ ?>

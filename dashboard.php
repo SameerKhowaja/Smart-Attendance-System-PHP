@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿<?php /* Created By Sameer Khowaja */ ?>
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
       <meta charset="utf-8" />
@@ -110,7 +111,7 @@
             </div>
         </div>
         <!-- Modal add admin -->
-
+        <?php /* Created By Sameer Khowaja */ ?>
         <!-- /. NAV SIDE  -->
         <div id="page-wrapper" >
             <div id="page-inner">
@@ -489,13 +490,14 @@
                     </div>
                 </div>
                  <!-- /. ROW  -->
-
             </div>
+            <div style="bottom:0; right:0; font-size:12px;">Created By Sameer Khowaja</div>
              <!-- /. PAGE INNER  -->
         </div>
          <!-- /. PAGE WRAPPER  -->
     </div>
      <!-- /. WRAPPER  -->
+     
      
     <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
     <!-- JQUERY SCRIPTS -->
@@ -521,3 +523,4 @@
    
 </body>
 </html>
+<?php /* Created By Sameer Khowaja */ ?>

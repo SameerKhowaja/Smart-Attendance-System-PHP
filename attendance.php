@@ -1,3 +1,4 @@
+<?php /* Created By Sameer Khowaja */ ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
@@ -163,7 +164,7 @@
                 </div>
             </div>
             <!-- Modal mark manual attendance -->
-
+            <?php /* Created By Sameer Khowaja */ ?>
             <!-- Timeout Modal -->
             <div class="modal fade" id="timeout" tabindex="-1" role="dialog" aria-labelledby="timeout" aria-hidden="true">
                 <div class="modal-dialog modal-sm" role="document">
@@ -394,7 +395,7 @@
                                 </div>
 							</div>
                             <!--End Timeout -->
-
+                            <?php /* Created By Sameer Khowaja */ ?>
                             <!-- Advanced Tables -->
                             <div class="panel panel-default">
                                 <div class="panel-heading">
@@ -589,3 +590,4 @@
         <script src="assets/js/custom.js"></script>
     </body>
 </html>
+<?php /* Created By Sameer Khowaja */ ?>

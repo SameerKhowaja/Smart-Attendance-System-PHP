@@ -1,3 +1,4 @@
+<?php /* Created By Sameer Khowaja */ ?>
 <?php
 include('../dbcon.php');
 
@@ -87,3 +88,4 @@ else{
     header("Location: ../department.php");
 }
 ?>
+<?php /* Created By Sameer Khowaja */ ?>

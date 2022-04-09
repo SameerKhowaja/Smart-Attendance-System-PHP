@@ -1,3 +1,4 @@
+<?php /* Created By Sameer Khowaja */ ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
@@ -113,7 +114,7 @@
                 </div>
             </div>
             <!-- Modal add department -->
-
+            <?php /* Created By Sameer Khowaja */ ?>
             <!-- /. NAV SIDE  -->
             <div id="page-wrapper" >
                 <div id="page-inner">
@@ -315,3 +316,4 @@
         <script src="assets/js/custom.js"></script>
     </body>
 </html>
+<?php /* Created By Sameer Khowaja */ ?>
