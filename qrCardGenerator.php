@@ -14,11 +14,11 @@
             <!-- CUSTOM STYLES-->
         <link href="assets/css/custom.css" rel="stylesheet" />
         <!-- GOOGLE FONTS-->
-        <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+        <link href='assets/cdn/font-sans.css' rel='stylesheet' type='text/css' />
         <!-- TABLE STYLES-->
         <link href="assets/js/dataTables/dataTables.bootstrap.css" rel="stylesheet" />
-        <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-        <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+        <script src="assets/cdn/jquery-1-10-2.js"></script>
+        <script src="assets/cdn/jquery-ui.js"></script>
     </head>
     <?php include('dbcon.php'); ?>
     <body>
@@ -193,8 +193,8 @@
         <!-- CUSTOM SCRIPTS -->
         <script src="assets/js/custom.js"></script>
         <!-- SAVE DIV AS IMAGE -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script>
+        <script src="assets/cdn/jquery-min.js"></script>
+        <script src="assets/cdn/html2canvas.js"></script>
         <script>
             $(document).ready(function(){
                 var element = $("#html-content-holder"); // global variable

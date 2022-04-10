@@ -13,10 +13,10 @@
         <!-- CUSTOM STYLES-->
         <link href="assets/css/custom.css" rel="stylesheet" />
         <!-- GOOGLE FONTS-->
-        <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+        <link href='assets/cdn/font-sans.css' rel='stylesheet' type='text/css' />
         <!-- TABLE STYLES-->
         <link href="assets/js/dataTables/dataTables.bootstrap.css" rel="stylesheet" />
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="assets/cdn/jquery-min2.js"></script>
     </head>
     <?php include('dbcon.php'); ?>
     <body>
@@ -197,8 +197,8 @@
         <div style="position:fixed; bottom:0; right:0; font-size:12px;">Created By Sameer Khowaja</div>
 
         <!-- Camera -->
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-        <script src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js" rel="nofollow"></script>
+        <script src="assets/cdn/jquery-3-6-0-min2.js"></script>
+        <script src="assets/cdn/instascan-min.js" rel="nofollow"></script>
         <script type="text/javascript">
             function delay(time) {
                 return new Promise(resolve => setTimeout(resolve, time));

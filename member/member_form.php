@@ -14,7 +14,7 @@
             <!-- CUSTOM STYLES-->
         <link href="../assets/css/custom.css" rel="stylesheet" />
         <!-- GOOGLE FONTS-->
-        <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+        <link href='../assets/cdn/font-sans.css' rel='stylesheet' type='text/css' />
         <!-- TABLE STYLES-->
         <link href="../assets/js/dataTables/dataTables.bootstrap.css" rel="stylesheet" />
     </head>

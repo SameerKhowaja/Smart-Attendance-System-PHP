@@ -14,10 +14,10 @@
             <!-- CUSTOM STYLES-->
         <link href="assets/css/custom.css" rel="stylesheet" />
         <!-- GOOGLE FONTS-->
-        <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+        <link href='assets/cdn/font-sans.css' rel='stylesheet' type='text/css' />
         <!-- TABLE STYLES-->
         <link href="assets/js/dataTables/dataTables.bootstrap.css" rel="stylesheet" />
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="assets/cdn/jquery-min3.js"></script>
     </head>
     <?php include('dbcon.php'); ?>
     <body>
@@ -469,7 +469,7 @@
 
         <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
         <!-- Add Attendance Manually using Ajax Jquery -->
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <script src="assets/cdn/jquery-3-6-0-min.js"></script>
         <script type="text/javascript">
             function delay(time) {
                 return new Promise(resolve => setTimeout(resolve, time));
