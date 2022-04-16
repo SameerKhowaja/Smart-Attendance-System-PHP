@@ -132,10 +132,20 @@
                                     </div>
                                     <?php
                                 }
+                                elseif($_SESSION['transaction'] == "N"){    //no action
+                                    ?>
+                                    <div class="alert alert-info alert-dismissible show" style="font-size:16px;">
+                                        Transaction Not Occurred Due To Some Reasons...!
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <?php
+                                }
                                 elseif($_SESSION['transaction'] == "E"){    //error
                                     ?>
                                     <div class="alert alert-danger alert-dismissible show" style="font-size:16px;">
-                                        Transaction Failed Due To Some Reason...!
+                                        Transaction Failed Due To Some Reasons...!
                                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
@@ -151,11 +161,13 @@
                             <div class="panel panel-default">
                                 <div class="panel-heading">
                                     <b>Departments Data</b>
+                                    <?php if(isset($_SESSION['add_department']) && $_SESSION['add_department']==1){ ?>
                                     <div class="pull-right">
                                         <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#add_dept">
                                             &nbsp;<b>+</b>&nbsp; Add New Department
                                         </button>
                                     </div>
+                                    <?php } ?>
                                 </div>
 
                                 <div class="panel-body">
@@ -186,96 +198,159 @@
                                                     <td style="text-align:center;"><?php echo $row['updated_date']; ?></td>
                                                     <td style="text-align:center;"><?php echo $row['updated_by']; ?></td>
                                                     <td style="width:220; text-align:center;">
-                                                        <a rel="tooltip" title="Update" id="<?php echo $id; ?>" href="#update_dept<?php echo $id; ?>" data-toggle="modal" class="btn btn-warning btn-sm">View / Update</a>
-                                                        <!-- View/Update Modal -->
-                                                        <div class="modal fade" id="update_dept<?php echo $id; ?>" tabindex="-1" role="dialog" aria-labelledby="update_dept" aria-hidden="true">
-                                                            <div class="modal-dialog" role="document">
-                                                                <div class="modal-content">
-                                                                    <div class="modal-body">
-                                                                        <div class="text-center">
-                                                                            <h4><b>View / Update Department</b></h4>
+                                                        <?php if(isset($_SESSION['update_department']) && $_SESSION['update_department']==1){ ?>
+                                                            <a rel="tooltip" title="Update" id="<?php echo $id; ?>" href="#update_dept<?php echo $id; ?>" data-toggle="modal" class="btn btn-warning btn-sm">View / Update</a>
+                                                            <!-- View/Update Modal -->
+                                                            <div class="modal fade" id="update_dept<?php echo $id; ?>" tabindex="-1" role="dialog" aria-labelledby="update_dept" aria-hidden="true">
+                                                                <div class="modal-dialog" role="document">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-body">
+                                                                            <div class="text-center">
+                                                                                <h4><b>View / Update Department</b></h4>
+                                                                            </div>
+                                                                            <form method="post" action="transaction/aud_dept.php">
+                                                                                <table>
+                                                                                    <tbody style="text-align:left;">
+                                                                                        <tr>
+                                                                                            <td><b>Department ID</b></td>
+                                                                                            <td style="padding-top:5px; padding-left:10px;"><input style="width:380px;" type="text" class="form-control" id="dept_id" name="dept_id" value="<?php echo $row['dept_id']; ?>" readonly></td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td><b>Department Name</b></td>
+                                                                                            <td style="padding-top:5px; padding-left:10px;"><input style="width:380px;" type="text" class="form-control" id="dept_name" name="dept_name" value="<?php echo $row['dept_name']; ?>" required></td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td><b>Department Head Name</b></td>
+                                                                                            <td style="padding-top:5px; padding-left:10px;"><input style="width:380px;" type="text" class="form-control" id="dept_head_name" name="dept_head_name" value="<?php echo $row['dept_name'];?>" required></td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td><b>Department Area Name</b></td>
+                                                                                            <td style="padding-top:5px; padding-left:10px;"><input style="width:380px;" type="text" class="form-control" id="dept_area" name="dept_area" value="<?php echo $row['dept_area']; ?>" required></td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td><b>Location / Address</b></td>
+                                                                                            <td style="padding-top:5px; padding-left:10px;"><input style="width:380px;" type="text" class="form-control" id="dept_location" name="dept_location" value="<?php echo $row['dept_location']; ?>" required></td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td><b>Phone Number</b></td>
+                                                                                            <td style="padding-top:5px; padding-left:10px;"><input style="width:380px;" type="text" class="form-control" id="dept_phone" name="dept_phone" value="<?php echo $row['dept_phone']; ?>" onkeyup="if (/\D/g.test(this.value)) this.value = this.value.replace(/\D/g,'')"></td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td><b>Any Comments</b></td>
+                                                                                            <td style="padding-top:5px; padding-left:10px;"><input style="width:380px;" type="text" class="form-control" id="dept_comment" name="dept_comment" value="<?php echo $row['dept_comment']; ?>"></td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td><b>Created On & By</b></td>
+                                                                                            <td style="padding-top:5px; padding-left:10px;"><p style="width:380px;" class="form-control"><?php echo $row['created_date']." ( <b>".$row['created_by']."</b> )"; ?></p></td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td><b>Updated On & By</b></td>
+                                                                                            <td style="padding-top:5px; padding-left:10px;"><p style="width:380px;" class="form-control"><?php echo $row['updated_date']." ( <b>".$row['updated_by']."</b> )"; ?></p></td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td>
+                                                                                                <button style="margin-top:10px" class="btn btn-info" data-dismiss="modal" aria-hidden="true"><i class="icon-remove icon-large"></i>&nbsp;Close</button>
+                                                                                            </td>
+                                                                                            <td>
+                                                                                                <button style="margin-top:10px;width:150px;float:right;" name="update_dept" type="submit" class="btn btn-danger"><i class="icon-save icon-large"></i>&nbsp;Update</button>
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                    </tbody>
+                                                                                </table>
+                                                                            </form>
                                                                         </div>
-                                                                        <form method="post" action="transaction/aud_dept.php">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <!-- View/Update Modal -->
+                                                        <?php 
+                                                        }else{
+                                                        ?>
+                                                            <a rel="tooltip" title="View" id="<?php echo $id; ?>" href="#view_dept<?php echo $id; ?>" data-toggle="modal" class="btn btn-info btn-sm">View Only</a>
+                                                            <!-- View Modal -->
+                                                            <div class="modal fade" id="view_dept<?php echo $id; ?>" tabindex="-1" role="dialog" aria-labelledby="view_dept" aria-hidden="true">
+                                                                <div class="modal-dialog" role="document">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-body">
+                                                                            <div class="text-center">
+                                                                                <h4><b>View Department</b></h4>
+                                                                            </div>
                                                                             <table>
                                                                                 <tbody style="text-align:left;">
                                                                                     <tr>
                                                                                         <td><b>Department ID</b></td>
-                                                                                        <td style="padding-top:5px; padding-left:10px;"><input style="width:350px;" type="text" class="form-control" id="dept_id" name="dept_id" value="<?php echo $row['dept_id']; ?>" readonly></td>
+                                                                                        <td style="padding-top:5px; padding-left:10px;"><p style="width:380px;" class="form-control"><?php echo $row['dept_id']; ?></p></td>
                                                                                     </tr>
                                                                                     <tr>
                                                                                         <td><b>Department Name</b></td>
-                                                                                        <td style="padding-top:5px; padding-left:10px;"><input style="width:350px;" type="text" class="form-control" id="dept_name" name="dept_name" value="<?php echo $row['dept_name']; ?>" required></td>
+                                                                                        <td style="padding-top:5px; padding-left:10px;"><p style="width:380px;" class="form-control"><?php echo $row['dept_name']; ?></p></td>
                                                                                     </tr>
                                                                                     <tr>
                                                                                         <td><b>Department Head Name</b></td>
-                                                                                        <td style="padding-top:5px; padding-left:10px;"><input style="width:350px;" type="text" class="form-control" id="dept_head_name" name="dept_head_name" value="<?php echo $row['dept_name'];?>" required></td>
+                                                                                        <td style="padding-top:5px; padding-left:10px;"><p style="width:380px;" class="form-control"><?php echo $row['dept_name'];?></p></td>
                                                                                     </tr>
                                                                                     <tr>
                                                                                         <td><b>Department Area Name</b></td>
-                                                                                        <td style="padding-top:5px; padding-left:10px;"><input style="width:350px;" type="text" class="form-control" id="dept_area" name="dept_area" value="<?php echo $row['dept_area']; ?>" required></td>
+                                                                                        <td style="padding-top:5px; padding-left:10px;"><p style="width:380px;" class="form-control"><?php echo $row['dept_area']; ?></p></td>
                                                                                     </tr>
                                                                                     <tr>
                                                                                         <td><b>Location / Address</b></td>
-                                                                                        <td style="padding-top:5px; padding-left:10px;"><input style="width:350px;" type="text" class="form-control" id="dept_location" name="dept_location" value="<?php echo $row['dept_location']; ?>" required></td>
+                                                                                        <td style="padding-top:5px; padding-left:10px;"><p style="width:380px;" class="form-control"><?php echo $row['dept_location']; ?></p></td>
                                                                                     </tr>
                                                                                     <tr>
                                                                                         <td><b>Phone Number</b></td>
-                                                                                        <td style="padding-top:5px; padding-left:10px;"><input style="width:350px;" type="text" class="form-control" id="dept_phone" name="dept_phone" value="<?php echo $row['dept_phone']; ?>" onkeyup="if (/\D/g.test(this.value)) this.value = this.value.replace(/\D/g,'')"></td>
+                                                                                        <td style="padding-top:5px; padding-left:10px;"><p style="width:380px;" class="form-control"><?php echo $row['dept_phone']; ?></p></td>
                                                                                     </tr>
                                                                                     <tr>
                                                                                         <td><b>Any Comments</b></td>
-                                                                                        <td style="padding-top:5px; padding-left:10px;"><input style="width:350px;" type="text" class="form-control" id="dept_comment" name="dept_comment" value="<?php echo $row['dept_comment']; ?>"></td>
+                                                                                        <td style="padding-top:5px; padding-left:10px;"><p style="width:380px;" class="form-control"><?php echo $row['dept_comment']; ?></p></td>
                                                                                     </tr>
                                                                                     <tr>
                                                                                         <td><b>Created On & By</b></td>
-                                                                                        <td style="padding-top:5px; padding-left:10px;"><p style="width:350px;" class="form-control"><?php echo $row['created_date']." ( <b>".$row['created_by']."</b> )"; ?></p></td>
+                                                                                        <td style="padding-top:5px; padding-left:10px;"><p style="width:380px;" class="form-control"><?php echo $row['created_date']." ( <b>".$row['created_by']."</b> )"; ?></p></td>
                                                                                     </tr>
                                                                                     <tr>
                                                                                         <td><b>Updated On & By</b></td>
-                                                                                        <td style="padding-top:5px; padding-left:10px;"><p style="width:350px;" class="form-control"><?php echo $row['updated_date']." ( <b>".$row['updated_by']."</b> )"; ?></p></td>
-                                                                                    </tr>
-                                                                                    <tr>
-                                                                                        <td>
-                                                                                            <button style="margin-top:10px" class="btn btn-info" data-dismiss="modal" aria-hidden="true"><i class="icon-remove icon-large"></i>&nbsp;Close</button>
-                                                                                        </td>
-                                                                                        <td>
-                                                                                            <button style="margin-top:10px;width:150px;float:right;" name="update_dept" type="submit" class="btn btn-danger"><i class="icon-save icon-large"></i>&nbsp;Update</button>
-                                                                                        </td>
+                                                                                        <td style="padding-top:5px; padding-left:10px;"><p style="width:380px;" class="form-control"><?php echo $row['updated_date']." ( <b>".$row['updated_by']."</b> )"; ?></p></td>
                                                                                     </tr>
                                                                                 </tbody>
                                                                             </table>
-                                                                        </form>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <!-- View/Update Modal -->
-                                                        
-                                                        <a rel="tooltip" title="Delete" id="<?php echo $id; ?>" href="#delete_dept<?php echo $id; ?>" data-toggle="modal" class="btn btn-danger btn-sm">Delete</a>
-                                                        <!-- Delete Modal -->
-                                                        <div class="modal fade" id="delete_dept<?php echo $id; ?>" tabindex="-1" role="dialog" aria-labelledby="delete_dept<?php echo $id; ?>" aria-hidden="true">
-                                                            <div class="modal-dialog" role="document">
-                                                                <div class="modal-content">
-                                                                    <div class="modal-body">
-                                                                        <div class="text-center">
-                                                                            <h4><b>Delete Department "<?php echo $row['dept_name']; ?>"</b></h4>
                                                                         </div>
-                                                                        <form method="post" action="transaction/aud_dept.php">
-                                                                            <div class="form-group">
-                                                                                <input type="hidden" class="form-control" id="dept_id" name="dept_id" value="<?php echo $row['dept_id']; ?>" readonly>
-                                                                                <h5>Are you sure to DELETE Department Data?</h5>
-                                                                            </div>
-                                                                            <br>
-                                                                            <div class="form-group">
-                                                                                <button class="btn btn-info" data-dismiss="modal" aria-hidden="true">&nbsp;No</button>
-                                                                                <button name="delete_dept" type="submit" class="btn btn-danger"><i class="icon-save icon-large" style="width:50px;float:right;"></i>&nbsp;Yes</button>
-                                                                            </div>
-                                                                        </form>
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                        <!-- Delete Modal -->
+                                                            <!-- View Modal -->
+                                                        <?php
+                                                        } 
+                                                        ?>
+                                                        
+                                                        <?php if(isset($_SESSION['delete_department']) && $_SESSION['delete_department']==1){ ?>
+                                                            <a rel="tooltip" title="Delete" id="<?php echo $id; ?>" href="#delete_dept<?php echo $id; ?>" data-toggle="modal" class="btn btn-danger btn-sm">Delete</a>
+                                                            <!-- Delete Modal -->
+                                                            <div class="modal fade" id="delete_dept<?php echo $id; ?>" tabindex="-1" role="dialog" aria-labelledby="delete_dept<?php echo $id; ?>" aria-hidden="true">
+                                                                <div class="modal-dialog" role="document">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-body">
+                                                                            <div class="text-center">
+                                                                                <h4><b>Delete Department "<?php echo $row['dept_name']; ?>"</b></h4>
+                                                                            </div>
+                                                                            <form method="post" action="transaction/aud_dept.php">
+                                                                                <div class="form-group">
+                                                                                    <input type="hidden" class="form-control" id="dept_id" name="dept_id" value="<?php echo $row['dept_id']; ?>" readonly>
+                                                                                    <h5>Are you sure to DELETE Department Data?</h5>
+                                                                                </div>
+                                                                                <br>
+                                                                                <div class="form-group">
+                                                                                    <button class="btn btn-info" data-dismiss="modal" aria-hidden="true">&nbsp;No</button>
+                                                                                    <button name="delete_dept" type="submit" class="btn btn-danger"><i class="icon-save icon-large" style="width:50px;float:right;"></i>&nbsp;Yes</button>
+                                                                                </div>
+                                                                            </form>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <!-- Delete Modal -->
+                                                        <?php } ?>
                                                     </td>
                                                 </tr>
                                                 <?php } ?>

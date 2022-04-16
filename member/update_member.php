@@ -87,7 +87,15 @@
                             <!-- Form Elements -->
                             <div class="panel panel-default">
                                 <div class="panel-heading">
-                                    View / Update Member Form Data
+                                    <?php if(isset($_SESSION['update_member']) && $_SESSION['update_member']==1){ ?>
+                                        View / Update Member Form Data
+                                    <?php 
+                                    }else{
+                                    ?>
+                                        View Member Form Data
+                                    <?php
+                                    } 
+                                    ?>
                                     <div class="pull-right">
                                         <a href="../member.php" type="button" class="btn btn-primary btn-xs">
                                             &nbsp;<b><</b>&nbsp; Back
@@ -108,6 +116,8 @@
                                                     else{
                                                         while($row=mysqli_fetch_array($user_query)){
                                             ?>
+
+                                            <?php if(isset($_SESSION['update_member']) && $_SESSION['update_member']==1){ // View & Update ?>
                                                 <form method="post" enctype="multipart/form-data" action="../transaction/aud_member.php">
                                                     <div class="col-md-12">
                                                         <!-- Left Side -->
@@ -353,7 +363,216 @@
                                                         </div>
                                                     </div>
                                                     <!-- Center -->
-                                                </form>  
+                                                </form>
+                                            <?php 
+                                            }else{
+                                            // View Only
+                                            ?>
+                                                <div>
+                                                    <div class="col-md-12">
+                                                        <!-- Left Side -->
+                                                        <div class="col-md-4">
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    <div class="form-group">
+                                                                        <?php
+                                                                        if($row['image_file'] != NULL){
+                                                                            echo '<img id="member_mage" class="img-thumbnail" style="width:280px; height:300px;" alt="Your Image" src="data:image/jpeg;base64,'.base64_encode($row['image_file']).'"/>';
+                                                                        }
+                                                                        else{
+                                                                            echo '<img id="member_mage" class="img-thumbnail" style="width:280px; height:300px;" src="../assets/images/no-image.jpg" alt="Your Image">';
+                                                                        }   
+                                                                        ?>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!-- Left Side -->
+
+                                                        <!-- Right Side -->
+                                                        <div class="col-md-8">
+                                                            <div class="row">
+                                                                <div class="col-md-6">
+                                                                    <div class="form-group">
+                                                                        <label for="formid_number">Form ID Number</label>
+                                                                        <p class="form-control"><?php echo $row['formid_number']; ?></p>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <div class="form-group">
+                                                                        <label for="dept_name">Department Name</label>
+                                                                        <?php
+                                                                            $dept_id=$row['dept_id'];
+                                                                            $dept2=mysqli_query($conn, "SELECT dept_name FROM department WHERE `dept_id` = '$dept_id'")or die(mysqli_error());
+                                                                            while($dept_row2=mysqli_fetch_array($dept2)){
+                                                                        ?>
+                                                                            <p class="form-control"><?php echo $dept_row2['dept_name']; ?></p>
+                                                                        <?php } ?>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="row">
+                                                                <div class="col-md-6">
+                                                                    <div class="form-group">
+                                                                        <label for="firstname">First Name</label>
+                                                                        <p class="form-control"><?php echo $row['firstname']; ?></p>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <div class="form-group">
+                                                                        <label for="lastname">Last Name</label>
+                                                                        <p class="form-control"><?php echo $row['lastname']; ?></p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            
+                                                            <div class="row">
+                                                                <div class="col-md-6">
+                                                                    <div class="form-group">
+                                                                        <label for="email">Email Address (optional)</label>
+                                                                        <p class="form-control"><?php echo $row['email']; ?></p>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <div class="form-group">
+                                                                        <label for="contact_number">Contact Number</label>
+                                                                        <p class="form-control"><?php echo $row['contact_number']; ?></p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="row">
+                                                                <div class="col-md-6">
+                                                                    <div class="form-group">
+                                                                        <label for="dob">Date of Birth</label>
+                                                                        <p class="form-control"><?php echo $row['dob']; ?></p>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <div class="form-group">
+                                                                        <label for="cnic">CNIC Number</label>
+                                                                        <p class="form-control"><?php echo $row['cnic']; ?></p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="row">
+                                                                <div class="col-md-6">
+                                                                    <div class="form-group">
+                                                                        <label for="gender">Gender</label>
+                                                                        <p class="form-control"><?php echo $row['gender']; ?></p>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <div class="form-group">
+                                                                        <label for="marital_status">Marital Status</label>
+                                                                        <p class="form-control"><?php echo $row['marital_status']; ?></p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            
+                                                        </div>
+                                                        <!-- Right Side -->
+                                                    </div>
+                                                    <?php /* Created By Sameer Khowaja */ ?>
+                                                    <!-- Center -->
+                                                    <div class="col-md-12">
+                                                        <div class="col-md-12">
+                                                            <div class="row">
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group">
+                                                                        <label for="position">Badge / Position</label>
+                                                                        <p class="form-control"><?php echo $row['position']; ?></p>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group">
+                                                                        <label for="doj">Date of Joining</label>
+                                                                        <p class="form-control"><?php echo $row['doj']; ?></p>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group">
+                                                                        <label for="leaving_date">Leaving Date (optional)</label>
+                                                                        <p class="form-control"><?php echo $row['leaving_date']; ?></p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-12">
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    <div class="form-group">
+                                                                        <label for="purpose_leaving">Purpose of Leaving (optional)</label>
+                                                                        <p class="form-control"><?php echo $row['purpose_leaving']; ?></p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-12">
+                                                            <div class="row">
+                                                                <div class="col-md-6">
+                                                                    <div class="form-group">
+                                                                        <label for="city">City</label>
+                                                                        <p class="form-control"><?php echo $row['city']; ?></p>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <div class="form-group">
+                                                                        <label for="country">Country</label>
+                                                                        <p class="form-control"><?php echo $row['country']; ?></p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        
+                                                        <div class="col-md-12">
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    <div class="form-group">
+                                                                        <label for="myaddress">Home Address</label>
+                                                                        <p class="form-control"><?php echo $row['myaddress']; ?></p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-12">
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    <div class="form-group">
+                                                                        <label for="member_qr">Member QR Code Identification</label>
+                                                                        <p class="form-control"><?php echo $row['member_qr']; ?></p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-12">
+                                                            <div class="row">
+                                                                <div class="col-md-6">
+                                                                    <div class="form-group">
+                                                                        <label>Created On & By</label>
+                                                                        <p class="form-control"><?php echo $row['created_date']." ( <b>".$row['created_by']."</b> )"; ?></p>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <div class="form-group">
+                                                                        <label>Update On & By</label>
+                                                                        <p class="form-control"><?php echo $row['updated_date']." ( <b>".$row['updated_by']."</b> )"; ?></p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- Center -->
+                                                </div>
+                                            <?php } ?>  
+
                                             <?php } } } ?>                        
                                         </div>
                                     </div>

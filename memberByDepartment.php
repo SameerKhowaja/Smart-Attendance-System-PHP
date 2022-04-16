@@ -109,7 +109,7 @@
                                                     <td style="text-align:center;"><?php echo $row['dept_head_name']; ?></td>
                                                     <td style="text-align:center;"><?php echo $member_count ?></td>
                                                     <td style="width:220; text-align:center;">
-                                                        <a rel="tooltip" title="View" id="<?php echo $id; ?>" href="#view_members<?php echo $id; ?>" data-toggle="modal" class="btn btn-warning btn-sm">View Members List</a>
+                                                        <a rel="tooltip" title="View" id="<?php echo $id; ?>" href="#view_members<?php echo $id; ?>" data-toggle="modal" class="btn btn-info btn-sm">View Members List</a>
                                                         <!-- View Modal -->
                                                         <div class="modal fade" id="view_members<?php echo $id; ?>" tabindex="-1" role="dialog" aria-labelledby="view_members" aria-hidden="true">
                                                             <div class="modal-dialog modal-lg" role="document">
@@ -156,7 +156,16 @@
                                                                                                     ?>
                                                                                                 </td>
                                                                                                 <td><?php echo $mem['gender']; ?></td>
-                                                                                                <td><a id="<?php echo $mem['member_id']; ?>" href="member/update_member.php?member_id=<?php echo $mem['member_id']; ?>" target="_blank" class="btn btn-warning btn-sm">View / Update</a></td>
+
+                                                                                                <?php if(isset($_SESSION['update_member']) && $_SESSION['update_member']==1){ ?>
+                                                                                                    <td><a id="<?php echo $mem['member_id']; ?>" href="member/update_member.php?member_id=<?php echo $mem['member_id']; ?>" target="_blank" class="btn btn-warning btn-sm">View / Update</a></td>
+                                                                                                <?php 
+                                                                                                }else{
+                                                                                                ?>
+                                                                                                    <td><a id="<?php echo $mem['member_id']; ?>" href="member/update_member.php?member_id=<?php echo $mem['member_id']; ?>" target="_blank" class="btn btn-info btn-sm">View Only</a></td>
+                                                                                                <?php
+                                                                                                } 
+                                                                                                ?>
                                                                                             </tr>
                                                                                             <?php } ?>
                                                                                         </tbody>

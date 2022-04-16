@@ -256,10 +256,20 @@
                                         </div>
                                         <?php
                                     }
+                                    elseif($_SESSION['transaction'] == "N"){    //no action
+                                        ?>
+                                        <div class="alert alert-info alert-dismissible show" style="font-size:16px;">
+                                            Transaction Not Occurred Due To Some Reasons...!
+                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <?php
+                                    }
                                     elseif($_SESSION['transaction'] == "E"){    //error
                                         ?>
                                         <div class="alert alert-danger alert-dismissible show" style="font-size:16px;">
-                                            Transaction Failed Due To Some Reason...!
+                                            Transaction Failed Due To Some Reasons...!
                                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
@@ -301,8 +311,144 @@
                                                 </td>
                                                 <td style="text-align:center;">
                                                     <?php
-                                                        if($row['deleteable'] == 1){
-                                                            ?>
+                                                    // Role Based Setting
+                                                    if($_SESSION['deleteable'] == 0){   // You are Admin
+                                                        if($row['deleteable'] == 1){    // Non-Admin Users
+                                                        ?>
+                                                        <a rel="tooltip" title="Update" id="<?php echo $id; ?>" href="#update_role<?php echo $id; ?>" data-toggle="modal" class="btn btn-info btn-sm">Roles</a>
+                                                        <!-- Update Role Modal -->
+                                                        <div class="modal fade" id="update_role<?php echo $id; ?>" tabindex="-1" role="dialog" aria-labelledby="update_admin" aria-hidden="true">
+                                                            <div class="modal-dialog modal-sm" role="document">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-body">
+                                                                        <div class="text-center">
+                                                                            <h4><b>Update Roles</b></h4>
+                                                                        </div>
+                                                                        <form method="post" action="transaction/aud_admin.php">
+                                                                            <table>
+                                                                                <tbody style="text-align:left;">
+                                                                                    <?php if($_SESSION['deleteable'] == 0){ ?>
+                                                                                        <tr hidden>
+                                                                                            <td><b>Username</b></td>
+                                                                                            <td style="padding-top:5px; padding-left:10px;"><input style="width:110px;" type="text" class="form-control" id="username" name="username" value="<?php echo $row['username']; ?>" readonly></td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td><b>Add Member</b></td>
+                                                                                            <td style="padding-top:5px; padding-left:10px;">
+                                                                                                <select style="width:110px;" class="form-control" id="add_member" name="add_member">
+                                                                                                    <option value="<?php echo $row['add_member'];?>"><?php echo $row['add_member'] ? 'Yes' : 'No'; ?></option>
+                                                                                                    <option value="0">No</option>
+                                                                                                    <option value="1">Yes</option>
+                                                                                                </select>
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td><b>Update Member</b></td>
+                                                                                            <td style="padding-top:5px; padding-left:10px;">
+                                                                                                <select style="width:110px;" class="form-control" id="update_member" name="update_member">
+                                                                                                    <option value="<?php echo $row['update_member'];?>"><?php echo $row['update_member'] ? 'Yes' : 'No'; ?></option>
+                                                                                                    <option value="0">No</option>
+                                                                                                    <option value="1">Yes</option>
+                                                                                                </select>
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td><b>Delete Member</b></td>
+                                                                                            <td style="padding-top:5px; padding-left:10px;">
+                                                                                                <select style="width:110px;" class="form-control" id="delete_member" name="delete_member">
+                                                                                                    <option value="<?php echo $row['delete_member'];?>"><?php echo $row['delete_member'] ? 'Yes' : 'No'; ?></option>
+                                                                                                    <option value="0">No</option>
+                                                                                                    <option value="1">Yes</option>
+                                                                                                </select>
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td><b>Add Department</b></td>
+                                                                                            <td style="padding-top:5px; padding-left:10px;">
+                                                                                                <select style="width:110px;" class="form-control" id="add_department" name="add_department">
+                                                                                                    <option value="<?php echo $row['add_department'];?>"><?php echo $row['add_department'] ? 'Yes' : 'No'; ?></option>
+                                                                                                    <option value="0">No</option>
+                                                                                                    <option value="1">Yes</option>
+                                                                                                </select>
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td><b>Update Department</b></td>
+                                                                                            <td style="padding-top:5px; padding-left:10px;">
+                                                                                                <select style="width:110px;" class="form-control" id="update_department" name="update_department">
+                                                                                                    <option value="<?php echo $row['update_department'];?>"><?php echo $row['update_department'] ? 'Yes' : 'No'; ?></option>
+                                                                                                    <option value="0">No</option>
+                                                                                                    <option value="1">Yes</option>
+                                                                                                </select>
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td><b>Delete Department</b></td>
+                                                                                            <td style="padding-top:5px; padding-left:10px;">
+                                                                                                <select style="width:110px;" class="form-control" id="delete_department" name="delete_department">
+                                                                                                    <option value="<?php echo $row['delete_department'];?>"><?php echo $row['delete_department'] ? 'Yes' : 'No'; ?></option>
+                                                                                                    <option value="0">No</option>
+                                                                                                    <option value="1">Yes</option>
+                                                                                                </select>
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td><b>Update Attendance</b></td>
+                                                                                            <td style="padding-top:5px; padding-left:10px;">
+                                                                                                <select style="width:110px;" class="form-control" id="update_attendance" name="update_attendance">
+                                                                                                    <option value="<?php echo $row['update_attendance'];?>"><?php echo $row['update_attendance'] ? 'Yes' : 'No'; ?></option>
+                                                                                                    <option value="0">No</option>
+                                                                                                    <option value="1">Yes</option>
+                                                                                                </select>
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td><b>Delete Attendance</b></td>
+                                                                                            <td style="padding-top:5px; padding-left:10px;">
+                                                                                                <select style="width:110px;" class="form-control" id="delete_attendance" name="delete_attendance">
+                                                                                                    <option value="<?php echo $row['delete_attendance'];?>"><?php echo $row['delete_attendance'] ? 'Yes' : 'No'; ?></option>
+                                                                                                    <option value="0">No</option>
+                                                                                                    <option value="1">Yes</option>
+                                                                                                </select>
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td><b>Bulk Timeout</b></td>
+                                                                                            <td style="padding-top:5px; padding-left:10px;">
+                                                                                                <select style="width:110px;" class="form-control" id="bulk_timeout" name="bulk_timeout">
+                                                                                                    <option value="<?php echo $row['bulk_timeout'];?>"><?php echo $row['bulk_timeout'] ? 'Yes' : 'No'; ?></option>
+                                                                                                    <option value="0">No</option>
+                                                                                                    <option value="1">Yes</option>
+                                                                                                </select>
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                    <?php } ?>
+                                                                                    <tr>
+                                                                                        <td>
+                                                                                            <button style="margin-top:10px" class="btn btn-info" data-dismiss="modal" aria-hidden="true"><i class="icon-remove icon-large"></i>&nbsp;Close</button>
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            <button style="margin-top:10px;width:110px;float:right;" name="update_role" type="submit" class="btn btn-danger"><i class="icon-save icon-large"></i>&nbsp;Update</button>
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                </tbody>
+                                                                            </table>
+                                                                        </form>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!-- Update Role Modal -->
+                                                        <?php
+                                                        }
+                                                    }
+                                                    ?>
+
+                                                    <?php
+                                                    // Update & Delete
+                                                    if($_SESSION['deleteable'] == 0){   // You are Admin
+                                                        if($_SESSION['username'] != $row['username']){  // You not part of list
+                                                        ?>
                                                             <a rel="tooltip" title="Update" id="<?php echo $id; ?>" href="#update_admin<?php echo $id; ?>" data-toggle="modal" class="btn btn-warning btn-sm">Update</a>
                                                             <!-- Update Modal -->
                                                             <div class="modal fade" id="update_admin<?php echo $id; ?>" tabindex="-1" role="dialog" aria-labelledby="update_admin" aria-hidden="true">
@@ -356,128 +502,129 @@
                                                             </div>
                                                             <!-- Update Modal -->
 
-                                                            <?php
-                                                            if($_SESSION['username'] != $row['username']){ ?>
-                                                                <a rel="tooltip" title="Delete" id="<?php echo $id; ?>" href="#delete_admin<?php echo $id; ?>" data-toggle="modal" class="btn btn-danger btn-sm">Delete</a>
-                                                                <!-- Delete Modal -->
-                                                                <div class="modal fade" id="delete_admin<?php echo $id; ?>" tabindex="-1" role="dialog" aria-labelledby="delete_dept<?php echo $id; ?>" aria-hidden="true">
-                                                                    <div class="modal-dialog modal-sm" role="document">
-                                                                        <div class="modal-content">
-                                                                            <div class="modal-body">
-                                                                                <div class="text-center">
-                                                                                    <h4><b>Delete "<?php echo $row['username']; ?>"</b></h4>
-                                                                                </div>
-                                                                                <form method="post" action="transaction/aud_admin.php">
-                                                                                    <div class="form-group">
-                                                                                        <input type="hidden" class="form-control" id="username" name="username" value="<?php echo $row['username']; ?>" readonly>
-                                                                                        <h5>Are you sure to DELETE Administrator Data? <?php $_SESSION['username'] ?></h5>
-                                                                                    </div>
-                                                                                    <br>
-                                                                                    <div class="form-group">
-                                                                                        <button class="btn btn-info" data-dismiss="modal" aria-hidden="true">&nbsp;No</button>
-                                                                                        <button name="delete_admin" type="submit" class="btn btn-danger"><i class="icon-save icon-large" style="width:50px;float:right;"></i>&nbsp;Yes</button>
-                                                                                    </div>
-                                                                                </form>
+                                                            <a rel="tooltip" title="Delete" id="<?php echo $id; ?>" href="#delete_admin<?php echo $id; ?>" data-toggle="modal" class="btn btn-danger btn-sm">Delete</a>
+                                                            <!-- Delete Modal -->
+                                                            <div class="modal fade" id="delete_admin<?php echo $id; ?>" tabindex="-1" role="dialog" aria-labelledby="delete_dept<?php echo $id; ?>" aria-hidden="true">
+                                                                <div class="modal-dialog modal-sm" role="document">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-body">
+                                                                            <div class="text-center">
+                                                                                <h4><b>Delete "<?php echo $row['username']; ?>"</b></h4>
                                                                             </div>
+                                                                            <form method="post" action="transaction/aud_admin.php">
+                                                                                <div class="form-group">
+                                                                                    <input type="hidden" class="form-control" id="username" name="username" value="<?php echo $row['username']; ?>" readonly>
+                                                                                    <h5>Are you sure to DELETE Administrator Data? <?php $_SESSION['username'] ?></h5>
+                                                                                </div>
+                                                                                <br>
+                                                                                <div class="form-group">
+                                                                                    <button class="btn btn-info" data-dismiss="modal" aria-hidden="true">&nbsp;No</button>
+                                                                                    <button name="delete_admin" type="submit" class="btn btn-danger"><i class="icon-save icon-large" style="width:50px;float:right;"></i>&nbsp;Yes</button>
+                                                                                </div>
+                                                                            </form>
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                                <!-- Delete Modal -->
-                                                            <?php } ?>
-
-                                                            <?php
+                                                            </div>
+                                                            <!-- Delete Modal -->
+                                                        <?php
                                                         }
-                                                        else{
-                                                            if($_SESSION['deleteable'] == 0){
-                                                                ?>
-                                                                    <a rel="tooltip" title="Update" id="<?php echo $id; ?>" href="#update_admin<?php echo $id; ?>" data-toggle="modal" class="btn btn-warning btn-sm">Update</a>
-                                                                    <!-- Update Modal -->
-                                                                    <div class="modal fade" id="update_admin<?php echo $id; ?>" tabindex="-1" role="dialog" aria-labelledby="update_admin" aria-hidden="true">
-                                                                        <div class="modal-dialog modal-sm" role="document">
-                                                                            <div class="modal-content">
-                                                                                <div class="modal-body">
-                                                                                    <div class="text-center">
-                                                                                        <h4><b>Update Administrator</b></h4>
-                                                                                    </div>
-                                                                                    <form method="post" action="transaction/aud_admin.php">
-                                                                                        <table>
-                                                                                            <tbody style="text-align:left;">
-                                                                                                <tr>
-                                                                                                    <td><b>Username</b></td>
-                                                                                                    <td style="padding-top:5px; padding-left:10px;"><input style="width:165px;" type="text" class="form-control" id="username" name="username" value="<?php echo $row['username']; ?>" readonly></td>
-                                                                                                </tr>
-                                                                                                <tr>
-                                                                                                    <td><b>Fullname</b></td>
-                                                                                                    <td style="padding-top:5px; padding-left:10px;"><input style="width:165px;" type="text" class="form-control" id="fullname" name="fullname" value="<?php echo $row['fullname']; ?>" required></td>
-                                                                                                </tr>
-                                                                                                <tr>
-                                                                                                    <td><b>Password</b></td>
-                                                                                                    <td style="padding-top:5px; padding-left:10px;"><input style="width:165px;" type="password" class="form-control" id="password" name="password" value="<?php echo $row['password'];?>" required></td>
-                                                                                                </tr>
-                                                                                                <?php if($_SESSION['deleteable'] == 0){ ?>
-                                                                                                <tr>
-                                                                                                    <td><b>Administrator</b></td>
-                                                                                                    <td style="padding-top:5px; padding-left:10px;">
-                                                                                                        <select style="width:165px;" class="form-control" id="deleteable" name="deleteable">
-                                                                                                            <option value="<?php echo $row['deleteable'];?>"><?php echo $row['deleteable'] ? 'No' : 'Yes'; ?></option>
-                                                                                                            <option value="1">No</option>
-                                                                                                            <option value="0">Yes</option>
-                                                                                                        </select>
-                                                                                                    </td>
-                                                                                                </tr>
-                                                                                                <?php } ?>
-                                                                                                <tr>
-                                                                                                    <td>
-                                                                                                        <button style="margin-top:10px" class="btn btn-info" data-dismiss="modal" aria-hidden="true"><i class="icon-remove icon-large"></i>&nbsp;Close</button>
-                                                                                                    </td>
-                                                                                                    <td>
-                                                                                                        <button style="margin-top:10px;width:150px;float:right;" name="update_admin" type="submit" class="btn btn-danger"><i class="icon-save icon-large"></i>&nbsp;Update</button>
-                                                                                                    </td>
-                                                                                                </tr>
-                                                                                            </tbody>
-                                                                                        </table>
-                                                                                    </form>
-                                                                                </div>
+                                                        else{ // You part of list then you can only update your self
+                                                        ?>
+                                                            <a rel="tooltip" title="Update" id="<?php echo $id; ?>" href="#update_admin<?php echo $id; ?>" data-toggle="modal" class="btn btn-warning btn-sm">Update</a>
+                                                            <!-- Update Modal -->
+                                                            <div class="modal fade" id="update_admin<?php echo $id; ?>" tabindex="-1" role="dialog" aria-labelledby="update_admin" aria-hidden="true">
+                                                                <div class="modal-dialog modal-sm" role="document">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-body">
+                                                                            <div class="text-center">
+                                                                                <h4><b>Update Administrator</b></h4>
                                                                             </div>
+                                                                            <form method="post" action="transaction/aud_admin.php">
+                                                                                <table>
+                                                                                    <tbody style="text-align:left;">
+                                                                                        <tr>
+                                                                                            <td><b>Username</b></td>
+                                                                                            <td style="padding-top:5px; padding-left:10px;"><input style="width:165px;" type="text" class="form-control" id="username" name="username" value="<?php echo $row['username']; ?>" readonly></td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td><b>Fullname</b></td>
+                                                                                            <td style="padding-top:5px; padding-left:10px;"><input style="width:165px;" type="text" class="form-control" id="fullname" name="fullname" value="<?php echo $row['fullname']; ?>" required></td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td><b>Password</b></td>
+                                                                                            <td style="padding-top:5px; padding-left:10px;"><input style="width:165px;" type="password" class="form-control" id="password" name="password" value="<?php echo $row['password'];?>" required></td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td>
+                                                                                                <button style="margin-top:10px" class="btn btn-info" data-dismiss="modal" aria-hidden="true"><i class="icon-remove icon-large"></i>&nbsp;Close</button>
+                                                                                            </td>
+                                                                                            <td>
+                                                                                                <button style="margin-top:10px;width:150px;float:right;" name="update_admin" type="submit" class="btn btn-danger"><i class="icon-save icon-large"></i>&nbsp;Update</button>
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                    </tbody>
+                                                                                </table>
+                                                                            </form>
                                                                         </div>
                                                                     </div>
-                                                                    <!-- Update Modal -->
-
-                                                                    <?php
-                                                                    if($_SESSION['username'] != $row['username']){ ?>
-                                                                        <a rel="tooltip" title="Delete" id="<?php echo $id; ?>" href="#delete_admin<?php echo $id; ?>" data-toggle="modal" class="btn btn-danger btn-sm">Delete</a>
-                                                                        <!-- Delete Modal -->
-                                                                        <div class="modal fade" id="delete_admin<?php echo $id; ?>" tabindex="-1" role="dialog" aria-labelledby="delete_dept<?php echo $id; ?>" aria-hidden="true">
-                                                                            <div class="modal-dialog modal-sm" role="document">
-                                                                                <div class="modal-content">
-                                                                                    <div class="modal-body">
-                                                                                        <div class="text-center">
-                                                                                            <h4><b>Delete "<?php echo $row['username']; ?>"</b></h4>
-                                                                                        </div>
-                                                                                        <form method="post" action="transaction/aud_admin.php">
-                                                                                            <div class="form-group">
-                                                                                                <input type="hidden" class="form-control" id="username" name="username" value="<?php echo $row['username']; ?>" readonly>
-                                                                                                <h5>Are you sure to DELETE Administrator Data? <?php $_SESSION['username'] ?></h5>
-                                                                                            </div>
-                                                                                            <br>
-                                                                                            <div class="form-group">
-                                                                                                <button class="btn btn-info" data-dismiss="modal" aria-hidden="true">&nbsp;No</button>
-                                                                                                <button name="delete_admin" type="submit" class="btn btn-danger"><i class="icon-save icon-large" style="width:50px;float:right;"></i>&nbsp;Yes</button>
-                                                                                            </div>
-                                                                                        </form>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <!-- Delete Modal -->
-                                                                    <?php } ?>
-                                                                <?php
-                                                            }
-                                                            else{
-                                                                echo "<b>Cannot Update/Delete</b>";
-                                                            }
+                                                                </div>
+                                                            </div>
+                                                            <!-- Update Modal -->
+                                                        <?php
                                                         }
+                                                    }
+                                                    else{   // You are Non-Admin
+                                                        if($_SESSION['username'] == $row['username']){   // Update yourself
+                                                        ?>
+                                                            <a rel="tooltip" title="Update" id="<?php echo $id; ?>" href="#update_admin<?php echo $id; ?>" data-toggle="modal" class="btn btn-warning btn-sm">Update</a>
+                                                            <!-- Update Modal -->
+                                                            <div class="modal fade" id="update_admin<?php echo $id; ?>" tabindex="-1" role="dialog" aria-labelledby="update_admin" aria-hidden="true">
+                                                                <div class="modal-dialog modal-sm" role="document">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-body">
+                                                                            <div class="text-center">
+                                                                                <h4><b>Update Administrator</b></h4>
+                                                                            </div>
+                                                                            <form method="post" action="transaction/aud_admin.php">
+                                                                                <table>
+                                                                                    <tbody style="text-align:left;">
+                                                                                        <tr>
+                                                                                            <td><b>Username</b></td>
+                                                                                            <td style="padding-top:5px; padding-left:10px;"><input style="width:165px;" type="text" class="form-control" id="username" name="username" value="<?php echo $row['username']; ?>" readonly></td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td><b>Fullname</b></td>
+                                                                                            <td style="padding-top:5px; padding-left:10px;"><input style="width:165px;" type="text" class="form-control" id="fullname" name="fullname" value="<?php echo $row['fullname']; ?>" required></td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td><b>Password</b></td>
+                                                                                            <td style="padding-top:5px; padding-left:10px;"><input style="width:165px;" type="password" class="form-control" id="password" name="password" value="<?php echo $row['password'];?>" required></td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td>
+                                                                                                <button style="margin-top:10px" class="btn btn-info" data-dismiss="modal" aria-hidden="true"><i class="icon-remove icon-large"></i>&nbsp;Close</button>
+                                                                                            </td>
+                                                                                            <td>
+                                                                                                <button style="margin-top:10px;width:150px;float:right;" name="update_admin" type="submit" class="btn btn-danger"><i class="icon-save icon-large"></i>&nbsp;Update</button>
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                    </tbody>
+                                                                                </table>
+                                                                            </form>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <!-- Update Modal -->
+                                                        <?php
+                                                        }
+                                                        else{   // No Rights
+                                                            echo "<b>Cannot Update/Delete</b>";
+                                                        }
+                                                    }
                                                     ?>
+
                                                 </td>
                                             </tr>
 

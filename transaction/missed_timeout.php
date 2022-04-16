@@ -42,8 +42,13 @@ if(isset($_POST['timeout'])){
     session_start();
     try{
         $result=mysqli_query($conn, $final_query);
-        if($result >= 1){
+        $rowcount = mysqli_affected_rows($conn);
+        
+        if($rowcount >= 1){
             $_SESSION['transaction'] = "S";
+        }
+        elseif($rowcount == 0){
+            $_SESSION['transaction'] = "N";
         }
         else{
             $_SESSION['transaction'] = "E";

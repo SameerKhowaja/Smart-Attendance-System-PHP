@@ -164,7 +164,9 @@
                 </div>
             </div>
             <!-- Modal mark manual attendance -->
+            
             <?php /* Created By Sameer Khowaja */ ?>
+
             <!-- Timeout Modal -->
             <div class="modal fade" id="timeout" tabindex="-1" role="dialog" aria-labelledby="timeout" aria-hidden="true">
                 <div class="modal-dialog modal-sm" role="document">
@@ -368,10 +370,20 @@
                                         </div>
                                         <?php
                                     }
+                                    elseif($_SESSION['transaction'] == "N"){    //no action
+                                        ?>
+                                        <div class="alert alert-info alert-dismissible show" style="font-size:16px;">
+                                            Transaction Not Occurred Due To Some Reasons...!
+                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <?php
+                                    }
                                     elseif($_SESSION['transaction'] == "E"){    //error
                                         ?>
                                         <div class="alert alert-danger alert-dismissible show" style="font-size:16px;">
-                                            Transaction Failed Due To Some Reason...!
+                                            Transaction Failed Due To Some Reasons...!
                                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
@@ -384,6 +396,7 @@
                             ?>
 
                             <!-- Timeout -->
+                            <?php if(isset($_SESSION['bulk_timeout']) && $_SESSION['bulk_timeout']==1){ ?>
                             <div class="panel panel-default">
                                 <div class="panel-heading">
                                     <b>Mark Missed Timeout in Bulk</b>
@@ -394,6 +407,7 @@
                                     </div>
                                 </div>
 							</div>
+                            <?php } ?>
                             <!--End Timeout -->
                             <?php /* Created By Sameer Khowaja */ ?>
                             <!-- Advanced Tables -->

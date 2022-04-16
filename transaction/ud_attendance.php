@@ -33,8 +33,13 @@ if (isset($_POST['update_attendance'])){
     if($query!=""){
         try{
             $result=mysqli_query($conn, $query);
-            if($result >= 1){
+            $rowcount = mysqli_affected_rows($conn);
+        
+            if($rowcount >= 1){
                 $_SESSION['transaction'] = "S";
+            }
+            elseif($rowcount == 0){
+                $_SESSION['transaction'] = "N";
             }
             else{
                 $_SESSION['transaction'] = "E";
@@ -55,8 +60,13 @@ elseif (isset($_POST['delete_attendance'])){
     session_start();
     try{
         $result=mysqli_query($conn,"DELETE FROM attendance WHERE id='$attendance_id'");
-        if($result >= 1){
+        $rowcount = mysqli_affected_rows($conn);
+        
+        if($rowcount >= 1){
             $_SESSION['transaction'] = "S";
+        }
+        elseif($rowcount == 0){
+            $_SESSION['transaction'] = "N";
         }
         else{
             $_SESSION['transaction'] = "E";

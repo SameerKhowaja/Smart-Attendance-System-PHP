@@ -89,10 +89,20 @@
                                     </div>
                                     <?php
                                 }
+                                elseif($_SESSION['transaction'] == "N"){    //no action
+                                    ?>
+                                    <div class="alert alert-info alert-dismissible show" style="font-size:16px;">
+                                        Transaction Not Occurred Due To Some Reasons...!
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <?php
+                                }
                                 elseif($_SESSION['transaction'] == "E"){    //error
                                     ?>
                                     <div class="alert alert-danger alert-dismissible show" style="font-size:16px;">
-                                        Transaction Failed Due To Some Reason...!
+                                        Transaction Failed Due To Some Reasona...!
                                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
@@ -108,11 +118,13 @@
                             <div class="panel panel-default">
                                 <div class="panel-heading">
                                     <b>Members Data</b>
+                                    <?php if(isset($_SESSION['add_member']) && $_SESSION['add_member']==1){ ?>
                                     <div class="pull-right">
                                         <a href="member/member_form.php" type="button" class="btn btn-primary btn-xs">
                                             &nbsp;<b>+</b>&nbsp; Add New Member
                                         </a>
                                     </div>
+                                    <?php } ?>
                                 </div>
                                 <?php /* Created By Sameer Khowaja */ ?>
                                 <div class="panel-body">
@@ -153,33 +165,43 @@
                                                     <td style="text-align:center;"><?php echo $row['updated_date']; ?></td>
                                                     <td style="text-align:center;"><?php echo $row['updated_by']; ?></td>
                                                     <td style="width:220; text-align:center;">
-                                                        <a id="<?php echo $id; ?>" href="member/update_member.php?member_id=<?php echo $id; ?>" class="btn btn-warning btn-sm">View / Update</a>
-                                                        
-                                                        <a rel="tooltip" title="Delete" id="<?php echo $id; ?>" href="#delete_member<?php echo $id; ?>" data-toggle="modal" class="btn btn-danger btn-sm">Delete</a>
-                                                        <!-- Delete Modal -->
-                                                        <div class="modal fade" id="delete_member<?php echo $id; ?>" tabindex="-1" role="dialog" aria-labelledby="delete_dept<?php echo $id; ?>" aria-hidden="true">
-                                                            <div class="modal-dialog" role="document">
-                                                                <div class="modal-content">
-                                                                    <div class="modal-body">
-                                                                        <div class="text-center">
-                                                                            <h4><b>Delete Member "<?php echo $row['firstname']." ".$row['lastname']; ?>"</b></h4>
+                                                        <?php if(isset($_SESSION['update_member']) && $_SESSION['update_member']==1){ ?>
+                                                            <a id="<?php echo $id; ?>" href="member/update_member.php?member_id=<?php echo $id; ?>" class="btn btn-warning btn-sm">View / Update</a>
+                                                        <?php 
+                                                        }else{
+                                                        ?>
+                                                            <a id="<?php echo $id; ?>" href="member/update_member.php?member_id=<?php echo $id; ?>" class="btn btn-info btn-sm">View Only</a>
+                                                        <?php
+                                                        }
+                                                        ?>
+
+                                                        <?php if(isset($_SESSION['delete_member']) && $_SESSION['delete_member']==1){ ?>
+                                                            <a rel="tooltip" title="Delete" id="<?php echo $id; ?>" href="#delete_member<?php echo $id; ?>" data-toggle="modal" class="btn btn-danger btn-sm">Delete</a>
+                                                            <!-- Delete Modal -->
+                                                            <div class="modal fade" id="delete_member<?php echo $id; ?>" tabindex="-1" role="dialog" aria-labelledby="delete_dept<?php echo $id; ?>" aria-hidden="true">
+                                                                <div class="modal-dialog" role="document">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-body">
+                                                                            <div class="text-center">
+                                                                                <h4><b>Delete Member "<?php echo $row['firstname']." ".$row['lastname']; ?>"</b></h4>
+                                                                            </div>
+                                                                            <form method="post" action="transaction/aud_member.php">
+                                                                                <div class="form-group">
+                                                                                    <input type="hidden" class="form-control" id="member_id" name="member_id" value="<?php echo $row['member_id']; ?>" readonly>
+                                                                                    <h5>Are you sure to DELETE Member Data?</h5>
+                                                                                </div>
+                                                                                <br>
+                                                                                <div class="form-group">
+                                                                                    <button class="btn btn-info" data-dismiss="modal" aria-hidden="true">&nbsp;No</button>
+                                                                                    <button name="delete_member" type="submit" class="btn btn-danger"><i class="icon-save icon-large" style="width:50px;float:right;"></i>&nbsp;Yes</button>
+                                                                                </div>
+                                                                            </form>
                                                                         </div>
-                                                                        <form method="post" action="transaction/aud_member.php">
-                                                                            <div class="form-group">
-                                                                                <input type="hidden" class="form-control" id="member_id" name="member_id" value="<?php echo $row['member_id']; ?>" readonly>
-                                                                                <h5>Are you sure to DELETE Member Data?</h5>
-                                                                            </div>
-                                                                            <br>
-                                                                            <div class="form-group">
-                                                                                <button class="btn btn-info" data-dismiss="modal" aria-hidden="true">&nbsp;No</button>
-                                                                                <button name="delete_member" type="submit" class="btn btn-danger"><i class="icon-save icon-large" style="width:50px;float:right;"></i>&nbsp;Yes</button>
-                                                                            </div>
-                                                                        </form>
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                        <!-- Delete Modal -->
+                                                            <!-- Delete Modal -->
+                                                        <?php } ?>
                                                     </td>
                                                 </tr>
                                                 <?php } ?>

@@ -48,6 +48,15 @@
                         $_SESSION['username'] = $row['username'];
                         $_SESSION['fullname'] = $row['fullname'];
                         $_SESSION['deleteable'] = $row['deleteable'];
+                        $_SESSION['add_member'] = $row['add_member'];
+                        $_SESSION['update_member'] = $row['update_member'];
+                        $_SESSION['delete_member'] = $row['delete_member'];
+                        $_SESSION['add_department'] = $row['add_department'];
+                        $_SESSION['update_department'] = $row['update_department'];
+                        $_SESSION['delete_department'] = $row['delete_department'];
+                        $_SESSION['update_attendance'] = $row['update_attendance'];
+                        $_SESSION['delete_attendance'] = $row['delete_attendance'];
+                        $_SESSION['bulk_timeout'] = $row['bulk_timeout'];
                         $_SESSION['transaction'] = "";
 
                         // update last signin

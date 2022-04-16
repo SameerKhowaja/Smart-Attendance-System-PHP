@@ -83,6 +83,7 @@
                     
                     <!-- /. ROW  -->
                     <hr />
+                    <?php if(isset($_SESSION['add_member']) && $_SESSION['add_member']==1){ ?>
                     <div class="row">
                         <div class="col-md-12">
                             <!-- Form Elements -->
@@ -283,6 +284,11 @@
                             <!-- End Form Elements -->
                         </div>
                     </div>
+                    <?php 
+                    }else{
+                        echo "<h2 style='text-align:center'>You Do Not Have Rights...!</h2>";
+                    } 
+                    ?>
                     <!-- /. ROW  -->
                 </div>       
             </div>

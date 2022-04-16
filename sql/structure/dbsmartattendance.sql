@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 08, 2022 at 05:50 PM
+-- Generation Time: Apr 16, 2022 at 12:31 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 7.4.27
 
@@ -32,7 +32,16 @@ CREATE TABLE `admin_user` (
   `password` varchar(20) NOT NULL,
   `fullname` varchar(60) NOT NULL,
   `last_login_date` date DEFAULT NULL,
-  `deleteable` tinyint(1) NOT NULL DEFAULT 1
+  `deleteable` tinyint(1) NOT NULL DEFAULT 1,
+  `add_member` tinyint(1) NOT NULL DEFAULT 0,
+  `update_member` tinyint(1) NOT NULL DEFAULT 0,
+  `delete_member` tinyint(1) NOT NULL DEFAULT 0,
+  `add_department` tinyint(1) NOT NULL DEFAULT 0,
+  `update_department` tinyint(1) NOT NULL DEFAULT 0,
+  `delete_department` tinyint(1) NOT NULL DEFAULT 0,
+  `update_attendance` tinyint(1) NOT NULL DEFAULT 0,
+  `delete_attendance` tinyint(1) NOT NULL DEFAULT 0,
+  `bulk_timeout` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------

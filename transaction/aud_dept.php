@@ -17,8 +17,13 @@ if (isset($_POST['add_dept'])){
     
     try{
         $result=mysqli_query($conn,"INSERT INTO department (dept_name,dept_head_name,dept_area,dept_location,dept_phone,dept_comment,created_by,updated_by) VALUES('$dept_name','$dept_head_name','$dept_area','$dept_location','$dept_phone','$dept_comment','$created_by','$updated_by')");
-        if($result >= 1){
+        $rowcount = mysqli_affected_rows($conn);
+       
+        if($rowcount >= 1){
             $_SESSION['transaction'] = "S";
+        }
+        elseif($rowcount == 0){
+            $_SESSION['transaction'] = "N";
         }
         else{
             $_SESSION['transaction'] = "E";
@@ -48,8 +53,13 @@ elseif (isset($_POST['update_dept'])){
 
     try{
         $result=mysqli_query($conn, "UPDATE department SET dept_name='$dept_name', dept_head_name='$dept_head_name', dept_area='$dept_area', dept_location='$dept_location', dept_phone='$dept_phone', dept_comment='$dept_comment', updated_date='$updated_date', updated_by='$updated_by' WHERE dept_id='$dept_id'");
-        if($result >= 1){
+        $rowcount = mysqli_affected_rows($conn);
+       
+        if($rowcount >= 1){
             $_SESSION['transaction'] = "S";
+        }
+        elseif($rowcount == 0){
+            $_SESSION['transaction'] = "N";
         }
         else{
             $_SESSION['transaction'] = "E";
@@ -69,8 +79,13 @@ elseif (isset($_POST['delete_dept'])){
 
     try{
         $result=mysqli_query($conn,"DELETE FROM department WHERE dept_id='$dept_id'");
-        if($result >= 1){
+        $rowcount = mysqli_affected_rows($conn);
+       
+        if($rowcount >= 1){
             $_SESSION['transaction'] = "S";
+        }
+        elseif($rowcount == 0){
+            $_SESSION['transaction'] = "N";
         }
         else{
             $_SESSION['transaction'] = "E";

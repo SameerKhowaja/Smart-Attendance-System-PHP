@@ -37,7 +37,7 @@
                 <div style="color: white;
                 padding: 15px 50px 5px 50px;
                 float: right;
-                font-size: 16px;"> Welcome: <?php echo $_SESSION['fullname']; ?> &nbsp; <a href="logout.php" class="btn btn-danger square-btn-adjust">Logout</a> 
+                font-size: 16px;"> Welcome: <?php echo $_SESSION['fullname']; ?> &nbsp; <a href="../logout.php" class="btn btn-danger square-btn-adjust">Logout</a> 
                 </div>
             </nav>   
            
@@ -162,6 +162,16 @@
                                     </div>
                                     <?php
                                 }
+                                elseif($_SESSION['transaction'] == "N"){    //no action
+                                    ?>
+                                    <div class="alert alert-info alert-dismissible show" style="font-size:16px;">
+                                        Transaction Not Occurred Due To Some Reasons...!
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <?php
+                                }
                                 elseif($_SESSION['transaction'] == "E"){    //error
                                     ?>
                                     <div class="alert alert-danger alert-dismissible show" style="font-size:16px;">
@@ -228,82 +238,93 @@
                                                     }
                                                     ?>
                                                 </td>
+
+                                                <?php if((isset($_SESSION['update_attendance']) && $_SESSION['update_attendance']==1) || (isset($_SESSION['delete_attendance']) && $_SESSION['delete_attendance']==1)){ ?>
                                                 <td style="width:220; text-align:center;">
-                                                    <a rel="tooltip" title="Update" id="<?php echo $id; ?>" href="#update_attendance<?php echo $id; ?>" data-toggle="modal" class="btn btn-warning btn-sm">Update</a>
-                                                    <!-- Update Modal -->
-                                                    <div class="modal fade" id="update_attendance<?php echo $id; ?>" tabindex="-1" role="dialog" aria-labelledby="update_attendance<?php echo $id; ?>" aria-hidden="true">
-                                                        <div class="modal-dialog modal-sm" role="document">
-                                                            <div class="modal-content">
-                                                                <div class="modal-body">
-                                                                    <div class="text-center">
-                                                                        <h4><b>Update Attendace Data</b></h4>
-                                                                    </div>
-                                                                    <form method="post" action="../transaction/ud_attendance.php">
-                                                                        <input type="hidden" class="form-control" id="attendance_id" name="attendance_id" value="<?php echo $id; ?>" readonly>
-                                                                        <input type="hidden" class="form-control" id="page_url" name="page_url" value="<?php echo explode('?', $_SERVER['REQUEST_URI'])[1];?>" readonly>
-                                                                        
-                                                                        <table>
-                                                                            <tbody style="text-align:left;">
-                                                                                <tr>
-                                                                                    <td><b>Date</b></td>
-                                                                                    <td style="padding-top:5px; padding-left:10px;"><input style="width:180px;" type="date" class="form-control" id="date" name="date" value="<?php echo $row['date']; ?>" required readonly></td>
-                                                                                </tr>
-                                                                                <tr>
-                                                                                    <td><b>AM/PM</b></td>
-                                                                                    <td style="padding-top:5px; padding-left:10px;"><input style="width:180px;" type="text" class="form-control" id="pod_ME" name="pod_ME" value="<?php echo $row['pod_ME']=="am" ? "Morning" : "Evening"; ?>" required disabled></td>
-                                                                                </tr>
-                                                                                <tr>
-                                                                                    <td><b>Time In</b></td>
-                                                                                    <td style="padding-top:5px; padding-left:10px;"><input style="width:180px;" type="time" class="form-control" id="timeIn" name="timeIn" value="<?php echo $row['timeIn'];?>" required></td>
-                                                                                </tr>
-                                                                                <tr>
-                                                                                    <td><b>Time Out</b></td>
-                                                                                    <td style="padding-top:5px; padding-left:10px;"><input style="width:180px;" type="time" class="form-control" id="timeOut" name="timeOut" value="<?php echo $row['timeOut']; ?>"></td>
-                                                                                </tr>
-                                                                                <tr>
-                                                                                    <td>
-                                                                                        <button style="margin-top:10px" class="btn btn-info" data-dismiss="modal" aria-hidden="true"><i class="icon-remove icon-large"></i>&nbsp;Close</button>
-                                                                                    </td>
-                                                                                    <td>
-                                                                                        <button style="margin-top:10px;width:150px;float:right;" name="update_attendance" type="submit" class="btn btn-danger"><i class="icon-save icon-large"></i>&nbsp;Update</button>
-                                                                                    </td>
-                                                                                </tr>
-                                                                            </tbody>
-                                                                        </table>
-                                                                    </form>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <!-- Update Modal -->
-                            
-                                                    <a rel="tooltip" title="Delete" id="<?php echo $id; ?>" href="#delete_attendance<?php echo $id; ?>" data-toggle="modal" class="btn btn-danger btn-sm">Delete</a>
-                                                    <!-- Delete Modal -->
-                                                    <div class="modal fade" id="delete_attendance<?php echo $id; ?>" tabindex="-1" role="dialog" aria-labelledby="delete_attendance<?php echo $id; ?>" aria-hidden="true">
-                                                        <div class="modal-dialog modal-sm" role="document">
-                                                            <div class="modal-content">
-                                                                <div class="modal-body">
-                                                                    <div class="text-center">
-                                                                        <h4><b>Delete Attendace Data</b></h4>
-                                                                    </div>
-                                                                    <form method="post" action="../transaction/ud_attendance.php">
-                                                                        <div class="form-group">
+                                                    <?php if(isset($_SESSION['update_attendance']) && $_SESSION['update_attendance']==1){ ?>
+                                                        <a rel="tooltip" title="Update" id="<?php echo $id; ?>" href="#update_attendance<?php echo $id; ?>" data-toggle="modal" class="btn btn-warning btn-sm">Update</a>
+                                                        <!-- Update Modal -->
+                                                        <div class="modal fade" id="update_attendance<?php echo $id; ?>" tabindex="-1" role="dialog" aria-labelledby="update_attendance<?php echo $id; ?>" aria-hidden="true">
+                                                            <div class="modal-dialog modal-sm" role="document">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-body">
+                                                                        <div class="text-center">
+                                                                            <h4><b>Update Attendace Data</b></h4>
+                                                                        </div>
+                                                                        <form method="post" action="../transaction/ud_attendance.php">
                                                                             <input type="hidden" class="form-control" id="attendance_id" name="attendance_id" value="<?php echo $id; ?>" readonly>
                                                                             <input type="hidden" class="form-control" id="page_url" name="page_url" value="<?php echo explode('?', $_SERVER['REQUEST_URI'])[1];?>" readonly>
-                                                                            <h5>Are you sure to DELETE Data?</h5>
-                                                                        </div>
-                                                                        <br>
-                                                                        <div class="form-group">
-                                                                            <button class="btn btn-info" data-dismiss="modal" aria-hidden="true">&nbsp;No</button>
-                                                                            <button name="delete_attendance" type="submit" class="btn btn-danger"><i class="icon-save icon-large" style="width:50px;float:right;"></i>&nbsp;Yes</button>
-                                                                        </div>
-                                                                    </form>
+                                                                            
+                                                                            <table>
+                                                                                <tbody style="text-align:left;">
+                                                                                    <tr>
+                                                                                        <td><b>Date</b></td>
+                                                                                        <td style="padding-top:5px; padding-left:10px;"><input style="width:180px;" type="date" class="form-control" id="date" name="date" value="<?php echo $row['date']; ?>" required readonly></td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td><b>AM/PM</b></td>
+                                                                                        <td style="padding-top:5px; padding-left:10px;"><input style="width:180px;" type="text" class="form-control" id="pod_ME" name="pod_ME" value="<?php echo $row['pod_ME']=="am" ? "Morning" : "Evening"; ?>" required disabled></td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td><b>Time In</b></td>
+                                                                                        <td style="padding-top:5px; padding-left:10px;"><input style="width:180px;" type="time" class="form-control" id="timeIn" name="timeIn" value="<?php echo $row['timeIn'];?>" required></td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td><b>Time Out</b></td>
+                                                                                        <td style="padding-top:5px; padding-left:10px;"><input style="width:180px;" type="time" class="form-control" id="timeOut" name="timeOut" value="<?php echo $row['timeOut']; ?>"></td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td>
+                                                                                            <button style="margin-top:10px" class="btn btn-info" data-dismiss="modal" aria-hidden="true"><i class="icon-remove icon-large"></i>&nbsp;Close</button>
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            <button style="margin-top:10px;width:150px;float:right;" name="update_attendance" type="submit" class="btn btn-danger"><i class="icon-save icon-large"></i>&nbsp;Update</button>
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                </tbody>
+                                                                            </table>
+                                                                        </form>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <!-- Delete Modal -->
+                                                        <!-- Update Modal -->
+                                                    <?php } ?>
+                            
+                                                    <?php if(isset($_SESSION['delete_attendance']) && $_SESSION['delete_attendance']==1){ ?>
+                                                        <a rel="tooltip" title="Delete" id="<?php echo $id; ?>" href="#delete_attendance<?php echo $id; ?>" data-toggle="modal" class="btn btn-danger btn-sm">Delete</a>
+                                                        <!-- Delete Modal -->
+                                                        <div class="modal fade" id="delete_attendance<?php echo $id; ?>" tabindex="-1" role="dialog" aria-labelledby="delete_attendance<?php echo $id; ?>" aria-hidden="true">
+                                                            <div class="modal-dialog modal-sm" role="document">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-body">
+                                                                        <div class="text-center">
+                                                                            <h4><b>Delete Attendace Data</b></h4>
+                                                                        </div>
+                                                                        <form method="post" action="../transaction/ud_attendance.php">
+                                                                            <div class="form-group">
+                                                                                <input type="hidden" class="form-control" id="attendance_id" name="attendance_id" value="<?php echo $id; ?>" readonly>
+                                                                                <input type="hidden" class="form-control" id="page_url" name="page_url" value="<?php echo explode('?', $_SERVER['REQUEST_URI'])[1];?>" readonly>
+                                                                                <h5>Are you sure to DELETE Data?</h5>
+                                                                            </div>
+                                                                            <br>
+                                                                            <div class="form-group">
+                                                                                <button class="btn btn-info" data-dismiss="modal" aria-hidden="true">&nbsp;No</button>
+                                                                                <button name="delete_attendance" type="submit" class="btn btn-danger"><i class="icon-save icon-large" style="width:50px;float:right;"></i>&nbsp;Yes</button>
+                                                                            </div>
+                                                                        </form>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!-- Delete Modal -->
+                                                    <?php } ?>
                                                 </td>
+                                                <?php 
+                                                }else{
+                                                    echo "<td style='width:220; text-align:center;'><b>Cannot Update/Delete</b></td>";
+                                                } ?>
+
                                             </tr>
                                             <?php } ?>
                                             </tbody>
