@@ -9,6 +9,7 @@
         <link href="assets/css/bootstrap.css" rel="stylesheet" />
         <!-- FONTAWESOME STYLES-->
         <link href="assets/css/font-awesome.css" rel="stylesheet" />
+        <link rel="stylesheet" href="assets/fontawesome-free/css/all.css">
         <!-- MORRIS CHART STYLES-->
         <!-- CUSTOM STYLES-->
         <link href="assets/css/custom.css" rel="stylesheet" />
@@ -32,7 +33,7 @@
                         echo $new;
                     ?> 
                     &nbsp;
-                    <a href="index.php" class="btn btn-danger square-btn-adjust">&nbsp;<b><</b>&nbsp; Back/Logout</a>
+                    <a href="index.php" class="btn btn-danger square-btn-adjust"><i class="fa-solid fa-backward-fast"></i> Back/Logout</a>
                 </div>
             </nav>   
 
@@ -147,7 +148,7 @@
                                         <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
                                     </div>
                                 </div>
-                                <button type="button" class="btn btn-danger btn-lg" data-toggle="modal" data-target="#manual_attendance"> Mark Attendance Manually</button>
+                                <button type="button" class="btn btn-danger btn-lg" data-toggle="modal" data-target="#manual_attendance"><i class="fa-regular fa-address-card"></i> Mark Attendance Manually</button>
                             </div>
                         </div>
                     </div>

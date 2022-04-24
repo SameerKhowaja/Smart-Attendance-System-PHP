@@ -9,6 +9,7 @@
         <link href="../assets/css/bootstrap.css" rel="stylesheet" />
         <!-- FONTAWESOME STYLES-->
         <link href="../assets/css/font-awesome.css" rel="stylesheet" />
+        <link rel="stylesheet" href="../assets/fontawesome-free/css/all.css">
         <!-- MORRIS CHART STYLES-->
     
             <!-- CUSTOM STYLES-->
@@ -193,7 +194,7 @@
                                     <b>Attendance History</b>
                                     <div class="pull-right">
                                         <a href="../attendance.php" type="button" class="btn btn-primary btn-xs">
-                                            &nbsp;<b><</b>&nbsp; Back
+                                            <i class="fa-solid fa-backward"></i> Back
                                         </a>
                                     </div>
                                 </div>
@@ -242,7 +243,7 @@
                                                 <?php if((isset($_SESSION['update_attendance']) && $_SESSION['update_attendance']==1) || (isset($_SESSION['delete_attendance']) && $_SESSION['delete_attendance']==1)){ ?>
                                                 <td style="width:220; text-align:center;">
                                                     <?php if(isset($_SESSION['update_attendance']) && $_SESSION['update_attendance']==1){ ?>
-                                                        <a rel="tooltip" title="Update" id="<?php echo $id; ?>" href="#update_attendance<?php echo $id; ?>" data-toggle="modal" class="btn btn-warning btn-sm">Update</a>
+                                                        <a rel="tooltip" title="Update" id="<?php echo $id; ?>" href="#update_attendance<?php echo $id; ?>" data-toggle="modal" class="btn btn-warning btn-sm"><i class="fa-regular fa-pen-to-square"></i> Update</a>
                                                         <!-- Update Modal -->
                                                         <div class="modal fade" id="update_attendance<?php echo $id; ?>" tabindex="-1" role="dialog" aria-labelledby="update_attendance<?php echo $id; ?>" aria-hidden="true">
                                                             <div class="modal-dialog modal-sm" role="document">
@@ -292,7 +293,7 @@
                                                     <?php } ?>
                             
                                                     <?php if(isset($_SESSION['delete_attendance']) && $_SESSION['delete_attendance']==1){ ?>
-                                                        <a rel="tooltip" title="Delete" id="<?php echo $id; ?>" href="#delete_attendance<?php echo $id; ?>" data-toggle="modal" class="btn btn-danger btn-sm">Delete</a>
+                                                        <a rel="tooltip" title="Delete" id="<?php echo $id; ?>" href="#delete_attendance<?php echo $id; ?>" data-toggle="modal" class="btn btn-danger btn-sm"><i class="fa-regular fa-trash-can"></i> Delete</a>
                                                         <!-- Delete Modal -->
                                                         <div class="modal fade" id="delete_attendance<?php echo $id; ?>" tabindex="-1" role="dialog" aria-labelledby="delete_attendance<?php echo $id; ?>" aria-hidden="true">
                                                             <div class="modal-dialog modal-sm" role="document">

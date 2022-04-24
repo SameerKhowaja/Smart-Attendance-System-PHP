@@ -9,6 +9,7 @@
         <link href="../assets/css/bootstrap.css" rel="stylesheet" />
         <!-- FONTAWESOME STYLES-->
         <link href="../assets/css/font-awesome.css" rel="stylesheet" />
+        <link rel="stylesheet" href="../assets/fontawesome-free/css/all.css">
         <!-- MORRIS CHART STYLES-->
     
             <!-- CUSTOM STYLES-->
@@ -37,7 +38,7 @@
                 <div style="color: white;
                 padding: 15px 50px 5px 50px;
                 float: right;
-                font-size: 16px;"> Welcome: <?php echo $_SESSION['fullname']; ?> &nbsp; <a href="logout.php" class="btn btn-danger square-btn-adjust">Logout</a> 
+                font-size: 16px;"> Welcome: <?php echo $_SESSION['fullname']; ?> &nbsp; <a href="logout.php" class="btn btn-danger square-btn-adjust"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a> 
                 </div>
             </nav>   
            
@@ -122,7 +123,7 @@
                                     <b>Attendance History</b>
                                     <div class="pull-right">
                                         <a href="../attendance.php" type="button" class="btn btn-primary btn-xs">
-                                            &nbsp;<b><</b>&nbsp; Back
+                                            <i class="fa-solid fa-backward"></i> Back
                                         </a>
                                     </div>
                                 </div>

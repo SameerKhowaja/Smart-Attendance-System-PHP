@@ -9,6 +9,7 @@
         <link href="assets/css/bootstrap.css" rel="stylesheet" />
         <!-- FONTAWESOME STYLES-->
         <link href="assets/css/font-awesome.css" rel="stylesheet" />
+        <link rel="stylesheet" href="assets/fontawesome-free/css/all.css">
         <!-- MORRIS CHART STYLES-->
         <!-- CUSTOM STYLES-->
         <link href="assets/css/custom.css" rel="stylesheet" />
@@ -35,7 +36,7 @@
                 <div style="color: white;
                 padding: 15px 50px 5px 50px;
                 float: right;
-                font-size: 16px;"> Welcome: <?php echo $_SESSION['fullname']; ?> &nbsp; <a href="logout.php" class="btn btn-danger square-btn-adjust">Logout</a> 
+                font-size: 16px;"> Welcome: <?php echo $_SESSION['fullname']; ?> &nbsp; <a href="logout.php" class="btn btn-danger square-btn-adjust"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a> 
                 </div>
             </nav>   
            
@@ -164,7 +165,7 @@
                                     <?php if(isset($_SESSION['add_department']) && $_SESSION['add_department']==1){ ?>
                                     <div class="pull-right">
                                         <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#add_dept">
-                                            &nbsp;<b>+</b>&nbsp; Add New Department
+                                            <i class="fa-regular fa-square-plus"></i> Add New Department
                                         </button>
                                     </div>
                                     <?php } ?>
@@ -199,7 +200,7 @@
                                                     <td style="text-align:center;"><?php echo $row['updated_by']; ?></td>
                                                     <td style="width:220; text-align:center;">
                                                         <?php if(isset($_SESSION['update_department']) && $_SESSION['update_department']==1){ ?>
-                                                            <a rel="tooltip" title="Update" id="<?php echo $id; ?>" href="#update_dept<?php echo $id; ?>" data-toggle="modal" class="btn btn-warning btn-sm">View / Update</a>
+                                                            <a rel="tooltip" title="Update" id="<?php echo $id; ?>" href="#update_dept<?php echo $id; ?>" data-toggle="modal" class="btn btn-warning btn-sm"><i class="fa-regular fa-pen-to-square"></i> View / Update</a>
                                                             <!-- View/Update Modal -->
                                                             <div class="modal fade" id="update_dept<?php echo $id; ?>" tabindex="-1" role="dialog" aria-labelledby="update_dept" aria-hidden="true">
                                                                 <div class="modal-dialog" role="document">
@@ -266,7 +267,7 @@
                                                         <?php 
                                                         }else{
                                                         ?>
-                                                            <a rel="tooltip" title="View" id="<?php echo $id; ?>" href="#view_dept<?php echo $id; ?>" data-toggle="modal" class="btn btn-info btn-sm">View Only</a>
+                                                            <a rel="tooltip" title="View" id="<?php echo $id; ?>" href="#view_dept<?php echo $id; ?>" data-toggle="modal" class="btn btn-info btn-sm"><i class="fa-solid fa-eye"></i> View Only</a>
                                                             <!-- View Modal -->
                                                             <div class="modal fade" id="view_dept<?php echo $id; ?>" tabindex="-1" role="dialog" aria-labelledby="view_dept" aria-hidden="true">
                                                                 <div class="modal-dialog" role="document">
@@ -325,7 +326,7 @@
                                                         ?>
                                                         
                                                         <?php if(isset($_SESSION['delete_department']) && $_SESSION['delete_department']==1){ ?>
-                                                            <a rel="tooltip" title="Delete" id="<?php echo $id; ?>" href="#delete_dept<?php echo $id; ?>" data-toggle="modal" class="btn btn-danger btn-sm">Delete</a>
+                                                            <a rel="tooltip" title="Delete" id="<?php echo $id; ?>" href="#delete_dept<?php echo $id; ?>" data-toggle="modal" class="btn btn-danger btn-sm"><i class="fa-regular fa-trash-can"></i> Delete</a>
                                                             <!-- Delete Modal -->
                                                             <div class="modal fade" id="delete_dept<?php echo $id; ?>" tabindex="-1" role="dialog" aria-labelledby="delete_dept<?php echo $id; ?>" aria-hidden="true">
                                                                 <div class="modal-dialog" role="document">

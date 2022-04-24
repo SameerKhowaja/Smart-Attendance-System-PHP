@@ -9,9 +9,10 @@
         <link href="assets/css/bootstrap.css" rel="stylesheet" />
         <!-- FONTAWESOME STYLES-->
         <link href="assets/css/font-awesome.css" rel="stylesheet" />
+        <link rel="stylesheet" href="assets/fontawesome-free/css/all.css">
         <!-- MORRIS CHART STYLES-->
     
-            <!-- CUSTOM STYLES-->
+        <!-- CUSTOM STYLES-->
         <link href="assets/css/custom.css" rel="stylesheet" />
         <!-- GOOGLE FONTS-->
         <link href='assets/cdn/font-sans.css' rel='stylesheet' type='text/css' />
@@ -37,7 +38,7 @@
                 <div style="color: white;
                 padding: 15px 50px 5px 50px;
                 float: right;
-                font-size: 16px;"> Welcome: <?php echo $_SESSION['fullname']; ?> &nbsp; <a href="logout.php" class="btn btn-danger square-btn-adjust">Logout</a> 
+                font-size: 16px;"> Welcome: <?php echo $_SESSION['fullname']; ?> &nbsp; <a href="logout.php" class="btn btn-danger square-btn-adjust"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a> 
                 </div>
             </nav>   
            
@@ -341,7 +342,7 @@
                                                 <button style="margin-top:10px" class="btn btn-info" data-dismiss="modal" aria-hidden="true"><i class="icon-remove icon-large"></i>&nbsp;Close</button>
                                             </td>
                                             <td>
-                                                <button style="margin-top:10px;width:150px;float:right;" name="filter_attendance" type="submit" class="btn btn-warning"><i class="icon-save icon-large"></i>&nbsp;View Details</button>
+                                                <button style="margin-top:10px;width:150px;float:right;" name="filter_attendance" type="submit" class="btn btn-warning"><i class="icon-save icon-large"></i> View Details</button>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -402,7 +403,7 @@
                                     <b>Mark Missed Timeout in Bulk</b>
                                     <div class="pull-right">
                                         <a id="timeout" href="#timeout" data-toggle="modal" class="btn btn-primary btn-xs">
-                                            &nbsp;<b>></b>&nbsp; Timeout User
+                                            <i class="fa-solid fa-user-clock"></i> Timeout User
                                         </a>
                                     </div>
                                 </div>
@@ -416,10 +417,10 @@
                                     <b>Manage Attendance</b>
                                     <div class="pull-right">
                                         <a type="button" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#attendance_filter">
-                                            &nbsp;<b>#</b>&nbsp; More Filter
+                                            <i class="fa-solid fa-filter"></i> More Filter
                                         </a>
                                         <a type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#manual_attendance">
-                                            &nbsp;<b>+</b>&nbsp; Mark Attendance Manually
+                                            <i class="fa-solid fa-user-group"></i> Mark Attendance Manually
                                         </a>
                                     </div>
                                 </div>
@@ -462,7 +463,7 @@
                                                 </td>
                                                 <td style="text-align:center;"><?php echo $row['total_presents']; ?></td>
                                                 <td style="width:220; text-align:center;">
-                                                    <a id="<?php echo $id; ?>" href="attendance/view_attendance.php?member_id=<?php echo $id; ?>&year=<?php echo $yr; ?>&month=<?php echo $mt; ?>" class="btn btn-warning btn-sm">View Details</a>
+                                                    <a id="<?php echo $id; ?>" href="attendance/view_attendance.php?member_id=<?php echo $id; ?>&year=<?php echo $yr; ?>&month=<?php echo $mt; ?>" class="btn btn-info btn-sm"><i class="fa-solid fa-eye"></i> View Details</a>
                                                 </td>
                                             </tr>
                                             <?php } ?>

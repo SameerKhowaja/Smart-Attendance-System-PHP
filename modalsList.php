@@ -77,9 +77,9 @@
                                             $urlStr=$_SERVER['PHP_SELF'];
                                             if(strpos($urlStr, "member_form") !== false || strpos($urlStr, "update_member") !== false || strpos($urlStr, "view_attendance") !== false){
                                         ?>
-                                            <a id="<?php echo $member_id; ?>" href="../qrCardGenerator.php?member_id=<?php echo $member_id; ?>" target="_blank" class="btn btn-danger btn-sm">Generate QR</a>
+                                            <a id="<?php echo $member_id; ?>" href="../qrCardGenerator.php?member_id=<?php echo $member_id; ?>" target="_blank" class="btn btn-danger btn-sm"><i class="fa-solid fa-qrcode"></i> Generate QR</a>
                                         <?php } else{ ?>
-                                            <a id="<?php echo $member_id; ?>" href="qrCardGenerator.php?member_id=<?php echo $member_id; ?>" target="_blank" class="btn btn-danger btn-sm">Generate QR</a>
+                                            <a id="<?php echo $member_id; ?>" href="qrCardGenerator.php?member_id=<?php echo $member_id; ?>" target="_blank" class="btn btn-danger btn-sm"><i class="fa-solid fa-qrcode"></i> Generate QR</a>
                                         <?php } ?>
                                     </td>
                                 </tr>

@@ -9,6 +9,7 @@
         <link href="assets/css/bootstrap.css" rel="stylesheet" />
         <!-- FONTAWESOME STYLES-->
         <link href="assets/css/font-awesome.css" rel="stylesheet" />
+        <link rel="stylesheet" href="assets/fontawesome-free/css/all.css">
         <!-- MORRIS CHART STYLES-->
     
             <!-- CUSTOM STYLES-->
@@ -36,7 +37,7 @@
                 <div style="color: white;
                 padding: 15px 50px 5px 50px;
                 float: right;
-                font-size: 16px;"> Welcome: <?php echo $_SESSION['fullname']; ?> &nbsp; <a href="logout.php" class="btn btn-danger square-btn-adjust">Logout</a> 
+                font-size: 16px;"> Welcome: <?php echo $_SESSION['fullname']; ?> &nbsp; <a href="logout.php" class="btn btn-danger square-btn-adjust"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a> 
                 </div>
             </nav>   
            
@@ -190,7 +191,7 @@
                                     <b>Complete Database Backup & Save .SQL File</b>
                                     <div class="pull-right">
                                         <a href="transaction/backup_database.php" type="button" class="btn btn-primary btn-xs">
-                                            &nbsp;<b>></b>&nbsp; Download Backup
+                                            <i class="fa-solid fa-cloud-arrow-down"></i> Download Backup
                                         </a>
                                     </div>
                                 </div>
@@ -217,27 +218,27 @@
                                                 <tr>
                                                     <td><b>1. </b></td>
                                                     <td><b>Administrators</b></td>
-                                                    <td><a href="reports/admin_data_to_excel.php" class="btn btn-success btn-sm">Download in Excel</a></td>
+                                                    <td><a href="reports/admin_data_to_excel.php" class="btn btn-success btn-sm"><i class="fa-solid fa-download"></i> Download in Excel</a></td>
                                                 </tr>
                                                 <tr>
                                                     <td><b>2. </b></td>
                                                     <td><b>Departments</b></td>
-                                                    <td><a href="reports/department_data_to_excel.php" class="btn btn-success btn-sm">Download in Excel</a></td>
+                                                    <td><a href="reports/department_data_to_excel.php" class="btn btn-success btn-sm"><i class="fa-solid fa-download"></i> Download in Excel</a></td>
                                                 </tr>
                                                 <tr>
                                                     <td><b>3. </b></td>
                                                     <td><b>Members</b></td>
-                                                    <td><a href="reports/member_data_to_excel.php" class="btn btn-success btn-sm">Download in Excel</a></td>
+                                                    <td><a href="reports/member_data_to_excel.php" class="btn btn-success btn-sm"><i class="fa-solid fa-download"></i> Download in Excel</a></td>
                                                 </tr>
                                                 <tr>
                                                     <td><b>4. </b></td>
                                                     <td><b>Members By Department</b></td>
-                                                    <td><a id="memberByDepartment" href="#memberByDepartment" data-toggle="modal" class="btn btn-success btn-sm">Download in Excel</a></td>
+                                                    <td><a id="memberByDepartment" href="#memberByDepartment" data-toggle="modal" class="btn btn-success btn-sm"><i class="fa-solid fa-download"></i> Download in Excel</a></td>
                                                 </tr>
                                                 <tr>
                                                     <td><b>5. </b></td>
                                                     <td><b>Attendance</b></td>
-                                                    <td><a id="attendance" href="#attendance" data-toggle="modal" class="btn btn-success btn-sm">Download in Excel</a></td>
+                                                    <td><a id="attendance" href="#attendance" data-toggle="modal" class="btn btn-success btn-sm"><i class="fa-solid fa-download"></i> Download in Excel</a></td>
                                                 </tr>
                                             </tbody>
                                         </table>

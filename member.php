@@ -9,6 +9,7 @@
         <link href="assets/css/bootstrap.css" rel="stylesheet" />
         <!-- FONTAWESOME STYLES-->
         <link href="assets/css/font-awesome.css" rel="stylesheet" />
+        <link rel="stylesheet" href="assets/fontawesome-free/css/all.css">
         <!-- MORRIS CHART STYLES-->
     
             <!-- CUSTOM STYLES-->
@@ -36,7 +37,7 @@
                 <div style="color: white;
                 padding: 15px 50px 5px 50px;
                 float: right;
-                font-size: 16px;"> Welcome: <?php echo $_SESSION['fullname']; ?> &nbsp; <a href="logout.php" class="btn btn-danger square-btn-adjust">Logout</a> 
+                font-size: 16px;"> Welcome: <?php echo $_SESSION['fullname']; ?> &nbsp; <a href="logout.php" class="btn btn-danger square-btn-adjust"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a> 
                 </div>
             </nav>   
            
@@ -121,7 +122,7 @@
                                     <?php if(isset($_SESSION['add_member']) && $_SESSION['add_member']==1){ ?>
                                     <div class="pull-right">
                                         <a href="member/member_form.php" type="button" class="btn btn-primary btn-xs">
-                                            &nbsp;<b>+</b>&nbsp; Add New Member
+                                            <i class="fa-regular fa-square-plus"></i> Add New Member
                                         </a>
                                     </div>
                                     <?php } ?>
@@ -166,17 +167,17 @@
                                                     <td style="text-align:center;"><?php echo $row['updated_by']; ?></td>
                                                     <td style="width:220; text-align:center;">
                                                         <?php if(isset($_SESSION['update_member']) && $_SESSION['update_member']==1){ ?>
-                                                            <a id="<?php echo $id; ?>" href="member/update_member.php?member_id=<?php echo $id; ?>" class="btn btn-warning btn-sm">View / Update</a>
+                                                            <a id="<?php echo $id; ?>" href="member/update_member.php?member_id=<?php echo $id; ?>" class="btn btn-warning btn-sm"><i class="fa-regular fa-pen-to-square"></i> View / Update</a>
                                                         <?php 
                                                         }else{
                                                         ?>
-                                                            <a id="<?php echo $id; ?>" href="member/update_member.php?member_id=<?php echo $id; ?>" class="btn btn-info btn-sm">View Only</a>
+                                                            <a id="<?php echo $id; ?>" href="member/update_member.php?member_id=<?php echo $id; ?>" class="btn btn-info btn-sm"><i class="fa-solid fa-eye"></i> View Only</a>
                                                         <?php
                                                         }
                                                         ?>
 
                                                         <?php if(isset($_SESSION['delete_member']) && $_SESSION['delete_member']==1){ ?>
-                                                            <a rel="tooltip" title="Delete" id="<?php echo $id; ?>" href="#delete_member<?php echo $id; ?>" data-toggle="modal" class="btn btn-danger btn-sm">Delete</a>
+                                                            <a rel="tooltip" title="Delete" id="<?php echo $id; ?>" href="#delete_member<?php echo $id; ?>" data-toggle="modal" class="btn btn-danger btn-sm"><i class="fa-regular fa-trash-can"></i> Delete</a>
                                                             <!-- Delete Modal -->
                                                             <div class="modal fade" id="delete_member<?php echo $id; ?>" tabindex="-1" role="dialog" aria-labelledby="delete_dept<?php echo $id; ?>" aria-hidden="true">
                                                                 <div class="modal-dialog" role="document">

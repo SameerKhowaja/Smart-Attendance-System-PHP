@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 16, 2022 at 12:31 PM
+-- Generation Time: Apr 24, 2022 at 10:29 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 7.4.27
 
@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `admin_user` (
   `username` varchar(20) NOT NULL,
-  `password` varchar(20) NOT NULL,
+  `password` varchar(100) NOT NULL,
   `fullname` varchar(60) NOT NULL,
   `last_login_date` date DEFAULT NULL,
   `deleteable` tinyint(1) NOT NULL DEFAULT 1,

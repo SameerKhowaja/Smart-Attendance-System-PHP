@@ -9,6 +9,7 @@
     <link href="assets/css/bootstrap.css" rel="stylesheet" />
      <!-- FONTAWESOME STYLES-->
     <link href="assets/css/font-awesome.css" rel="stylesheet" />
+    <link rel="stylesheet" href="assets/fontawesome-free/css/all.css">
      <!-- MORRIS CHART STYLES-->
     <link href="assets/js/morris/morris-0.4.3.min.css" rel="stylesheet" />
     <!-- CUSTOM STYLES-->
@@ -36,8 +37,8 @@
             padding: 15px 50px 5px 50px;
             float: right;
             font-size: 16px;"> Welcome: <?php echo $_SESSION['fullname']; ?> &nbsp;  
-                <a href="mark_attendance.php" target="_blank" class="btn btn-primary square-btn-adjust">Mark Attendance</a> 
-                <a href="logout.php" class="btn btn-danger square-btn-adjust">Logout</a>
+                <a href="mark_attendance.php" target="_blank" class="btn btn-primary square-btn-adjust"><i class="fa-solid fa-qrcode"></i> Mark Attendance</a> 
+                <a href="logout.php" class="btn btn-danger square-btn-adjust"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a>
             </div>
         </nav>   
            
@@ -92,7 +93,12 @@
                             </div>
                             <div class="form-group">
                                 <label for="password">Password</label>
-                                <input type="password" class="form-control" id="password" name="password" required>
+                                <div class="input-group" id="show_hide_password">
+                                    <input type="password" class="form-control" id="password" name="password" required>
+                                    <div class="input-group-addon" style="margin-top:6px; margin-left:3px;">
+                                        <a><i class="fa fa-eye-slash" aria-hidden="true"></i></a>
+                                    </div>
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label for="password">Administrator</label>
@@ -176,6 +182,7 @@
                 <div class="row" >
                     <div class="col-md-3 col-sm-12 col-xs-12">                       
 						<div class="panel panel-primary text-center no-boder bg-color-white">
+                            <div class="panel-footer back-footer-white"></div>
                             <div class="panel-body">
                                 <i class="fa fa-bar-chart-o fa-4x"></i>
                                 <h5>
@@ -227,7 +234,6 @@
                                     </b>
                                 </h5>
                             </div>
-                            <div class="panel-footer back-footer-white"></div>
                         </div>                       
                     </div>
                     
@@ -238,7 +244,7 @@
                                 <?php if($_SESSION['deleteable'] == 0){ ?>
                                 <div class="pull-right">
                                     <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#add_admin">
-                                        &nbsp;<b>+</b>&nbsp; Add New Administrator
+                                        <i class="fa-regular fa-square-plus"></i> Add New Administrator
                                     </button>
                                 </div>
                                 <?php } ?>
@@ -315,7 +321,7 @@
                                                     if($_SESSION['deleteable'] == 0){   // You are Admin
                                                         if($row['deleteable'] == 1){    // Non-Admin Users
                                                         ?>
-                                                        <a rel="tooltip" title="Update" id="<?php echo $id; ?>" href="#update_role<?php echo $id; ?>" data-toggle="modal" class="btn btn-info btn-sm">Roles</a>
+                                                        <a rel="tooltip" title="Update" id="<?php echo $id; ?>" href="#update_role<?php echo $id; ?>" data-toggle="modal" class="btn btn-info btn-sm"><i class="fa-solid fa-user-gear"></i> Roles</a>
                                                         <!-- Update Role Modal -->
                                                         <div class="modal fade" id="update_role<?php echo $id; ?>" tabindex="-1" role="dialog" aria-labelledby="update_admin" aria-hidden="true">
                                                             <div class="modal-dialog modal-sm" role="document">
@@ -449,7 +455,7 @@
                                                     if($_SESSION['deleteable'] == 0){   // You are Admin
                                                         if($_SESSION['username'] != $row['username']){  // You not part of list
                                                         ?>
-                                                            <a rel="tooltip" title="Update" id="<?php echo $id; ?>" href="#update_admin<?php echo $id; ?>" data-toggle="modal" class="btn btn-warning btn-sm">Update</a>
+                                                            <a rel="tooltip" title="Update" id="<?php echo $id; ?>" href="#update_admin<?php echo $id; ?>" data-toggle="modal" class="btn btn-warning btn-sm"><i class="fa-regular fa-pen-to-square"></i> Update</a>
                                                             <!-- Update Modal -->
                                                             <div class="modal fade" id="update_admin<?php echo $id; ?>" tabindex="-1" role="dialog" aria-labelledby="update_admin" aria-hidden="true">
                                                                 <div class="modal-dialog modal-sm" role="document">
@@ -502,7 +508,7 @@
                                                             </div>
                                                             <!-- Update Modal -->
 
-                                                            <a rel="tooltip" title="Delete" id="<?php echo $id; ?>" href="#delete_admin<?php echo $id; ?>" data-toggle="modal" class="btn btn-danger btn-sm">Delete</a>
+                                                            <a rel="tooltip" title="Delete" id="<?php echo $id; ?>" href="#delete_admin<?php echo $id; ?>" data-toggle="modal" class="btn btn-danger btn-sm"><i class="fa-regular fa-trash-can"></i> Delete</a>
                                                             <!-- Delete Modal -->
                                                             <div class="modal fade" id="delete_admin<?php echo $id; ?>" tabindex="-1" role="dialog" aria-labelledby="delete_dept<?php echo $id; ?>" aria-hidden="true">
                                                                 <div class="modal-dialog modal-sm" role="document">
@@ -531,7 +537,7 @@
                                                         }
                                                         else{ // You part of list then you can only update your self
                                                         ?>
-                                                            <a rel="tooltip" title="Update" id="<?php echo $id; ?>" href="#update_admin<?php echo $id; ?>" data-toggle="modal" class="btn btn-warning btn-sm">Update</a>
+                                                            <a rel="tooltip" title="Update" id="<?php echo $id; ?>" href="#update_admin<?php echo $id; ?>" data-toggle="modal" class="btn btn-warning btn-sm"><i class="fa-regular fa-pen-to-square"></i> Update</a>
                                                             <!-- Update Modal -->
                                                             <div class="modal fade" id="update_admin<?php echo $id; ?>" tabindex="-1" role="dialog" aria-labelledby="update_admin" aria-hidden="true">
                                                                 <div class="modal-dialog modal-sm" role="document">
@@ -577,7 +583,7 @@
                                                     else{   // You are Non-Admin
                                                         if($_SESSION['username'] == $row['username']){   // Update yourself
                                                         ?>
-                                                            <a rel="tooltip" title="Update" id="<?php echo $id; ?>" href="#update_admin<?php echo $id; ?>" data-toggle="modal" class="btn btn-warning btn-sm">Update</a>
+                                                            <a rel="tooltip" title="Update" id="<?php echo $id; ?>" href="#update_admin<?php echo $id; ?>" data-toggle="modal" class="btn btn-warning btn-sm"><i class="fa-regular fa-pen-to-square"></i> Update</a>
                                                             <!-- Update Modal -->
                                                             <div class="modal fade" id="update_admin<?php echo $id; ?>" tabindex="-1" role="dialog" aria-labelledby="update_admin" aria-hidden="true">
                                                                 <div class="modal-dialog modal-sm" role="document">
@@ -662,6 +668,22 @@
     <script>
         $(document).ready(function () {
             $('.dataTables-memberQRList').dataTable();
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            $("#show_hide_password a").on('click', function(event) {
+                event.preventDefault();
+                if($('#show_hide_password input').attr("type") == "text"){
+                    $('#show_hide_password input').attr('type', 'password');
+                    $('#show_hide_password i').addClass( "fa-eye-slash" );
+                    $('#show_hide_password i').removeClass( "fa-eye" );
+                }else if($('#show_hide_password input').attr("type") == "password"){
+                    $('#show_hide_password input').attr('type', 'text');
+                    $('#show_hide_password i').removeClass( "fa-eye-slash" );
+                    $('#show_hide_password i').addClass( "fa-eye" );
+                }
+            });
         });
     </script>
       <!-- CUSTOM SCRIPTS -->
