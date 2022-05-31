@@ -97,7 +97,7 @@
                                                 $year = date('Y');
                                                 $today = $year . '-' . $month . '-' . $day;
                                             ?>
-                                            <input id="date" name="date" type="date" class="form-control" value="<?php echo $today; ?>" required/>
+                                            <input id="date" name="date" type="date" class="form-control" value="<?php echo $today; ?>" required disabled/>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -273,6 +273,7 @@
                 $('#butsave').on('click', function() {
                     var member_id = $('#member_id').val();
                     var pod_ME = $('#pod_ME').val();
+                    $('#date').val("<?php echo $today; ?>");
                     var date = $('#date').val();
                     var time_inout = $('#time_inout').val();
                     

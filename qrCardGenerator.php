@@ -104,16 +104,29 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <?php
-                                                if($row['image_file'] != NULL){
-                                                    echo '<img id="member_mage" class="img-thumbnail" style="width:300px; height:270px;" alt="Your Image" src="data:image/jpeg;base64,'.base64_encode($row['image_file']).'"/>';
-                                                }
-                                                else{
-                                                    echo '<img id="member_mage" class="img-thumbnail" style="width:300px; height:270px;" src="assets/images/no-image.jpg" alt="Your Image">';
-                                                }   
+                                                    // if($row['image_file'] != NULL){ echo '<img id="member_mage" class="img-thumbnail" style="width:300px; height:270px;" alt="Your Image" src="data:image/jpeg;base64,'.base64_encode($row['image_file']).'"/>';}
+                                                    // else{ echo '<img id="member_mage" class="img-thumbnail" style="width:300px; height:270px;" src="assets/images/no-image.jpg" alt="Your Image">';}   
                                                 ?>
-                                            </div>
-                                            <div class="form-group">
-                                                <h4 style="text-align:center;"><b>Joining Date: </b><?php echo $row['doj']; ?></h4>
+                                                <?php
+                                                    try{
+                                                        $fileLocation="assets/images/qr/".$row['member_id'].".png";
+                                                        if (file_exists($fileLocation)) {
+                                                            unlink($fileLocation);
+                                                        }
+                                                        QRcode::png($row['member_qr'], $fileLocation, 'L', 100, 1);
+                                                    
+                                                ?>
+                                                    <div class="row" style="text-align:center;margin-top:5px;">
+                                                        <img id="member_mage" class="img-thumbnail" style="width:350px; height:300px; margin:auto;" src="<?php echo $fileLocation; ?>" alt="QR Image Error">
+                                                    </div>
+                                                <?php
+                                                    }
+                                                    catch(Exception $e){
+                                                ?>
+                                                    <div class="row" style="text-align:center;margin-top:5px;">
+                                                        <img id="member_mage" class="img-thumbnail" style="width:350px; height:300px; margin:auto;" alt="QR Image Error">
+                                                    </div>
+                                                <?php } ?>
                                             </div>
                                         </div>
                                     </div>
@@ -125,30 +138,15 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="row">
+                                                <img id="member_mage" class="img-thumbnail" style="display: block; margin-left: auto; margin-right: auto; width:100px; height:100px;" src="assets/images/no-image.jpg" alt="Your Image">
+                                            </div>
+                                            <div class="row">
                                                 <h3 style="text-align:center;"><b><?php echo $row['dept_name']; ?></b></h3>
                                                 <h3 style="text-align:center; border:1px solid black; padding:2px; margin:1px;" class="member-fullname"><?php echo $row['firstname']." ".$row['lastname']; ?></h3>
+                                                <h3 style="text-align:center; padding:2px; margin:4px;" class="member-fullname"><?php echo ""?></h3>
                                                 <h3 style="text-align:center; border:1px solid black; padding:2px; margin:1px;"><?php echo $row['position']; ?></h3>
+                                                <h3 style="text-align:center; border:1px solid black; padding:2px; margin:1px;"><?php echo $row['doj']; ?></h3>
                                             </div>
-                                            <?php
-                                                try{
-                                                    $fileLocation="assets/images/qr/".$row['member_id'].".png";
-                                                    if (file_exists($fileLocation)) {
-                                                        unlink($fileLocation);
-                                                    }
-                                                    QRcode::png($row['member_qr'], $fileLocation, 'L', 100, 1);
-                                                
-                                            ?>
-                                                <div class="row" style="text-align:center;margin-top:5px;">
-                                                    <img id="member_mage" class="img-thumbnail" style="width:250px; height:190px; margin:auto;" src="<?php echo $fileLocation; ?>" alt="QR Image Error">
-                                                </div>
-                                            <?php
-                                                }
-                                                catch(Exception $e){
-                                            ?>
-                                                <div class="row" style="text-align:center;margin-top:5px;">
-                                                    <img id="member_mage" class="img-thumbnail" style="width:250px; height:190px; margin:auto;" alt="QR Image Error">
-                                                </div>
-                                            <?php } ?>
                                         </div>
                                     </div>
                                 </div>
